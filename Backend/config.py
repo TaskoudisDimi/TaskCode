@@ -1,6 +1,7 @@
+# config.py
 import os
 
 class Config:
-    SECRET_KEY = os.getenv("SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI: str = os.getenv("DATABASE_URL")
+    SECRET_KEY = os.getenv("SECRET_KEY", "your_default_dev_secret")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # put your postgres URL in .env
     SQLALCHEMY_TRACK_MODIFICATIONS = False
