@@ -44,5 +44,5 @@ def create_app():
         scope=["profile", "email"]
     )
     app.register_blueprint(google_bp, url_prefix="/google_login")
-
+    
     return app

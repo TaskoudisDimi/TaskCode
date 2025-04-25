@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo"><a href="{{ url_for('auth.index') }}">MyApp</a></h1>
+                <div class="nav-links">
+                    <a href="{{ url_for('auth.register') }}">Register</a>
+                    <a href="{{ url_for('auth.login') }}">Login</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="hero">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form action="{{ url_for('auth.login') }}" method="POST">
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <button type="submit">Login</button>
+                </form>
+
+                <div class="form-links">
+                    <a href="{{ url_for('google.login') }}">Sign in with Google</a><br>
+                    <a href="{{ url_for('auth.register') }}">Don't have an account? Register</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

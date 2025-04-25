@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">MyApp</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="cta-buttons">
+                <a class="btn" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="btn btn-secondary" href="{{ url_for('auth.register') }}">Register</a>
+                <a class="btn btn-google" href="{{ url_for('google.login') }}">Sign in with Google</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
