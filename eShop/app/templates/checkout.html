@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Checkout</h1>
+    <form method="POST" action="{{ url_for('shop.checkout') }}">
+        <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <textarea class="form-control" id="address" name="address" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Place Order</button>
+    </form>
+    <a href="{{ url_for('shop.cart') }}" class="btn btn-secondary mt-2">Back to Cart</a>
+</div>
+{% endblock %}

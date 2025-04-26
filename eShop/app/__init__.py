@@ -1,4 +1,4 @@
-from flask import Flask 
+from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_dance.contrib.google import make_google_blueprint
@@ -16,17 +16,16 @@ login_manager.login_view = "auth.login"
 # Import models early to avoid circular imports later
 from .models import User
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
 def create_app():
     load_dotenv()
-    app = Flask(__name__, template_folder="templates")  # 👈 explicitly tell Flask where templates are
+    app = Flask(__name__, template_folder="templates")
 
     app.config.from_object("config.Config")
+    app.secret_key = os.getenv("SECRET_KEY")  # Required for sessions
 
     # Initialize extensions with the app
     db.init_app(app)
@@ -35,6 +34,10 @@ def create_app():
     # Register authentication blueprint
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+
+    # Register shop blueprint
+    from .shop import shop as shop_blueprint
+    app.register_blueprint(shop_blueprint)
 
     # Register Google OAuth blueprint
     google_bp = make_google_blueprint(

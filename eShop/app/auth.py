@@ -20,16 +20,20 @@ def register():
         if user:
             flash("Email already exists.")
             return redirect(url_for("auth.register"))
-
+        # Hash the password using a secure method (pbkdf2:sha256)
+        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
+        # Create user with password if they are not using Google
         new_user = User(
             email=email,
             name=name,
-            password=generate_password_hash(password, method="sha256")
+            password=hashed_password,
+            google_id=None  # This is NULL for manual users
         )
+        
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
-        return redirect(url_for("main.profile"))  # Adjust this route as needed
+        return redirect(url_for("auth.dashboard"))  # Adjust this route as needed
 
     return render_template("register.html")
 
@@ -40,15 +44,21 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
+        # Check for manual email/password login
         user = User.query.filter_by(email=email).first()
-        if not user or not check_password_hash(user.password, password):
-            flash("Invalid login credentials.")
-            return redirect(url_for("auth.login"))
+        if user:
+            if user.password and check_password_hash(user.password, password):
+                login_user(user)
+                return redirect(url_for("auth.dashboard"))
+            else:
+                flash("Invalid login credentials.")
+        else:
+            flash("Email does not exist.")
 
-        login_user(user)
-        return redirect(url_for("main.profile"))
+        return redirect(url_for("auth.login"))
 
     return render_template("login.html")
+
 
 
 @auth.route("/logout")
@@ -63,7 +73,7 @@ def logout():
 @auth.route("/dashboard")
 @login_required
 def dashboard():
-    return f"Welcome, {current_user.name or current_user.email}!"
+    return render_template("dashboard.html", user=current_user)
 
 @auth.route("/google_login/callback")
 def google_login_callback():
@@ -78,15 +88,24 @@ def google_login_callback():
     user_info = resp.json()
     email = user_info["email"]
     name = user_info["name"]
+    google_id = user_info["id"]  # Get Google ID from response
 
+    # Check if user already exists, otherwise create a new user
     user = User.query.filter_by(email=email).first()
+
     if not user:
-        user = User(email=email, name=name)
+        user = User(
+            email=email,
+            name=name,
+            google_id=google_id,  # Set Google ID for this user
+            password=None  # No password required for Google users
+        )
         db.session.add(user)
         db.session.commit()
 
     login_user(user)
     return redirect(url_for("auth.dashboard"))
+
 
 
 @auth.route("/")

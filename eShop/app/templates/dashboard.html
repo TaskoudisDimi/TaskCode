@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="container">
     <div class="form-container">
-        <h2>Dashboard</h2>
-        <p>Welcome, {{ current_user.name or current_user.email }}!</p>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <h2>Profile</h2>
+        <p>Welcome, {{ user.name or user.email }}!</p>
+        <p><a href="{{ url_for('shop.products') }}">Browse Products</a></p>
+        <p><a href="{{ url_for('shop.view_cart') }}">View Cart</a></p>
+        <p><a href="{{ url_for('shop.orders') }}">View Orders</a></p>
+        <p><a href="{{ url_for('auth.logout') }}">Logout</a></p>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
