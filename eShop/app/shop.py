@@ -12,7 +12,6 @@ def products():
     products = Product.query.all()
     return render_template("products.html", products=products, categories=categories)
 
-
 @shop.route("/product/<int:product_id>")
 def product_detail(product_id):
     product = Product.query.get_or_404(product_id)

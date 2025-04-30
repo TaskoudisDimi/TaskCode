@@ -10,7 +10,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">MyApp</div>
+            <a href="{{ url_for('auth.index') }}" class="logo">MyApp</a>
             <ul class="nav-links">
                 <li><a href="{{ url_for('auth.index') }}">Home</a></li>
                 <li><a href="{{ url_for('shop.products') }}">Products</a></li>

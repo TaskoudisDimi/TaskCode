@@ -3,15 +3,15 @@
 {% block content %}
 <header class="hero">
     <div class="container">
-        <h1>Welcome to MyApp</h1>
-        <p>Explore our wide range of products!</p>
+        <h1 class="hero-title">Welcome to MyApp</h1>
+        <p class="hero-subtitle">Explore our wide range of products!</p>
         <div class="cta-buttons">
             {% if not current_user.is_authenticated %}
             <a class="btn" href="{{ url_for('auth.login') }}">Login</a>
             <a class="btn btn-secondary" href="{{ url_for('auth.register') }}">Register</a>
             <a class="btn btn-google" href="{{ url_for('google.login') }}">Sign in with Google</a>
             {% else %}
-            <a class="btn" href="{{ url_for('shop.products') }}">Shop Now</a>
+            <a class="btn btn-primary" href="{{ url_for('shop.products') }}">Shop Now</a>
             {% endif %}
         </div>
     </div>
