@@ -1,14 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIWebWorks - Craft Your Digital Future</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/TaskCode/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h2>Template 1</h2>
-<iframe src="templates/Business/main/index.html" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
+<body class="bg-gradient-to-r from-teal-500 to-coral-500 font-poppins">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-teal-600">AIWebWorks</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#home" class="text-gray-700 hover:text-coral-500">Home</a>
+          <a href="#services" class="text-gray-700 hover:text-coral-500">Services</a>
+          <a href="#categories" class="text-gray-700 hover:text-coral-500">Templates</a>
+          <a href="pricing.html" class="text-gray-700 hover:text-coral-500">Pricing</a>
+          <a href="#contact" class="text-gray-700 hover:text-coral-500">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg text-white py-24 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-4 animate-slide-in">Transform Your Ideas into Stunning Digital Realities</h2>
+      <p class="text-lg md:text-2xl mb-8 animate-slide-in-delayed">AIWebWorks crafts bold, AI-driven websites and e-commerce stores that captivate and convert. Start your journey today!</p>
+      <a href="#contact" class="bg-coral-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-coral-600 animate-pulse-btn">Get Started</a>
+    </div>
+  </section>
 
+  <!-- Services Section -->
+  <section id="services" class="py-16 animate-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md category-card">
+          <h3 class="text-xl font-semibold mb-4 text-teal-600">E-Commerce Solutions</h3>
+          <p class="text-gray-600">Custom online stores with secure payments, inventory management, and seamless user experiences.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md category-card">
+          <h3 class="text-xl font-semibold mb-4 text-teal-600">AI-Powered Websites</h3>
+          <p class="text-gray-600">Websites with AI features like chatbots, personalized content, and automated analytics.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md category-card">
+          <h3 class="text-xl font-semibold mb-4 text-teal-600">Custom Development</h3>
+          <p class="text-gray-600">Bespoke web solutions tailored to your brand, built with the latest technologies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories" class="bg-white py-16 animate-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Explore Template Categories</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <a href="templates.html?category=business" class="category-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-teal-600">Business</h3>
+          <p class="text-gray-600">Professional templates for corporate and startup websites.</p>
+        </a>
+        <a href="templates.html?category=eshop" class="category-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-teal-600">eShop</h3>
+          <p class="text-gray-600">Stunning e-commerce templates for online stores.</p>
+        </a>
+        <a href="templates.html?category=generic" class="category-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-teal-600">Generic</h3>
+          <p class="text-gray-600">Versatile templates for blogs, events, and more.</p>
+        </a>
+        <a href="templates.html?category=portfolio" class="category-card bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-teal-600">Portfolio</h3>
+          <p class="text-gray-600">Creative templates to showcase your work.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Teaser Section -->
+  <section id="pricing-teaser" class="py-16 animate-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-gray-800">Discover Our Flexible Pricing Plans</h2>
+      <p class="text-lg text-gray-600 mb-8">Choose from a range of plans tailored to your needs, from basic e-commerce solutions to enterprise-level AI-powered websites.</p>
+      <a href="pricing.html" class="bg-coral-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-coral-600 animate-pulse-btn">View Pricing</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 animate-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Get in Touch</h2>
+      <div class="max-w-lg mx-auto">
+        <div id="contact-form">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700">Name</label>
+            <input type="text" id="name" class="w-full p-3 border rounded-lg" placeholder="Your Name">
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700">Email</label>
+            <input type="email" id="email" class="w-full p-3 border rounded-lg" placeholder="Your Email">
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700">Message</label>
+            <textarea id="message" class="w-full p-3 border rounded-lg" rows="5" placeholder="Your Message"></textarea>
+          </div>
+          <button onclick="submitForm()" class="bg-coral-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-coral-600">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2025 AIWebWorks. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Contact form submission (placeholder for actual functionality)
+    function submitForm() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      if (name && email && message) {
+        alert("Thank you for your message! We'll get back to you soon.");
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      } else {
+        alert("Please fill out all fields.");
+      }
+    }
+  </script>
 </body>
 </html>
