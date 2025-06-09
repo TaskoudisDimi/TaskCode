@@ -2,9 +2,11 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import current_user, login_required
 from .models import Product, Category, Order, OrderItem
 from . import db
-
+import os
 
 shop = Blueprint("shop", __name__)
+
+
 
 @shop.route("/products")
 def products():
@@ -27,11 +29,9 @@ def add_to_cart(product_id):
         flash("Not enough stock available.")
         return redirect(url_for("shop.product_detail", product_id=product_id))
 
-    # For simplicity, we'll store cart in session (in production, use a proper cart model)
     if "cart" not in session:
         session["cart"] = []
 
-    # Check if product is already in cart
     for item in session["cart"]:
         if item["product_id"] == product_id:
             item["quantity"] += quantity
@@ -68,11 +68,10 @@ def checkout():
             flash("Your cart is empty.")
             return redirect(url_for("shop.cart"))
 
-        # Create a new order
         total_amount = 0
         order = Order(user_id=current_user.id, total_amount=0, status="Pending")
         db.session.add(order)
-        db.session.flush()  # Get order ID before committing
+        db.session.flush()
 
         for item in session["cart"]:
             product = Product.query.get(item["product_id"])
@@ -81,7 +80,6 @@ def checkout():
                 db.session.rollback()
                 return redirect(url_for("shop.cart"))
 
-            # Create order item
             order_item = OrderItem(
                 order_id=order.id,
                 product_id=product.id,
@@ -89,13 +87,12 @@ def checkout():
                 unit_price=product.price
             )
             total_amount += product.price * item["quantity"]
-            product.stock -= item["quantity"]  # Update stock
+            product.stock -= item["quantity"]
             db.session.add(order_item)
 
         order.total_amount = total_amount
         db.session.commit()
 
-        # Clear cart
         session.pop("cart", None)
         flash("Order placed successfully!")
         return redirect(url_for("shop.orders"))
@@ -107,3 +104,4 @@ def checkout():
 def orders():
     orders = Order.query.filter_by(user_id=current_user.id).all()
     return render_template("orders.html", orders=orders)
+

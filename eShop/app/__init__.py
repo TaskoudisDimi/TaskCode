@@ -1,4 +1,4 @@
-from flask import Flask, session
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_dance.contrib.google import make_google_blueprint
@@ -22,10 +22,16 @@ def load_user(user_id):
 
 def create_app():
     load_dotenv()
-    app = Flask(__name__, template_folder="templates")
+    app = Flask(__name__, template_folder="templates")  # Set root templates folder
+    print(f"[create_app] Flask root_path: {app.root_path}")  # Debug root path
 
     app.config.from_object("config.Config")
     app.secret_key = os.getenv("SECRET_KEY")  # Required for sessions
+
+    # Set default theme from .env or fallback
+    default_theme = os.getenv("THEME", "MyTemplate")
+    app.config["ACTIVE_THEME"] = default_theme
+    print(f"Using default theme: {default_theme}")
 
     # Initialize extensions with the app
     db.init_app(app)

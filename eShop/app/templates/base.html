@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - MyApp</title>
+    <title>{% block title %}{% endblock %} - E-Shop</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="{{ url_for('auth.index') }}" class="logo">MyApp</a>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('auth.index') }}">Home</a></li>
-                <li><a href="{{ url_for('shop.products') }}">Products</a></li>
-                {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('shop.view_cart') }}">Cart</a></li>
-                <li><a href="{{ url_for('shop.orders') }}">Orders</a></li>
-                <li><a href="{{ url_for('auth.dashboard') }}">Profile</a></li>
-                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                {% endif %}
-            </ul>
+            <a href="{{ url_for('auth.index') }}" class="logo">E-Shop</a>
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('auth.index') }}">Home</a></li>
+                    <li><a href="{{ url_for('shop.products') }}">Products</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('shop.view_cart') }}">Cart</a></li>
+                    <li><a href="{{ url_for('shop.orders') }}">Orders</a></li>
+                    <li><a href="{{ url_for('auth.dashboard') }}">Profile</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+               
+            </div>
         </div>
     </nav>
 
@@ -45,7 +48,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>All rights reserved.</p>
+            <p>© 2025 E-Shop. All rights reserved.</p>
         </div>
     </footer>
 </body>

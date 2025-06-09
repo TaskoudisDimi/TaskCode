@@ -7,14 +7,17 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=True)  # Password is optional for Google users
+    password = db.Column(db.String(255), nullable=True)
     name = db.Column(db.String(255))
-    google_id = db.Column(db.String(255), unique=True, nullable=True)  # Nullable for manual users
+    google_id = db.Column(db.String(255), unique=True, nullable=True)
+    theme = db.Column(db.String(50), default="MyTemplate")  # New column for user theme
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     def __repr__(self):
         return f"<User {self.email}>"
+
+# ... rest of models.py remains unchanged ...
 
 class Category(db.Model):
     __tablename__ = "categories"
