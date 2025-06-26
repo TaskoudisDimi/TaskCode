@@ -1,160 +1,24 @@
-// List of template files, organized by category
-const templates = [
-  // Business (2 templates)
-  {
-    name: "Business Landing",
-    path: "/TaskCode/templates/Business/main/index.html",
-    description: "A professional landing page for corporate businesses.",
-    category: "business"
-  },
-  {
-    name: "Startup Showcase",
-    path: "/TaskCode/templates/Business/Unika Free Website Template - Free-CSS.com/unika-html/unika-html/index.html",
-    description: "A dynamic template for startups to highlight services.",
-    category: "business"
-  },
-  // eShop (8 templates)
-  {
-    name: "Fashion Store",
-    path: "/TaskCode/static/templates/eshop/eshop1.html",
-    description: "A stylish e-commerce template for fashion retail.",
-    category: "eshop"
-  },
-  {
-    name: "Electronics Shop",
-    path: "/TaskCode/static/templates/eshop/eshop2.html",
-    description: "A modern store template for tech products.",
-    category: "eshop"
-  },
-  {
-    name: "Grocery Market",
-    path: "/TaskCode/static/templates/eshop/eshop3.html",
-    description: "An online grocery store with easy navigation.",
-    category: "eshop"
-  },
-  {
-    name: "Jewelry Boutique",
-    path: "/TaskCode/static/templates/eshop/eshop4.html",
-    description: "A luxurious template for jewelry sales.",
-    category: "eshop"
-  },
-  {
-    name: "Bookstore",
-    path: "/TaskCode/static/templates/eshop/eshop5.html",
-    description: "A clean e-commerce template for books.",
-    category: "eshop"
-  },
-  {
-    name: "Furniture Store",
-    path: "/TaskCode/static/templates/eshop/eshop6.html",
-    description: "A template for home decor and furniture retail.",
-    category: "eshop"
-  },
-  {
-    name: "Sports Gear",
-    path: "/TaskCode/static/templates/eshop/eshop7.html",
-    description: "A vibrant store template for sports equipment.",
-    category: "eshop"
-  },
-  {
-    name: "Toy Shop",
-    path: "/TaskCode/static/templates/eshop/eshop8.html",
-    description: "A fun e-commerce template for toys and games.",
-    category: "eshop"
-  },
-  // Generic (6 templates)
-  {
-    name: "Minimalist Landing",
-    path: "/TaskCode/static/templates/generic/generic1.html",
-    description: "A clean and simple landing page for any purpose.",
-    category: "generic"
-  },
-  {
-    name: "Event Page",
-    path: "/TaskCode/static/templates/generic/generic2.html",
-    description: "A template for promoting events and conferences.",
-    category: "generic"
-  },
-  {
-    name: "Blog Homepage",
-    path: "/TaskCode/static/templates/generic/generic3.html",
-    description: "A versatile blog template with article previews.",
-    category: "generic"
-  },
-  {
-    name: "Agency Site",
-    path: "/TaskCode/static/templates/generic/generic4.html",
-    description: "A template for creative agencies to showcase services.",
-    category: "generic"
-  },
-  {
-    name: "Non-Profit",
-    path: "/TaskCode/static/templates/generic/generic5.html",
-    description: "A template for charities and non-profit organizations.",
-    category: "generic"
-  },
-  {
-    name: "Personal Page",
-    path: "/TaskCode/static/templates/generic/generic6.html",
-    description: "A simple personal website template.",
-    category: "generic"
-  },
-  // Portfolio (9 templates)
-  {
-    name: "Creative Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio1.html",
-    description: "A vibrant portfolio for artists and designers.",
-    category: "portfolio"
-  },
-  {
-    name: "Photography Gallery",
-    path: "/TaskCode/static/templates/portfolio/portfolio2.html",
-    description: "A template for showcasing photography work.",
-    category: "portfolio"
-  },
-  {
-    name: "Designer Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio3.html",
-    description: "A sleek portfolio for graphic designers.",
-    category: "portfolio"
-  },
-  {
-    name: "Freelancer Site",
-    path: "/TaskCode/static/templates/portfolio/portfolio4.html",
-    description: "A template for freelancers to display projects.",
-    category: "portfolio"
-  },
-  {
-    name: "Architect Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio5.html",
-    description: "A professional template for architects.",
-    category: "portfolio"
-  },
-  {
-    name: "Writer Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio6.html",
-    description: "A clean template for writers and authors.",
-    category: "portfolio"
-  },
-  {
-    name: "Musician Page",
-    path: "/TaskCode/static/templates/portfolio/portfolio7.html",
-    description: "A template for musicians to share their work.",
-    category: "portfolio"
-  },
-  {
-    name: "Videographer Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio8.html",
-    description: "A template for video content creators.",
-    category: "portfolio"
-  },
-  {
-    name: "Illustrator Portfolio",
-    path: "/TaskCode/static/templates/portfolio/portfolio9.html",
-    description: "A colorful portfolio for illustrators.",
-    category: "portfolio"
+let templates = [];
+let currentIndex = 0;
+let currentTemplates = [];
+
+// Fetch templates from JSON file
+async function fetchTemplates() {
+  try {
+    const response = await fetch('/TaskCode-Site/template-paths.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    templates = await response.json();
+    currentTemplates = templates;
+  } catch (error) {
+    console.error('Error fetching templates:', error);
+    const container = document.getElementById('template-container');
+    if (container) {
+      container.innerHTML = '<div class="carousel-error">Failed to load templates. Please try again later.</div>';
+    }
   }
-];
+}
 
 // Load template previews into carousel
 function loadTemplates(filteredTemplates) {
@@ -193,9 +57,6 @@ function loadTemplates(filteredTemplates) {
 }
 
 // Carousel navigation
-let currentIndex = 0;
-let currentTemplates = templates;
-
 function updateCarousel() {
   const container = document.getElementById("template-container");
   if (!container || currentTemplates.length === 0) return;
@@ -255,9 +116,10 @@ function getInitialCategory() {
 }
 
 // Initialize
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   console.log("Initializing template carousel...");
   try {
+    await fetchTemplates();
     const initialCategory = getInitialCategory();
     filterTemplates(initialCategory);
     setupNavigation();
