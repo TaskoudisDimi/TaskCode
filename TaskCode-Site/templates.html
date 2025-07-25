@@ -3,64 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIWebWorks - Template Gallery</title>
+  <title>Templates - AIWebWorks</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/TaskCode-Site/static/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-r from-teal-500 to-coral-500 font-poppins">
-  <!-- Navbar -->
-  <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex items-center">
-          <h1 class="text-2xl font-bold text-teal-600">AIWebWorks</h1>
-        </div>
-        <div class="flex items-center space-x-4">
-          <a href="index.html#home" class="text-gray-700 hover:text-coral-500">Home</a>
-          <a href="index.html#services" class="text-gray-700 hover:text-coral-500">Services</a>
-          <a href="index.html#categories" class="text-gray-700 hover:text-coral-500">Templates</a>
-          <a href="pricing.html" class="text-gray-700 hover:text-coral-500">Pricing</a>
-          <a href="index.html#contact" class="text-gray-700 hover:text-coral-500">Contact</a>
-        </div>
+<body class="bg-gray-100"> 
+  <!-- Navigation -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-teal-600">AIWebWorks</a>
+      <div class="space-x-4">
+        <a href="index.html" class="text-gray-600 hover:text-teal-600">Home</a>
+        <a href="#services" class="text-gray-600 hover:text-teal-600">Services</a>
+        <a href="templates.html" class="text-teal-600 font-semibold">Templates</a>
+        <a href="pricing.html" class="text-gray-600 hover:text-teal-600">Pricing</a>
+        <a href="#contact" class="text-gray-600 hover:text-teal-600">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- Template Previews Section (Carousel with Category Filter) -->
-  <section id="templates" class="py-16 animate-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Template Gallery</h2>
-      <div class="flex justify-center mb-8 space-x-4 flex-wrap">
-        <button class="category-btn bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600" data-category="all">All</button>
-        <button class="category-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400" data-category="business">Business</button>
-        <button class="category-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400" data-category="eshop">eShop</button>
-        <button class="category-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400" data-category="generic">Generic</button>
-        <button class="category-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400" data-category="portfolio">Portfolio</button>
-      </div>
-      <div class="relative">
-        <div id="template-carousel" class="carousel-container overflow-hidden">
-          <div id="template-container" class="flex transition-transform duration-500 ease-in-out">
-            <!-- Templates will be loaded dynamically via JavaScript -->
+  <!-- Template Gallery -->
+  <section id="templates" class="py-16 bg-gradient-to-r from-teal-500 to-orange-500">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8 animate-slide-in">Template Gallery</h2>
+      
+      <!-- Vue App -->
+      <div id="app">
+        <!-- Search Bar -->
+        <div class="mb-8 flex justify-center">
+          <input 
+            v-model="searchQuery" 
+            type="text" 
+            placeholder="Search templates..." 
+            class="w-full max-w-md px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          >
+          <button 
+            @click="clearSearch" 
+            class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700"
+          >
+            Clear
+          </button>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex justify-center flex-wrap gap-4 mb-8">
+          <button 
+            v-for="category in categories" 
+            :key="category" 
+            @click="filterTemplates(category)" 
+            :class="['category-btn px-4 py-2 rounded-md text-sm font-medium transition-all duration-300', 
+                     currentCategory === category ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-teal-500 hover:text-white']"
+          >
+            {{ category.charAt(0).toUpperCase() + category.slice(1) }}
+          </button>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-container relative">
+          <div id="template-container" class="flex transition-transform duration-500" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+            <div 
+              v-for="(template, index) in filteredTemplates" 
+              :key="template.name" 
+              class="carousel-card flex-none w-full"
+            >
+              <div v-if="!loadedTemplates.includes(index)" class="h-[600px] flex items-center justify-center bg-gray-200">
+                <span class="text-gray-600">Loading...</span>
+              </div>
+              <iframe 
+                v-else 
+                :src="template.path" 
+                :title="template.name" 
+                class="template-preview"
+                @load="markLoaded(index)"
+              ></iframe>
+              <h3 class="text-xl font-semibold text-gray-800">{{ template.name }}</h3>
+              <p class="text-gray-600">{{ template.description }}</p>
+              <button 
+                @click="openPreview(template)" 
+                class="mt-2 text-teal-600 hover:text-teal-800 font-medium underline"
+              >
+                Preview Template
+              </button>
+            </div>
+          </div>
+          <button id="prev-btn" @click="prevTemplate" :disabled="currentIndex === 0" class="absolute top-1/2 left-4 transform -translate-y-1/2">←</button>
+          <button id="next-btn" @click="nextTemplate" :disabled="currentIndex >= filteredTemplates.length - 1" class="absolute top-1/2 right-4 transform -translate-y-1/2">→</button>
+        </div>
+
+        <!-- Preview Modal -->
+        <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div class="bg-white rounded-lg p-4 w-full max-w-4xl">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-semibold">{{ selectedTemplate.name }}</h3>
+              <button @click="showModal = false" class="text-gray-600 hover:text-gray-800">✕</button>
+            </div>
+            <iframe :src="selectedTemplate.path" class="w-full h-[600px] border rounded"></iframe>
           </div>
         </div>
-        <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-coral-500 text-white p-4 rounded-full hover:bg-coral-600 z-20">
-          ←
-        </button>
-        <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-coral-500 text-white p-4 rounded-full hover:bg-coral-600 z-20">
-          →
-        </button>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="container mx-auto px-4 text-center">
       <p>© 2025 AIWebWorks. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="/TaskCode-Site/static/js/script.js"></script>
+  <script src="/TaskCode-Site/static/js/app.js"></script>
 </body>
 </html>

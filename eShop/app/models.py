@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
@@ -14,10 +15,12 @@ class User(UserMixin, db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    def __repr__(self):
-        return f"<User {self.email}>"
+    def set_password(self, password):
+        self.password = generate_password_hash(password, method="pbkdf2:sha256")
 
-# ... rest of models.py remains unchanged ...
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
 
 class Category(db.Model):
     __tablename__ = "categories"
@@ -79,3 +82,6 @@ class OrderItem(db.Model):
 
     def __repr__(self):
         return f"<OrderItem {self.id}>"
+    
+
+    

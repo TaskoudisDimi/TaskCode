@@ -10,9 +10,19 @@ shop = Blueprint("shop", __name__)
 
 @shop.route("/products")
 def products():
-    categories = Category.query.all()
-    products = Product.query.all()
-    return render_template("products.html", products=products, categories=categories)
+    search = request.args.get("search", "")
+    sort = request.args.get("sort", "name")
+    page = request.args.get("page", 1, type=int)
+    per_page = 9
+    query = Product.query.filter(Product.name.ilike(f"%{search}%"))
+    if sort == "price-asc":
+        query = query.order_by(Product.price.asc())
+    elif sort == "price-desc":
+        query = query.order_by(Product.price.desc())
+    else:
+        query = query.order_by(Product.name)
+    products = query.paginate(page=page, per_page=per_page)
+    return render_template("products.html", products=products.items, pagination=products)
 
 @shop.route("/product/<int:product_id>")
 def product_detail(product_id):
