@@ -4,12 +4,32 @@ from .models import User, Order  # Import only defined models
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 import logging
+import os
+from google_auth_oauthlib.flow import Flow
+from google.oauth2 import id_token
+from google.auth.transport import requests
+import pathlib
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 auth = Blueprint("auth", __name__)
+
+# Google OAuth configuration
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET")
+GOOGLE_REDIRECT_URI = "http://localhost:5000/google/callback"  # Must match Google Cloud Console
+SCOPES = [
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+]
+# Path to client_secret.json (optional, if not using environment variables)
+CLIENT_SECRETS_FILE = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # Allow HTTP for local development
+# Ensure secret key is set for sessions
+auth.secret_key = os.environ.get("FLASK_SECRET_KEY", "thisIsSecret")
 
 @auth.route("/")
 @auth.route("/index")
@@ -46,7 +66,6 @@ def register():
         email = request.form.get("email")
         password = request.form.get("password")
         name = request.form.get("name")  # Optional, as per User model
-        
 
         # Validate input
         if not email or not password:
@@ -111,3 +130,77 @@ def set_theme():
         flash("Invalid theme selected.", "error")
         logger.warning(f"Invalid theme {theme} selected by {current_user.email}")
     return redirect(request.referrer or url_for("auth.dashboard"))
+
+# Google OAuth routes
+@auth.route("/google/login")
+def google_login():
+    # Initialize the OAuth flow
+    flow = Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE,
+        scopes=SCOPES,
+        redirect_uri=GOOGLE_REDIRECT_URI,
+    )
+    authorization_url, state = flow.authorization_url(
+        access_type="offline",
+        include_granted_scopes="true",
+    )
+    # Store state in session for CSRF protection
+    session["state"] = state
+    return redirect(authorization_url)
+
+@auth.route("/google/callback")
+def google_callback():
+    # Verify state to prevent CSRF
+    if request.args.get("state") != session.get("state"):
+        flash("Invalid state parameter.", "error")
+        logger.warning("Google OAuth failed: Invalid state parameter")
+        return redirect(url_for("auth.login"))
+
+    # Initialize the OAuth flow
+    flow = Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE,
+        scopes=SCOPES,
+        redirect_uri=GOOGLE_REDIRECT_URI,
+    )
+
+    # Fetch token
+    try:
+        flow.fetch_token(authorization_response=request.url)
+        credentials = flow.credentials
+
+        # Verify the ID token
+        idinfo = id_token.verify_oauth2_token(
+            credentials.id_token,
+            requests.Request(),
+            GOOGLE_CLIENT_ID,
+        )
+
+        # Get user info
+        google_id = idinfo["sub"]
+        email = idinfo["email"]
+        name = idinfo.get("name", "")
+
+        # Check if user exists
+        user = User.query.filter_by(google_id=google_id).first()
+        if not user:
+            # Check if email is already registered
+            user = User.query.filter_by(email=email).first()
+            if user:
+                # Link Google account to existing user
+                user.google_id = google_id
+                db.session.commit()
+            else:
+                # Create new user
+                user = User(email=email, name=name, google_id=google_id, theme="MyTemplate")
+                db.session.add(user)
+                db.session.commit()
+
+        login_user(user)
+        flash("Google login successful!", "success")
+        logger.info(f"User {email} logged in with Google")
+        return redirect(url_for("auth.dashboard"))
+
+    except Exception as e:
+        flash("Google login failed. Please try again.", "error")
+        logger.error(f"Google OAuth error: {e}")
+        return redirect(url_for("auth.login"))

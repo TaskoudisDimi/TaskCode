@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - E-Shop</title>
+    <title>{% block title %}{% endblock %} - Bag Haven</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -12,11 +12,11 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="{{ url_for('auth.index') }}" class="logo">E-Shop</a>
+            <a href="{{ url_for('auth.index') }}" class="logo">Bag Haven</a>
             <div class="nav-content">
                 <ul class="nav-links">
                     <li><a href="{{ url_for('auth.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('shop.products') }}">Products</a></li>
+                    <li><a href="{{ url_for('shop.products') }}">Bags</a></li>
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('shop.view_cart') }}">Cart</a></li>
                     <li><a href="{{ url_for('shop.orders') }}">Orders</a></li>
@@ -68,14 +68,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>E-Shop</h3>
-                    <p>Your one-stop shop for premium products.</p>
+                    <h3>Bag Haven</h3>
+                    <p>Your destination for stylish and premium bags.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="{{ url_for('auth.index') }}">Home</a></li>
-                        <li><a href="{{ url_for('shop.products') }}">Products</a></li>
+                        <li><a href="{{ url_for('shop.products') }}">Bags</a></li>
                         {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('shop.view_cart') }}">Cart</a></li>
                         <li><a href="{{ url_for('shop.orders') }}">Orders</a></li>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <p class="footer-bottom">© 2025 E-Shop. All rights reserved.</p>
+            <p class="footer-bottom">© 2025 Bag Haven. All rights reserved.</p>
         </div>
     </footer>
 

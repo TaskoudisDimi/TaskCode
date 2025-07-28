@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_dance.contrib.google import make_google_blueprint
-from flask_migrate import Migrate  # Add this
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 
@@ -13,7 +12,7 @@ load_dotenv()
 db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.login_view = "auth.login"
-migrate = Migrate()  # Add this
+migrate = Migrate()
 
 # Import models
 from .models import User
@@ -38,7 +37,7 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     login_manager.init_app(app)
-    migrate.init_app(app, db)  # Initialize Migrate
+    migrate.init_app(app, db)
 
     # Register blueprints
     from .auth import auth as auth_blueprint
@@ -46,13 +45,4 @@ def create_app():
     from .shop import shop as shop_blueprint
     app.register_blueprint(shop_blueprint)
 
-    # Google OAuth
-    google_bp = make_google_blueprint(
-        client_id=os.getenv("GOOGLE_CLIENT_ID"),
-        client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
-        redirect_url="/google_login/callback",
-        scope=["profile", "email"]
-    )
-    app.register_blueprint(google_bp, url_prefix="/google_login")
-    
     return app

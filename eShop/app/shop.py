@@ -6,8 +6,7 @@ import os
 
 shop = Blueprint("shop", __name__)
 
-
-
+# 
 @shop.route("/products")
 def products():
     search = request.args.get("search", "")
