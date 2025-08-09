@@ -3,7 +3,9 @@ import requests
 import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from models import Order
+from eShop.app.models import Order
+
+
 delivery = Blueprint("geniki_delivery", __name__)
 
 # Geniki Taxydromiki API configuration

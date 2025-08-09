@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=True)
     name = db.Column(db.String(255))
     google_id = db.Column(db.String(255), unique=True, nullable=True)
-    theme = db.Column(db.String(50), default="MyTemplate")  # New column for user theme
+    theme = db.Column(db.String(50), default="MyTemplate")  
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -57,10 +57,12 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     total_amount = db.Column(db.Float, nullable=False)
-    status = db.Column(db.String(50), default="Pending")  # e.g., Pending, Completed, Cancelled
+    status = db.Column(db.String(50), default="Pending")  
+    payment_status = db.Column(db.String(50), default="Pending") 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
+    shipping_address = db.Column(db.String(255), nullable=True)
+    payment_method = db.Column(db.String(50), nullable=True)
     # Relationship to user and order items
     user = db.relationship("User", backref="orders")
     items = db.relationship("OrderItem", backref="order", lazy=True)
