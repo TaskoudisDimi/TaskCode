@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIWebWorks - Build the Future</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-600 text-white">
+  <!-- Vue App -->
+  <div id="app">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold font-orbitron text-black">AIWebWorks</a>
+        <div class="space-x-4">
+          <a href="#vision" class="text-black hover:text-coral-400 font-orbitron">Vision</a>
+          <a href="#showcase" class="text-black hover:text-coral-400 font-orbitron">Templates</a>
+          <a href="#pricing" class="text-black hover:text-coral-400 font-orbitron">Pricing</a>
+          <a href="#inquire" class="text-black hover:text-coral-400 font-orbitron">Start Project</a>
+          <button @click="toggleChat" class="text-black hover:text-coral-400 font-orbitron">Chat</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="vision" class="hero-bg min-h-screen flex items-center justify-center">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-7xl font-orbitron font-bold mb-6 animate-slide-in">
+          {{ currentTagline }}
+        </h1>
+        <p class="text-lg md:text-xl mb-8 animate-slide-in-delayed font-poppins">
+          AIWebWorks transforms your ideas into AI-driven websites, e-shops, and automation solutions that redefine digital excellence.
+        </p>
+        <button 
+          @click="scrollToInquire" 
+          class="bg-coral-500 text-white px-8 py-3 rounded-full font-orbitron hover:bg-coral-600 animate-pulse-btn"
+        >
+          Start Your Journey
+        </button>
+      </div>
+    </section>
+
+    <!-- Template Showcase -->
+    <section id="showcase" class="py-16 bg-gradient-to-b from-indigo-900 to-indigo-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
+          Discover Our Creations
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div 
+            v-for="(template, index) in featuredTemplates" 
+            :key="template.name" 
+            class="flip-card relative h-[500px] cursor-pointer"
+            @click="openTemplateModal(template)"
+          >
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-indigo-950 rounded-lg p-6 flex flex-col items-center justify-center">
+                <h3 class="text-2xl font-orbitron text-teal-400 mb-4">{{ template.name }}</h3>
+                <p class="text-gray-300 text-center font-poppins">{{ template.description }}</p>
+              </div>
+              <div class="flip-card-back bg-white rounded-lg p-6">
+                <div v-if="!loadedTemplates.includes(index)" class="h-[400px] flex items-center justify-center bg-gray-200">
+                  <span v-if="templateLoadErrors[index]" class="text-red-400">Error loading template</span>
+                  <span v-else class="text-gray-600">Loading...</span>
+                </div>
+                <iframe 
+                  v-else 
+                  :src="template.path" 
+                  :title="template.name" 
+                  class="w-full h-[400px] border rounded"
+                  @load="markTemplateLoaded(index)"
+                  @error="handleTemplateError(index)"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a href="templates.html" class="bg-slate-600 text-white px-8 py-3 rounded-full font-orbitron hover:bg-black-600 z-10 relative">
+            Explore All Templates
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-indigo-900">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
+          Choose Your Plan
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Basic</h3>
+            <p class="text-gray-300 mb-4">$99/month</p>
+            <ul class="text-gray-200 space-y-2 mb-4">
+              <li>1 Website</li>
+              <li>Basic Hosting (5GB)</li>
+              <li>Standard Features (SEO, Analytics)</li>
+              <li>Email Support</li>
+            </ul>
+            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
+              Get Started
+            </button>
+          </div>
+          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Pro</h3>
+            <p class="text-gray-300 mb-4">$199/month</p>
+            <ul class="text-gray-200 space-y-2 mb-4">
+              <li>Up to 3 Websites</li>
+              <li>Enhanced Hosting (20GB)</li>
+              <li>AI Features (Chatbot, Personalization)</li>
+              <li>E-Commerce Tools</li>
+              <li>Priority Support</li>
+            </ul>
+            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
+              Get Started
+            </button>
+          </div>
+          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Enterprise</h3>
+            <p class="text-gray-300 mb-4">Custom Pricing</p>
+            <ul class="text-gray-200 space-y-2 mb-4">
+              <li>Unlimited Websites</li>
+              <li>Premium Hosting (50GB+)</li>
+              <li>Full AI Suite (Automation, Analytics)</li>
+              <li>Advanced E-Commerce</li>
+              <li>Dedicated Support</li>
+            </ul>
+            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Idea Generator -->
+    <section id="idea" class="py-16 bg-gradient-to-b from-indigo-900 to-indigo-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
+          Spark Your Next Project
+        </h2>
+        <div class="max-w-md mx-auto bg-indigo-950 p-6 rounded-lg shadow-lg">
+          <select 
+            v-model="businessType" 
+            class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
+          >
+            <option value="" disabled>Select your business type</option>
+            <option value="retail">Retail</option>
+            <option value="tech">Tech Startup</option>
+            <option value="creative">Creative Agency</option>
+            <option value="nonprofit">Non-Profit</option>
+            <option value="portfolio">Personal Portfolio</option>
+          </select>
+          <button 
+            @click="generateIdea" 
+            class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
+            :disabled="!businessType"
+          >
+            Generate Idea
+          </button>
+          <p v-if="idea" class="mt-4 text-gray-300 font-poppins">{{ idea }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inquiry Form -->
+    <section id="inquire" class="py-16 bg-gradient-to-b from-indigo-800 to-indigo-900">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
+          Let’s Build Together
+        </h2>
+        <div class="max-w-lg mx-auto bg-indigo-950 p-6 rounded-lg shadow-lg">
+          <div v-if="formStep === 1">
+            <h3 class="text-xl font-orbitron mb-4">Step 1: Your Details</h3>
+            <input 
+              v-model="inquiryForm.name" 
+              type="text" 
+              placeholder="Your Name" 
+              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
+              :class="{ 'border-red-500': formErrors.name }"
+            >
+            <p v-if="formErrors.name" class="text-red-400 text-sm mb-4">{{ formErrors.name }}</p>
+            <input 
+              v-model="inquiryForm.email" 
+              type="email" 
+              placeholder="Your Email" 
+              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
+              :class="{ 'border-red-500': formErrors.email }"
+            >
+            <p v-if="formErrors.email" class="text-red-400 text-sm mb-4">{{ formErrors.email }}</p>
+            <button 
+              @click="nextStep" 
+              class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
+            >
+              Next
+            </button>
+          </div>
+          <div v-else>
+            <h3 class="text-xl font-orbitron mb-4">Step 2: Project Details</h3>
+            <select 
+              v-model="inquiryForm.projectType" 
+              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
+            >
+              <option value="" disabled>Select Project Type</option>
+              <option value="website">Website</option>
+              <option value="eshop">E-Shop</option>
+              <option value="ai">AI Features</option>
+              <option value="automation">Automation</option>
+            </select>
+            <textarea 
+              v-model="inquiryForm.description" 
+              placeholder="Describe your project..." 
+              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
+              rows="5"
+              :class="{ 'border-red-500': formErrors.description }"
+            ></textarea>
+            <p v-if="formErrors.description" class="text-red-400 text-sm mb-4">{{ formErrors.description }}</p>
+            <div class="flex space-x-4">
+              <button 
+                @click="formStep = 1" 
+                class="w-1/2 bg-gray-600 text-white px-4 py-2 rounded-md font-orbitron hover:bg-gray-700"
+              >
+                Back
+              </button>
+              <button 
+                @click="submitInquiry" 
+                class="w-1/2 bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div v-if="showChat" class="fixed bottom-4 right-4 w-80 bg-indigo-950 rounded-lg shadow-lg z-50">
+      <div class="bg-teal-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+        <span class="font-orbitron">Chat with AIWebWorks</span>
+        <button @click="toggleChat" class="text-white hover:text-coral-400">✕</button>
+      </div>
+      <div class="p-4 h-64 overflow-y-auto">
+        <div v-for="(message, index) in chatMessages" :key="index" :class="['mb-2', message.from === 'user' ? 'text-right' : 'text-left']">
+          <span :class="['inline-block p-2 rounded-lg', message.from === 'user' ? 'bg-coral-500 text-white' : 'bg-gray-700 text-gray-200']">
+            {{ message.text }}
+          </span>
+        </div>
+      </div>
+      <div class="p-4 border-t border-teal-500">
+        <input 
+          v-model="chatInput" 
+          @keyup.enter="submitChat" 
+          type="text" 
+          placeholder="Type your message..." 
+          class="w-full px-2 py-1 border border-teal-500 rounded bg-indigo-800 text-white focus:outline-none"
+        >
+      </div>
+    </div>
+
+    <!-- Template Modal -->
+    <div v-if="showTemplateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 w-full max-w-4xl">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-orbitron text-teal-600">{{ selectedTemplate.name }}</h3>
+          <button @click="showTemplateModal = false" class="text-gray-600 hover:text-gray-800">✕</button>
+        </div>
+        <iframe :src="selectedTemplate.path" class="w-full h-[600px] border rounded"></iframe>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-950 py-8">
+      <div class="container mx-auto px-4 text-center">
+        <p class="font-poppins">© 2025 AIWebWorks. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/TaskCode-Site/static/js/app.js"></script>
+</body>
+</html>
