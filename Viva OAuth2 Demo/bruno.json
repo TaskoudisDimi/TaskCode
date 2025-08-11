@@ -1,9 +1,0 @@
-{
-  "version": "1",
-  "name": "Viva OAuth2 Demo",
-  "type": "collection",
-  "ignore": [
-    "node_modules",
-    ".git"
-  ]
-}
