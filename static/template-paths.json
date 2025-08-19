@@ -1,151 +1,151 @@
 [
     {
       "name": "Business Landing",
-      "path": "/TaskCode-Site/templates/Business/main/index.html",
+      "path": "templates/Business/main/index.html",
       "description": "A professional landing page for corporate businesses.",
       "category": "business"
     },
     {
       "name": "Startup Showcase",
-      "path": "/TaskCode-Site/templates/Business/Unika Free Website Template - Free-CSS.com/unika-html/unika-html/index.html",
+      "path": "templates/Business/Unika Free Website Template - Free-CSS.com/unika-html/unika-html/index.html",
       "description": "A dynamic template for startups to highlight services.",
       "category": "business"
     },
     {
       "name": "Fashion Store",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop1.html",
+      "path": "templates/e-Shop-Templates/Chocolate/chocolux-html/index.html",
       "description": "A stylish e-commerce template for fashion retail.",
       "category": "eshop"
     },
     {
       "name": "Electronics Shop",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop2.html",
+      "path": "static/templates/eshop/eshop2.html",
       "description": "A modern store template for tech products.",
       "category": "eshop"
     },
     {
       "name": "Grocery Market",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop3.html",
+      "path": "static/templates/eshop/eshop3.html",
       "description": "An online grocery store with easy navigation.",
       "category": "eshop"
     },
     {
       "name": "Jewelry Boutique",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop4.html",
+      "path": "static/templates/eshop/eshop4.html",
       "description": "A luxurious template for jewelry sales.",
       "category": "eshop"
     },
     {
       "name": "Bookstore",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop5.html",
+      "path": "static/templates/eshop/eshop5.html",
       "description": "A clean e-commerce template for books.",
       "category": "eshop"
     },
     {
       "name": "Furniture Store",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop6.html",
+      "path": "static/templates/eshop/eshop6.html",
       "description": "A template for home decor and furniture retail.",
       "category": "eshop"
     },
     {
       "name": "Sports Gear",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop7.html",
+      "path": "static/templates/eshop/eshop7.html",
       "description": "A vibrant store template for sports equipment.",
       "category": "eshop"
     },
     {
       "name": "Toy Shop",
-      "path": "/TaskCode-Site/static/templates/eshop/eshop8.html",
+      "path": "static/templates/eshop/eshop8.html",
       "description": "A fun e-commerce template for toys and games.",
       "category": "eshop"
     },
     {
       "name": "Minimalist Landing",
-      "path": "/TaskCode-Site/static/templates/generic/generic1.html",
+      "path": "static/templates/generic/generic1.html",
       "description": "A clean and simple landing page for any purpose.",
       "category": "generic"
     },
     {
       "name": "Event Page",
-      "path": "/TaskCode-Site/static/templates/generic/generic2.html",
+      "path": "static/templates/generic/generic2.html",
       "description": "A template for promoting events and conferences.",
       "category": "generic"
     },
     {
       "name": "Blog Homepage",
-      "path": "/TaskCode-Site/static/templates/generic/generic3.html",
+      "path": "static/templates/generic/generic3.html",
       "description": "A versatile blog template with article previews.",
       "category": "generic"
     },
     {
       "name": "Agency Site",
-      "path": "/TaskCode-Site/static/templates/generic/generic4.html",
+      "path": "static/templates/generic/generic4.html",
       "description": "A template for creative agencies to showcase services.",
       "category": "generic"
     },
     {
       "name": "Non-Profit",
-      "path": "/TaskCode-Site/static/templates/generic/generic5.html",
+      "path": "static/templates/generic/generic5.html",
       "description": "A template for charities and non-profit organizations.",
       "category": "generic"
     },
     {
       "name": "Personal Page",
-      "path": "/TaskCode-Site/static/templates/generic/generic6.html",
+      "path": "static/templates/generic/generic6.html",
       "description": "A simple personal website template.",
       "category": "generic"
     },
     {
       "name": "Creative Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio1.html",
+      "path": "static/templates/portfolio/portfolio1.html",
       "description": "A vibrant portfolio for artists and designers.",
       "category": "portfolio"
     },
     {
       "name": "Photography Gallery",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio2.html",
+      "path": "static/templates/portfolio/portfolio2.html",
       "description": "A template for showcasing photography work.",
       "category": "portfolio"
     },
     {
       "name": "Designer Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio3.html",
+      "path": "static/templates/portfolio/portfolio3.html",
       "description": "A sleek portfolio for graphic designers.",
       "category": "portfolio"
     },
     {
       "name": "Freelancer Site",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio4.html",
+      "path": "static/templates/portfolio/portfolio4.html",
       "description": "A template for freelancers to display projects.",
       "category": "portfolio"
     },
     {
       "name": "Architect Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio5.html",
+      "path": "static/templates/portfolio/portfolio5.html",
       "description": "A professional template for architects.",
       "category": "portfolio"
     },
     {
       "name": "Writer Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio6.html",
+      "path": "static/templates/portfolio/portfolio6.html",
       "description": "A clean template for writers and authors.",
       "category": "portfolio"
     },
     {
       "name": "Musician Page",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio7.html",
+      "path": "static/templates/portfolio/portfolio7.html",
       "description": "A template for musicians to share their work.",
       "category": "portfolio"
     },
     {
       "name": "Videographer Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio8.html",
+      "path": "static/templates/portfolio/portfolio8.html",
       "description": "A template for video content creators.",
       "category": "portfolio"
     },
     {
       "name": "Illustrator Portfolio",
-      "path": "/TaskCode-Site/static/templates/portfolio/portfolio9.html",
+      "path": "static/templates/portfolio/portfolio9.html",
       "description": "A colorful portfolio for illustrators.",
       "category": "portfolio"
     }

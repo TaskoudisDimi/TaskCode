@@ -4,7 +4,7 @@ createApp({
   data() {
     return {
       taglines: [
-        'Build the Future with AIWebWorks',
+        'Build the Future with Task-Code',
         'Innovate. Create. Celebrate.',
         'Your Vision, Our Code.',
         'AI-Powered Digital Excellence'
@@ -28,7 +28,7 @@ createApp({
       showChat: false,
       chatInput: '',
       chatMessages: [
-        { text: 'Hello! How can AIWebWorks help you today?', from: 'bot' }
+        { text: 'Hello! How can Task-Code help you today?', from: 'bot' }
       ]
     };
   },
@@ -40,18 +40,11 @@ createApp({
   methods: {
     async fetchTemplates() {
       try {
-        const response = await fetch('/TaskCode-Site/template-paths.json');
+        const response = await fetch('/static/template-paths.json'); 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const allTemplates = await response.json();
-        this.featuredTemplates = allTemplates.slice(0, 3); // Show 3 templates
-        // Add timeout for loading
-        this.featuredTemplates.forEach((_, index) => {
-          setTimeout(() => {
-            if (!this.loadedTemplates.includes(index) && !this.templateLoadErrors[index]) {
-              this.templateLoadErrors[index] = true;
-            }
-          }, 5000); // 5-second timeout
-        });
+        this.featuredTemplates = allTemplates.slice(0, 3);
+        console.log('Templates fetched:', this.featuredTemplates);
       } catch (error) {
         console.error('Error fetching templates:', error);
         this.featuredTemplates.forEach((_, index) => {
@@ -63,10 +56,14 @@ createApp({
       if (!this.loadedTemplates.includes(index)) {
         this.loadedTemplates.push(index);
         delete this.templateLoadErrors[index];
+        console.log(`Template ${index} loaded successfully`);
       }
     },
     handleTemplateError(index) {
-      this.templateLoadErrors[index] = true;
+      if (!this.templateLoadErrors[index]) {
+        this.templateLoadErrors[index] = true;
+        console.log(`Error loading template ${index}`);
+      }
     },
     openTemplateModal(template) {
       this.selectedTemplate = template;
@@ -108,7 +105,6 @@ createApp({
         this.formErrors.description = 'Description is required';
         return;
       }
-      // Simulate form submission
       alert('Inquiry submitted successfully!');
       this.inquiryForm = { name: '', email: '', projectType: '', description: '' };
       this.formStep = 1;
@@ -119,7 +115,6 @@ createApp({
     submitChat(e) {
       if (e.key === 'Enter' && this.chatInput.trim()) {
         this.chatMessages.push({ text: this.chatInput, from: 'user' });
-        // Simulate bot response
         setTimeout(() => {
           this.chatMessages.push({ text: 'Thanks for your message! How about starting a project with us?', from: 'bot' });
         }, 1000);
@@ -133,7 +128,6 @@ createApp({
   },
   mounted() {
     this.fetchTemplates();
-    // Cycle through taglines
     setInterval(() => {
       this.currentTaglineIndex = (this.currentTaglineIndex + 1) % this.taglines.length;
     }, 5000);
