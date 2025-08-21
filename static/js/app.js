@@ -17,19 +17,13 @@ createApp({
       selectedTemplate: null,
       businessType: '',
       idea: '',
-      formStep: 1,
-      inquiryForm: {
-        name: '',
-        email: '',
-        projectType: '',
-        description: ''
-      },
-      formErrors: {},
       showChat: false,
       chatInput: '',
       chatMessages: [
         { text: 'Hello! How can Task-Code help you today?', from: 'bot' }
-      ]
+      ],
+      currentBannerIndex: 0,
+      bannerInterval: null
     };
   },
   computed: {
@@ -40,11 +34,10 @@ createApp({
   methods: {
     async fetchTemplates() {
       try {
-        const response = await fetch('/static/template-paths.json'); 
+        const response = await fetch('/static/template-paths.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const allTemplates = await response.json();
         this.featuredTemplates = allTemplates.slice(0, 3);
-        console.log('Templates fetched:', this.featuredTemplates);
       } catch (error) {
         console.error('Error fetching templates:', error);
         this.featuredTemplates.forEach((_, index) => {
@@ -56,13 +49,11 @@ createApp({
       if (!this.loadedTemplates.includes(index)) {
         this.loadedTemplates.push(index);
         delete this.templateLoadErrors[index];
-        console.log(`Template ${index} loaded successfully`);
       }
     },
     handleTemplateError(index) {
       if (!this.templateLoadErrors[index]) {
         this.templateLoadErrors[index] = true;
-        console.log(`Error loading template ${index}`);
       }
     },
     openTemplateModal(template) {
@@ -79,36 +70,6 @@ createApp({
       };
       this.idea = ideas[this.businessType] || 'Please select a business type to generate an idea.';
     },
-    nextStep() {
-      this.formErrors = {};
-      if (!this.inquiryForm.name.trim()) {
-        this.formErrors.name = 'Name is required';
-        return;
-      }
-      if (!this.inquiryForm.email.trim()) {
-        this.formErrors.email = 'Email is required';
-        return;
-      }
-      if (!/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(this.inquiryForm.email)) {
-        this.formErrors.email = 'Invalid email format';
-        return;
-      }
-      this.formStep = 2;
-    },
-    submitInquiry() {
-      this.formErrors = {};
-      if (!this.inquiryForm.projectType) {
-        this.formErrors.projectType = 'Project type is required';
-        return;
-      }
-      if (!this.inquiryForm.description.trim()) {
-        this.formErrors.description = 'Description is required';
-        return;
-      }
-      alert('Inquiry submitted successfully!');
-      this.inquiryForm = { name: '', email: '', projectType: '', description: '' };
-      this.formStep = 1;
-    },
     toggleChat() {
       this.showChat = !this.showChat;
     },
@@ -121,9 +82,21 @@ createApp({
         this.chatInput = '';
       }
     },
+    scrollToVision() {
+      const visionSection = document.querySelector('#vision');
+      visionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
     scrollToInquire() {
       const inquireSection = document.querySelector('#inquire');
       inquireSection.scrollIntoView({ behavior: 'smooth' });
+    },
+    startBannerRotation() {
+      this.bannerInterval = setInterval(() => {
+        const bannerSlides = document.querySelectorAll('.banner-slide');
+        bannerSlides.forEach(slide => slide.classList.remove('active'));
+        this.currentBannerIndex = (this.currentBannerIndex + 1) % bannerSlides.length;
+        bannerSlides[this.currentBannerIndex].classList.add('active');
+      }, 5000);
     }
   },
   mounted() {
@@ -131,5 +104,6 @@ createApp({
     setInterval(() => {
       this.currentTaglineIndex = (this.currentTaglineIndex + 1) % this.taglines.length;
     }, 5000);
+    this.startBannerRotation();
   }
 }).mount('#app');

@@ -9,26 +9,33 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-slate-600 text-white">
+<body class="bg-gray-800 text-white">
   <!-- Vue App -->
   <div id="app">
     <!-- Navigation -->
-    <nav class="bg-gray-800 shadow sticky top-0 z-50">
+    <nav class="bg-transparent p-4 sticky top-0 z-50" style="height: 64px;">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-bold font-orbitron text-black">Task-Code</a>
+        <a href="#vision" class="text-2xl font-bold font-orbitron text-white">Task-Code</a>
         <div class="space-x-4">
-          <a href="#vision" class="text-black hover:text-coral-400 font-orbitron">Vision</a>
-          <a href="#showcase" class="text-black hover:text-coral-400 font-orbitron">Templates</a>
-          <a href="#pricing" class="text-black hover:text-coral-400 font-orbitron">Pricing</a>
-          <a href="#inquire" class="text-black hover:text-coral-400 font-orbitron">Start Project</a>
-          <button @click="toggleChat" class="text-black hover:text-coral-400 font-orbitron">Chat</button>
+          <a href="#vision" class="text-white hover:text-gray-400 font-orbitron">Home</a>
+          <a href="#services" class="text-white hover:text-gray-400 font-orbitron">Services</a>
+          <a href="#showcase" class="text-white hover:text-gray-400 font-orbitron">Templates</a>
+          <a href="#pricing" class="text-white hover:text-gray-400 font-orbitron">Pricing</a>
+          <a href="#inquire" class="text-white hover:text-gray-400 font-orbitron">Start Project</a>
+          <a href="#contact" class="text-white hover:text-gray-400 font-orbitron">Contact</a>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="vision" class="hero-bg min-h-screen flex items-center justify-center">
-      <div class="container mx-auto px-4 text-center">
+    <!-- Hero Section with Banner -->
+    <section id="vision" class="min-h-screen flex items-center justify-center relative overflow-hidden mt-0 pt-0" style="margin-top: -64px; padding-top: 64px;">
+      <div class="banner-container absolute inset-0 z-0 top-0">
+        <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+        <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+        <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+      </div>
+      <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+      <div class="relative z-20 container mx-auto px-4 text-center">
         <h1 class="text-5xl md:text-7xl font-orbitron font-bold mb-6 animate-slide-in">
           {{ currentTagline }}
         </h1>
@@ -36,16 +43,42 @@
           Task-Code transforms your ideas into AI-driven websites, e-shops, and automation solutions that redefine digital excellence.
         </p>
         <button 
-          @click="scrollToInquire" 
-          class="bg-coral-500 text-white px-8 py-3 rounded-full font-orbitron hover:bg-coral-600 animate-pulse-btn"
+          @click="scrollToVision" 
+          class="bg-gray-700 hover:bg-gray-900 text-white px-8 py-3 rounded-full font-orbitron animate-pulse-btn"
         >
           Start Your Journey
         </button>
       </div>
     </section>
 
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
+          Our Services
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Create Sites/E-shop/WMS</h3>
+            <p class="text-gray-400 font-poppins">Custom-built websites, e-commerce platforms, and warehouse management systems tailored to your needs.</p>
+            <a href="services.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Create Logos</h3>
+            <p class="text-gray-400 font-poppins">Unique and professional logo designs to establish your brand identity with creativity and precision.</p>
+            <a href="logos.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Create Software for Task Automation with AI</h3>
+            <p class="text-gray-400 font-poppins">AI-powered solutions including chatbots integration, price forecasting, and automated customer support workflows.</p>
+            <a href="AI_software.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Template Showcase -->
-    <section id="showcase" class="py-16 bg-gradient-to-b from-indigo-900 to-indigo-800">
+    <section id="showcase" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
           Discover Our Creations
@@ -58,9 +91,9 @@
             @click="openTemplateModal(template)"
           >
             <div class="flip-card-inner w-full h-full">
-              <div class="flip-card-front bg-indigo-950 rounded-lg p-6 flex flex-col items-center justify-center">
-                <h3 class="text-2xl font-orbitron text-teal-400 mb-4">{{ template.name }}</h3>
-                <p class="text-gray-300 text-center font-poppins">{{ template.description }}</p>
+              <div class="flip-card-front bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center">
+                <h3 class="text-2xl font-orbitron text-white mb-4">{{ template.name }}</h3>
+                <p class="text-gray-400 text-center font-poppins">{{ template.description }}</p>
               </div>
               <div class="flip-card-back bg-white rounded-lg p-6">
                 <div v-if="!loadedTemplates.includes(index)" class="h-[400px] flex items-center justify-center bg-gray-200">
@@ -80,7 +113,7 @@
           </div>
         </div>
         <div class="text-center mt-12">
-          <a href="templates.html" class="bg-slate-600 text-white px-8 py-3 rounded-full font-orbitron hover:bg-black-600 z-10 relative">
+          <a href="templates.html" class="bg-gray-700 text-white px-8 py-3 rounded-full font-orbitron hover:bg-gray-900 z-10 relative">
             Explore All Templates
           </a>
         </div>
@@ -88,198 +121,109 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-16 bg-indigo-900">
+    <section id="pricing" class="py-16 bg-gray-900">
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
           Choose Your Plan
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Basic</h3>
-            <p class="text-gray-300 mb-4">$99/month</p>
-            <ul class="text-gray-200 space-y-2 mb-4">
-              <li>1 Website</li>
-              <li>Basic Hosting (5GB)</li>
-              <li>Standard Features (SEO, Analytics)</li>
-              <li>Email Support</li>
-            </ul>
-            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
-              Get Started
-            </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Fixed Value Plan -->
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Fixed Value Plan</h3>
+            <p class="text-gray-400 font-poppins">A one-time payment option offering a tailored solution with essential features and dedicated support for a single project.</p>
+            <a href="prices.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
           </div>
-          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Pro</h3>
-            <p class="text-gray-300 mb-4">$199/month</p>
-            <ul class="text-gray-200 space-y-2 mb-4">
-              <li>Up to 3 Websites</li>
-              <li>Enhanced Hosting (20GB)</li>
-              <li>AI Features (Chatbot, Personalization)</li>
-              <li>E-Commerce Tools</li>
-              <li>Priority Support</li>
-            </ul>
-            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
-              Get Started
-            </button>
-          </div>
-          <div class="bg-indigo-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <h3 class="text-2xl font-orbitron text-teal-400 mb-4">Enterprise</h3>
-            <p class="text-gray-300 mb-4">Custom Pricing</p>
-            <ul class="text-gray-200 space-y-2 mb-4">
-              <li>Unlimited Websites</li>
-              <li>Premium Hosting (50GB+)</li>
-              <li>Full AI Suite (Automation, Analytics)</li>
-              <li>Advanced E-Commerce</li>
-              <li>Dedicated Support</li>
-            </ul>
-            <button @click="scrollToInquire" class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600">
-              Contact Us
-            </button>
+          <!-- Subscription Plans -->
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Subscription Plans</h3>
+            <p class="text-gray-400 font-poppins">Flexible monthly plans with options for websites, hosting, AI features, and support tailored to your business needs.</p>
+            <a href="prices.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Idea Generator -->
-    <section id="idea" class="py-16 bg-gradient-to-b from-indigo-900 to-indigo-800">
+    <!-- Spark Your Next Project -->
+    <section id="idea" class="py-16 bg-gradient-to-b from-gray-900 to-gray-800">
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
           Spark Your Next Project
         </h2>
-        <div class="max-w-md mx-auto bg-indigo-950 p-6 rounded-lg shadow-lg">
-          <select 
-            v-model="businessType" 
-            class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
-          >
-            <option value="" disabled>Select your business type</option>
-            <option value="retail">Retail</option>
-            <option value="tech">Tech Startup</option>
-            <option value="creative">Creative Agency</option>
-            <option value="nonprofit">Non-Profit</option>
-            <option value="portfolio">Personal Portfolio</option>
-          </select>
-          <button 
-            @click="generateIdea" 
-            class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
-            :disabled="!businessType"
-          >
-            Generate Idea
-          </button>
-          <p v-if="idea" class="mt-4 text-gray-300 font-poppins">{{ idea }}</p>
+        <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+          <p class="text-gray-400 font-poppins mb-6">Ready to bring your vision to life? At Task-Code, we guide you through a seamless process to create a custom website or e-shop. Start by selecting a template, choosing colors, and uploading images that reflect your brand. Our team will collaborate with you to build a site tailored to your needs, ensuring a smooth and creative journey from idea to launch.</p>
+          <a href="start-project.html" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-orbitron transition-colors duration-300">Start Customizing Now</a>
         </div>
       </div>
     </section>
 
-    <!-- Inquiry Form -->
-    <section id="inquire" class="py-16 bg-gradient-to-b from-indigo-800 to-indigo-900">
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
-          Let’s Build Together
-        </h2>
-        <div class="max-w-lg mx-auto bg-indigo-950 p-6 rounded-lg shadow-lg">
-          <div v-if="formStep === 1">
-            <h3 class="text-xl font-orbitron mb-4">Step 1: Your Details</h3>
-            <input 
-              v-model="inquiryForm.name" 
-              type="text" 
-              placeholder="Your Name" 
-              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
-              :class="{ 'border-red-500': formErrors.name }"
-            >
-            <p v-if="formErrors.name" class="text-red-400 text-sm mb-4">{{ formErrors.name }}</p>
-            <input 
-              v-model="inquiryForm.email" 
-              type="email" 
-              placeholder="Your Email" 
-              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
-              :class="{ 'border-red-500': formErrors.email }"
-            >
-            <p v-if="formErrors.email" class="text-red-400 text-sm mb-4">{{ formErrors.email }}</p>
-            <button 
-              @click="nextStep" 
-              class="w-full bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
-            >
-              Next
-            </button>
+        <h2 class="text-4xl font-bold text-center mb-12">Get in Touch</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact Form -->
+          <div>
+            <form class="max-w-lg mx-auto">
+              <div class="mb-4">
+                <label for="name" class="block text-white">Name</label>
+                <input type="text" id="name" class="w-full p-2 rounded bg-gray-700 text-white" required>
+              </div>
+              <div class="mb-4">
+                <label for="email" class="block text-white">Email</label>
+                <input type="email" id="email" class="w-full p-2 rounded bg-gray-700 text-white" required>
+              </div>
+              <div class="mb-4">
+                <label for="message" class="block text-white">Message</label>
+                <textarea id="message" class="w-full p-2 rounded bg-gray-700 text-white" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">Send Message</button>
+            </form>
           </div>
-          <div v-else>
-            <h3 class="text-xl font-orbitron mb-4">Step 2: Project Details</h3>
-            <select 
-              v-model="inquiryForm.projectType" 
-              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
-            >
-              <option value="" disabled>Select Project Type</option>
-              <option value="website">Website</option>
-              <option value="eshop">E-Shop</option>
-              <option value="ai">AI Features</option>
-              <option value="automation">Automation</option>
-            </select>
-            <textarea 
-              v-model="inquiryForm.description" 
-              placeholder="Describe your project..." 
-              class="w-full px-4 py-2 mb-4 border border-teal-500 rounded-md bg-indigo-800 text-white focus:outline-none focus:ring-2 focus:ring-coral-500"
-              rows="5"
-              :class="{ 'border-red-500': formErrors.description }"
-            ></textarea>
-            <p v-if="formErrors.description" class="text-red-400 text-sm mb-4">{{ formErrors.description }}</p>
-            <div class="flex space-x-4">
-              <button 
-                @click="formStep = 1" 
-                class="w-1/2 bg-gray-600 text-white px-4 py-2 rounded-md font-orbitron hover:bg-gray-700"
-              >
-                Back
-              </button>
-              <button 
-                @click="submitInquiry" 
-                class="w-1/2 bg-coral-500 text-white px-4 py-2 rounded-md font-orbitron hover:bg-coral-600"
-              >
-                Submit
-              </button>
-            </div>
+          <!-- Company Information -->
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Company Information</h3>
+            <p class="text-gray-400 font-poppins">Address: 123 Innovation Lane, Tech City, TC 45678</p>
+            <p class="text-gray-400 font-poppins">Telephone: +1-234-567-8900</p>
+            <p class="text-gray-400 font-poppins">Email: info@task-code.com</p>
+            <p class="text-gray-400 font-poppins">Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Chat Widget -->
-    <div v-if="showChat" class="fixed bottom-4 right-4 w-80 bg-indigo-950 rounded-lg shadow-lg z-50">
-      <div class="bg-teal-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+    <div v-if="showChat" class="fixed bottom-16 right-4 w-80 bg-gray-800 rounded-lg shadow-lg z-50">
+      <div class="bg-gray-700 text-white p-4 rounded-t-lg flex justify-between items-center">
         <span class="font-orbitron">Chat with Task-Code</span>
-        <button @click="toggleChat" class="text-white hover:text-coral-400">✕</button>
+        <button @click="toggleChat" class="text-white hover:text-gray-400">✕</button>
       </div>
       <div class="p-4 h-64 overflow-y-auto">
         <div v-for="(message, index) in chatMessages" :key="index" :class="['mb-2', message.from === 'user' ? 'text-right' : 'text-left']">
-          <span :class="['inline-block p-2 rounded-lg', message.from === 'user' ? 'bg-coral-500 text-white' : 'bg-gray-700 text-gray-200']">
+          <span :class="['inline-block p-2 rounded-lg', message.from === 'user' ? 'bg-gray-700 text-white' : 'bg-gray-600 text-gray-300']">
             {{ message.text }}
           </span>
         </div>
       </div>
-      <div class="p-4 border-t border-teal-500">
+      <div class="p-4 border-t border-gray-700">
         <input 
           v-model="chatInput" 
           @keyup.enter="submitChat" 
           type="text" 
           placeholder="Type your message..." 
-          class="w-full px-2 py-1 border border-teal-500 rounded bg-indigo-800 text-white focus:outline-none"
+          class="w-full px-2 py-1 border border-gray-700 rounded bg-gray-900 text-white focus:outline-none"
         >
       </div>
     </div>
 
-    <!-- Template Modal -->
-    <div v-if="showTemplateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 w-full max-w-4xl">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-orbitron text-teal-600">{{ selectedTemplate.name }}</h3>
-          <button @click="showTemplateModal = false" class="text-gray-600 hover:text-gray-800">✕</button>
-        </div>
-        <iframe :src="selectedTemplate.path" class="w-full h-[600px] border rounded"></iframe>
-      </div>
-    </div>
-
+    <!-- Chat Icon -->
+    <button @click="toggleChat" class="fixed bottom-4 right-4 bg-gray-700 text-white p-3 rounded-full hover:bg-gray-900 z-50" title="Chat with us">
+      💬
+    </button>
 
     <!-- Footer -->
-    <footer class="bg-indigo-950 py-8">
+    <footer class="bg-gray-900 py-8">
       <div class="container mx-auto px-4 text-center">
-        <p class="font-poppins">© 2025 Task-Code. All rights reserved.</p>
+        <p class="font-poppins text-gray-400">© 2025 Task-Code. All rights reserved.</p>
       </div>
     </footer>
   </div>

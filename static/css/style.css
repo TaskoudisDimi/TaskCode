@@ -11,9 +11,33 @@ section {
   background: linear-gradient(to bottom, #505a5e, #293f46); /* Updated from indigo to cyan */
 }
 
+/* Banner styles */
+.banner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.banner-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.banner-slide.active {
+  opacity: 1;
+}
+
 /* Hero dynamic gradient animation */
 .hero-bg {
-  background: linear-gradient(45deg, #14b8a6, #f43f5e, #14b8a6);
+  background: linear-gradient(45deg, #14b8a6, #665759, #14b8a6);
   background-size: 200% 200%;
   animation: gradientShift 15s ease infinite;
 }

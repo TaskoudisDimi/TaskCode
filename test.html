@@ -1,0 +1,10 @@
+<!-- Template Modal -->
+<div v-if="showTemplateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 w-full max-w-4xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-orbitron text-gray-700">{{ selectedTemplate.name }}</h3>
+        <button @click="showTemplateModal = false" class="text-gray-600 hover:text-gray-800">✕</button>
+      </div>
+      <iframe :src="selectedTemplate.path" class="w-full h-[600px] border rounded"></iframe>
+    </div>
+  </div>
