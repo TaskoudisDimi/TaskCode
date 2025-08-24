@@ -9,24 +9,25 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gray-800 text-white">
   <!-- Navigation -->
   <nav class="bg-gray-800 shadow sticky top-0 z-50" style="height: 64px;">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold font-orbitron text-green-500">Task-Code</a>
+      <a href="index.html" class="text-2xl font-bold font-orbitron text-white">Task-Code</a>
       <div class="space-x-4">
-        <a href="index.html" class="text-gray-300 hover:text-green-400 font-orbitron">Home</a>
-        <a href="index.html#services" class="text-gray-300 hover:text-green-400 font-orbitron">Services</a>
+        <a href="index.html#vision" class="text-white hover:text-gray-400 font-orbitron">Home</a>
+        <a href="index.html#services" class="text-white hover:text-gray-400 font-orbitron">Services</a>
         <a href="templates.html" class="text-green-500 font-semibold font-orbitron">Templates</a>
-        <a href="index.html#pricing" class="text-gray-300 hover:text-green-400 font-orbitron">Pricing</a>
-        <a href="index.html#contact" class="text-gray-300 hover:text-green-400 font-orbitron">Contact</a>
+        <a href="index.html#pricing" class="text-white hover:text-gray-400 font-orbitron">Pricing</a>
+        <a href="index.html#contact" class="text-white hover:text-gray-400 font-orbitron">Contact</a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
   <!-- Template Gallery -->
-  <section id="templates" class="py-16">
+  <section id="templates" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
     <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-green-500 text-center mb-12 animate-slide-in">Explore Our Templates</h2>
+      <h2 class="text-4xl font-orbitron font-bold text-white text-center mb-12 animate-slide-in">Explore Our Templates</h2>
       
       <!-- Vue App -->
       <div id="app">
@@ -36,7 +37,7 @@
             v-model="searchQuery" 
             type="text" 
             placeholder="Search templates..." 
-            class="w-full max-w-md px-4 py-2 rounded-l-md border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+            class="w-full max-w-md px-4 py-2 rounded-l-md border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-600"
           >
           <button 
             @click="clearSearch" 
@@ -53,62 +54,59 @@
             :key="category" 
             @click="filterTemplates(category)" 
             :class="['px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 font-poppins', 
-                     currentCategory === category ? 'bg-green-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-green-500 hover:text-white']"
+                     currentCategory === category ? 'bg-green-600 text-white' : 'bg-gray-700 text-white hover:bg-green-600 hover:text-white']"
           >
             {{ category.charAt(0).toUpperCase() + category.slice(1) }}
           </button>
         </div>
 
-        <!-- Template Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div 
-            v-for="(template, index) in filteredTemplates" 
-            :key="template.name" 
-            class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <div v-if="!loadedTemplates.includes(index)" class="h-[300px] flex items-center justify-center bg-gray-700">
-              <span class="text-gray-400">Loading...</span>
-            </div>
-            <iframe 
-              v-else 
-              :src="template.path" 
-              :title="template.name" 
-              class="w-full h-[300px] border rounded mb-4"
-              @load="markLoaded(index)"
-              @error="handleError(index)"
-            ></iframe>
-            <h3 class="text-xl font-orbitron text-white mb-2">{{ template.name }}</h3>
-            <p class="text-gray-400 font-poppins mb-4">{{ template.description }}</p>
-            <button 
-              @click="openPreview(template)" 
-              class="text-green-500 hover:text-green-400 font-medium underline font-poppins"
+        <!-- Categorized Template Grid -->
+        <div v-for="(categoryTemplates, category) in categorizedTemplates" :key="category" class="mb-8">
+          <h3 v-if="categoryTemplates.length > 0" class="text-2xl font-orbitron text-white mb-4">
+            {{ category.charAt(0).toUpperCase() + category.slice(1) }}
+          </h3>
+          <div v-if="categoryTemplates.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div 
+              v-for="(template, index) in categoryTemplates" 
+              :key="template.name" 
+              class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              Preview Template
-            </button>
-          </div>
-        </div>
-
-        <!-- Preview Modal -->
-        <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div class="bg-gray-800 rounded-lg p-6 w-full max-w-4xl">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-2xl font-orbitron text-white">{{ selectedTemplate.name }}</h3>
-              <button @click="showModal = false" class="text-gray-400 hover:text-white">✕</button>
+              <div v-if="!loadedTemplates.includes(index)" class="h-[300px] flex items-center justify-center bg-gray-700">
+                <span v-if="templateLoadErrors[index]" class="text-red-400">Error loading template</span>
+                <span v-else class="text-gray-400">Loading...</span>
+              </div>
+              <iframe 
+                v-else 
+                :src="template.path" 
+                :title="template.name" 
+                class="w-full h-[300px] border rounded mb-4 template-preview"
+                @load="markLoaded(index)"
+                @error="handleError(index)"
+              ></iframe>
+              <h3 class="text-xl font-orbitron text-white mb-2">{{ template.name }}</h3>
+              <p class="text-gray-400 font-poppins mb-4">{{ template.description }}</p>
+              <a 
+                :href="template.path" 
+                target="_blank" 
+                class="text-green-500 hover:text-green-400 font-medium underline font-poppins"
+              >
+                Open Template
+              </a>
             </div>
-            <iframe :src="selectedTemplate.path" class="w-full h-[500px] border rounded"></iframe>
           </div>
+          <p v-else class="text-gray-400 text-center">No templates available in this category.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 py-8 mt-12">
+  <footer class="bg-gray-900 py-8">
     <div class="container mx-auto px-4 text-center">
       <p class="font-poppins text-gray-400">© 2025 Task-Code. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="/static/js/app.js"></script>
+  <script src="/static/js/script.js"></script>
 </body>
 </html>

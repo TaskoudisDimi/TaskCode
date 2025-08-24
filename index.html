@@ -8,6 +8,38 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <link rel="stylesheet" href="/static/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .hexagon {
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .pulse-btn {
+      animation: pulse 2s infinite;
+    }
+  </style>
 </head>
 <body class="bg-gray-800 text-white">
   <!-- Vue App -->
@@ -21,8 +53,8 @@
           <a href="#services" class="text-white hover:text-gray-400 font-orbitron">Services</a>
           <a href="#showcase" class="text-white hover:text-gray-400 font-orbitron">Templates</a>
           <a href="#pricing" class="text-white hover:text-gray-400 font-orbitron">Pricing</a>
-          <a href="#inquire" class="text-white hover:text-gray-400 font-orbitron">Start Project</a>
-          <a href="#contact" class="text-white hover:text-gray-400 font-orbitron">Contact</a>
+          <a href="#custom_project" class="text-white hover:text-gray-400 font-orbitron">Start Project</a>
+          <a href="contact.html" class="text-white hover:text-gray-400 font-orbitron">Contact</a>
         </div>
       </div>
     </nav>
@@ -61,17 +93,113 @@
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
             <h3 class="text-2xl font-orbitron text-white mb-4">Create Sites/E-shop/WMS</h3>
             <p class="text-gray-400 font-poppins">Custom-built websites, e-commerce platforms, and warehouse management systems tailored to your needs.</p>
+            <ul class="text-gray-400 font-poppins text-left mt-2">
+              <li>Responsive designs for all devices</li>
+              <li>Integrated e-commerce with payment gateways</li>
+              <li>Real-time inventory tracking for WMS</li>
+              <li>SEO optimization for better visibility</li>
+            </ul>
             <a href="services.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
           </div>
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
             <h3 class="text-2xl font-orbitron text-white mb-4">Create Logos</h3>
             <p class="text-gray-400 font-poppins">Unique and professional logo designs to establish your brand identity with creativity and precision.</p>
+            <ul class="text-gray-400 font-poppins text-left mt-2">
+              <li>Custom designs tailored to your brand</li>
+              <li>Multiple revision rounds included</li>
+              <li>High-resolution vector files</li>
+              <li>Brand guideline development</li>
+            </ul>
             <a href="logos.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
           </div>
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
             <h3 class="text-2xl font-orbitron text-white mb-4">Create Software for Task Automation with AI</h3>
             <p class="text-gray-400 font-poppins">AI-powered solutions including chatbots integration, price forecasting, and automated customer support workflows.</p>
+            <ul class="text-gray-400 font-poppins text-left mt-2">
+              <li>Custom AI chatbot development</li>
+              <li>Advanced price prediction algorithms</li>
+              <li>Automated workflow optimization</li>
+              <li>24/7 customer support integration</li>
+            </ul>
             <a href="AI_software.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Development Process -->
+    <section id="process" class="py-16 bg-gray-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">Our Development Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">⚙️</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 1: Consultation</h3>
+            <p class="text-gray-300 font-poppins">Discuss your goals for e-shops, sites, or AI solutions.</p>
+          </div>
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">📊</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 2: Research</h3>
+            <p class="text-gray-300 font-poppins">Analyze market trends and technical needs.</p>
+          </div>
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">🎨</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 3: Design</h3>
+            <p class="text-gray-300 font-poppins">Create prototypes for your review.</p>
+          </div>
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">💻</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 4: Development</h3>
+            <p class="text-gray-300 font-poppins">Build and integrate your solution.</p>
+          </div>
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">✅</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 5: Testing</h3>
+            <p class="text-gray-300 font-poppins">Ensure quality across all platforms.</p>
+          </div>
+          <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
+            <div class="text-4xl mb-2">🚀</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Step 6: Launch</h3>
+            <p class="text-gray-300 font-poppins">Deploy with ongoing support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="choose-us" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">Why Choose Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">✓</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Expertise</h3>
+            <p class="text-gray-300 font-poppins">Proven skills in AI and web development.</p>
+          </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">⭐</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Customization</h3>
+            <p class="text-gray-300 font-poppins">Solutions tailored to your brand.</p>
+          </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">⏰</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Support</h3>
+            <p class="text-gray-300 font-poppins">24/7 assistance included.</p>
+          </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">🏆</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Success</h3>
+            <p class="text-gray-300 font-poppins">Track record of delivered projects.</p>
+          </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">💰</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Affordability</h3>
+            <p class="text-gray-300 font-poppins">Flexible, budget-friendly plans.</p>
+          </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300 text-center">
+            <div class="text-4xl mb-2">🤝</div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Client Focus</h3>
+            <p class="text-gray-300 font-poppins">Collaborative project management.</p>
           </div>
         </div>
       </div>
@@ -118,6 +246,30 @@
           </a>
         </div>
       </div>
+      <!-- Template Modal -->
+      <div v-if="showTemplateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-lg p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-orbitron text-white">{{ selectedTemplate.name }}</h3>
+            <button @click="showTemplateModal = false" class="text-white hover:text-gray-400 text-xl">✕</button>
+          </div>
+          <iframe 
+            :src="selectedTemplate.path" 
+            :title="selectedTemplate.name" 
+            class="w-full h-[500px] border rounded mb-4 template-preview"
+            @load="markTemplateLoaded(featuredTemplates.indexOf(selectedTemplate))"
+            @error="handleTemplateError(featuredTemplates.indexOf(selectedTemplate))"
+          ></iframe>
+          <p class="text-gray-300 font-poppins mb-4">{{ selectedTemplate.description }}</p>
+          <a 
+            :href="selectedTemplate.path" 
+            target="_blank" 
+            class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md font-orbitron"
+          >
+            Open Template
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Pricing Section -->
@@ -126,33 +278,42 @@
         <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
           Choose Your Plan
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Fixed Value Plan -->
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
             <h3 class="text-2xl font-orbitron text-white mb-4">Fixed Value Plan</h3>
-            <p class="text-gray-400 font-poppins">A one-time payment option offering a tailored solution with essential features and dedicated support for a single project.</p>
-            <a href="prices.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+            <p class="text-gray-400 font-poppins">A one-time payment option offering a tailored solution with essential features and dedicated support.</p>
           </div>
           <!-- Subscription Plans -->
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
             <h3 class="text-2xl font-orbitron text-white mb-4">Subscription Plans</h3>
             <p class="text-gray-400 font-poppins">Flexible monthly plans with options for websites, hosting, AI features, and support tailored to your business needs.</p>
-            <a href="prices.html" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
           </div>
+          <!-- Hybrid Model -->
+          <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <h3 class="text-2xl font-orbitron text-white mb-4">Hybrid Model</h3>
+            <p class="text-gray-400 font-poppins">Combine an initial setup fee with a monthly subscription for hosting, support, and AI features.</p>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="prices.html" class="bg-gray-700 hover:bg-gray-900 text-white px-8 py-3 rounded-full font-orbitron">
+            Explore Pricing Plans
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Spark Your Next Project -->
-    <section id="idea" class="py-16 bg-gradient-to-b from-gray-900 to-gray-800">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
-          Spark Your Next Project
-        </h2>
-        <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-          <p class="text-gray-400 font-poppins mb-6">Ready to bring your vision to life? At Task-Code, we guide you through a seamless process to create a custom website or e-shop. Start by selecting a template, choosing colors, and uploading images that reflect your brand. Our team will collaborate with you to build a site tailored to your needs, ensuring a smooth and creative journey from idea to launch.</p>
-          <a href="start-project.html" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-orbitron transition-colors duration-300">Start Customizing Now</a>
-        </div>
+    <!-- Ignite Your Dream Project -->
+    <section id="custom_project" class="py-20 bg-gradient-to-r from-green-900 to-gray-900">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-white mb-6 animate-slide-in" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Ignite Your Dream Project</h2>
+        <p class="text-xl md:text-2xl text-gray-200 font-poppins mb-8 max-w-2xl mx-auto">Unleash your vision with a stunning website or e-shop! Dive into a seamless journey where your ideas come to life with our expert guidance.</p>
+        <ol class="text-gray-300 font-poppins text-left mb-8 max-w-md mx-auto space-y-4 text-lg">
+          <li class="flex items-center"><span class="text-green-400 mr-2">🔥</span> Pick a template from our curated collection.</li>
+          <li class="flex items-center"><span class="text-green-400 mr-2">🎨</span> Personalize it with your colors and images.</li>
+          <li class="flex items-center"><span class="text-green-400 mr-2">🚀</span> Let us handle setup, testing, and launch!</li>
+        </ol>
+        <a href="custom_project.html" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-orbitron text-xl shadow-lg pulse-btn transition-all duration-300">Ignite Now!</a>
       </div>
     </section>
 
@@ -183,9 +344,9 @@
           <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h3 class="text-2xl font-orbitron text-white mb-4">Company Information</h3>
             <p class="text-gray-400 font-poppins">Address: 123 Innovation Lane, Tech City, TC 45678</p>
-            <p class="text-gray-400 font-poppins">Telephone: +1-234-567-8900</p>
-            <p class="text-gray-400 font-poppins">Email: info@task-code.com</p>
-            <p class="text-gray-400 font-poppins">Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
+            <p class="text-gray-300 font-poppins">Telephone: +1-234-567-8900</p>
+            <p class="text-gray-300 font-poppins">Email: info@task-code.com</p>
+            <p class="text-gray-300 font-poppins">Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
           </div>
         </div>
       </div>

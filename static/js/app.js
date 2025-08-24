@@ -60,6 +60,10 @@ createApp({
       this.selectedTemplate = template;
       this.showTemplateModal = true;
     },
+    closeTemplateModal() {
+      this.showTemplateModal = false;
+      this.selectedTemplate = null;
+    },
     generateIdea() {
       const ideas = {
         retail: 'Launch a sleek e-shop with AI-driven product recommendations and automated inventory syncing.',
