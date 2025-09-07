@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}AI Software Solutions - Task-Code{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16">
+  <!-- AI Software Section -->
+  <section class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="AI Software Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">AI Software Solutions</h1>
+      <p class="text-gray-300 font-poppins max-w-2xl mx-auto">Unlock efficiency with custom AI-driven software for task automation. Task-Code delivers innovative solutions including chatbots, forecasting, and workflows, tailored to your business needs.</p>
+    </div>
+  </section>
+
+  <!-- Detailed Sections -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Chatbot Integration -->
+    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+      <img src="https://images.unsplash.com/photo-1600585152245-16a7a0add7df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Chatbot Integration" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Chatbot Integration</h2>
+      <p class="text-gray-400 font-poppins mb-4">Enhance customer engagement with AI-powered chatbots that provide 24/7 support, handle inquiries, and streamline communication across platforms.</p>
+      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Enhancements</h3>
+      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+        <li>Natural language processing for intuitive responses</li>
+        <li>Automated escalation to human agents</li>
+        <li>Personalized user interaction tracking</li>
+      </ul>
+    </div>
+
+    <!-- Price Forecasting -->
+    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+      <img src="https://images.unsplash.com/photo-1591122948367-62d1e1ee6507?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Price Forecasting" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Price Forecasting</h2>
+      <p class="text-gray-400 font-poppins mb-4">Leverage AI to predict market trends and optimize pricing strategies, helping you stay competitive and maximize profits.</p>
+      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Enhancements</h3>
+      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+        <li>Real-time data analysis from multiple sources</li>
+        <li>Predictive models for demand and supply</li>
+        <li>Automated adjustment recommendations</li>
+      </ul>
+    </div>
+
+    <!-- Workflow Automation -->
+    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+      <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Workflow Automation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Workflow Automation</h2>
+      <p class="text-gray-400 font-poppins mb-4">Automate repetitive tasks with AI-driven workflows, improving efficiency in customer support, inventory management, and more.</p>
+      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Enhancements</h3>
+      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+        <li>Intelligent task prioritization</li>
+        <li>Automated process optimization</li>
+        <li>Real-time performance monitoring</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="text-center mt-12">
+    <a href="{{ url_for('custom_project') }}" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-orbitron transition-colors duration-300">Start Building Your Software</a>
+    <a href="{{ url_for('contact') }}" class="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-orbitron transition-colors duration-300">Contact Us for Details</a>
+  </div>
+</div>
+{% endblock %}

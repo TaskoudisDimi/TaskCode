@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Custom Project - Task-Code{% endblock %}
+{% block content %}
+<div id="app" data-templates='{{ templates | tojson | safe }}'>
+  <div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-orbitron font-bold text-center mb-12">Customize Your Project</h1>
+
+    <!-- Domain Information -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-orbitron text-center mb-6">Your Domain Details</h2>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+        <div class="mb-4">
+          <label class="block text-white font-poppins mb-2">Do you have a domain name?</label>
+          <div class="flex space-x-4">
+            <label class="flex items-center">
+              <input v-model="domain.hasDomain" type="radio" value="yes" class="mr-2">Yes
+            </label>
+            <label class="flex items-center">
+              <input v-model="domain.hasDomain" type="radio" value="no" class="mr-2">No
+            </label>
+          </div>
+        </div>
+        <div v-if="domain.hasDomain === 'yes'" class="space-y-4">
+          <div>
+            <label class="block text-white font-poppins mb-2">Domain Name</label>
+            <input v-model="domain.name" type="text" class="w-full p-2 rounded bg-gray-900 text-white" placeholder="e.g., www.yourdomain.com">
+          </div>
+          <div>
+            <label class="block text-white font-poppins mb-2">Hosting Provider</label>
+            <input v-model="domain.hostingProvider" type="text" class="w-full p-2 rounded bg-gray-900 text-white" placeholder="e.g., GoDaddy, Bluehost">
+          </div>
+          <div>
+            <label class="block text-white font-poppins mb-2">Additional Notes</label>
+            <textarea v-model="domain.notes" class="w-full p-2 rounded bg-gray-900 text-white" rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Template Selection -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-orbitron text-center mb-6">Choose a Template</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div v-for="template in templates" :key="template.id" class="bg-gray-700 p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" @click="selectTemplate(template)">
+          <img :src="template.preview" alt="Template Preview" class="w-full h-40 object-cover rounded-t-lg">
+          <div class="p-2">
+            <h3 class="text-xl font-orbitron" v-text="template.name"></h3>
+            <p class="text-gray-400 font-poppins mt-1" v-text="template.description"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customization Options -->
+    <section v-if="selectedTemplate" class="mb-12">
+      <h2 class="text-2xl font-orbitron text-center mb-6">Customize Your Template</h2>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label class="block text-white font-poppins mb-2">Choose Color</label>
+            <input v-model="customColor" type="color" class="w-full h-10 cursor-pointer">
+          </div>
+          <div>
+            <label class="block text-white font-poppins mb-2">Upload Images (e.g., Banner)</label>
+            <input type="file" @change="handleImageUpload('banner')" accept="image/*" class="w-full text-gray-400 mb-2">
+            <label class="block text-white font-poppins mb-2">Upload Logo</label>
+            <input type="file" @change="handleImageUpload('logo')" accept="image/*" class="w-full text-gray-400">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview -->
+    <section v-if="selectedTemplate" class="mb-12">
+      <h2 class="text-2xl font-orbitron text-center mb-6">Preview</h2>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg text-center" :style="{ backgroundColor: customColor }">
+        <img v-if="customImages.banner" :src="customImages.banner" alt="Banner Preview" class="mx-auto mb-4 max-h-32">
+        <img v-if="customImages.logo" :src="customImages.logo" alt="Logo Preview" class="mx-auto mb-4 max-h-20">
+        <p class="text-gray-300 font-poppins" v-text="selectedTemplate.name"></p>
+        <p class="text-gray-300 font-poppins">Custom Color Applied</p>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section v-if="selectedTemplate">
+      <h2 class="text-2xl font-orbitron text-center mb-6">Submit Your Customization</h2>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg max-w-md mx-auto">
+        <form @submit.prevent="submitCustomization">
+          <div class="mb-4">
+            <label class="block text-white font-poppins mb-2">Name</label>
+            <input v-model="form.name" type="text" class="w-full p-2 rounded bg-gray-900 text-white" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-white font-poppins mb-2">Email</label>
+            <input v-model="form.email" type="email" class="w-full p-2 rounded bg-gray-900 text-white" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-white font-poppins mb-2">Message</label>
+            <textarea v-model="form.message" class="w-full p-2 rounded bg-gray-900 text-white" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-orbitron w-full">Send to Task-Code</button>
+        </form>
+        <p class="text-gray-400 font-poppins mt-4 text-center">We’ll contact you to complete setup, testing, and launch!</p>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/custom_project.js') }}"></script>
+{% endblock %}

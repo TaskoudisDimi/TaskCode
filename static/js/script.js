@@ -1,72 +1,40 @@
-const { createApp } = Vue;
+document.addEventListener('DOMContentLoaded', () => {
+  const trigger = document.getElementById('chatbot-trigger');
+  const chatbot = document.getElementById('chatbot');
+  const closeBtn = document.getElementById('chatbot-close');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatMessages = document.getElementById('chat-messages');
 
-createApp({
-  data() {
-    return {
-      templates: [],
-      searchQuery: '',
-      currentCategory: 'all',
-      categories: ['all', 'business', 'eshop', 'generic', 'portfolio'],
-      loadedTemplates: [],
-      templateLoadErrors: {}
-    };
-  },
-  computed: {
-    categorizedTemplates() {
-      let filtered = this.templates;
-      if (this.searchQuery.trim()) {
-        const query = this.searchQuery.toLowerCase();
-        filtered = filtered.filter(template => 
-          template.name.toLowerCase().includes(query) || 
-          template.description.toLowerCase().includes(query)
-        );
-      }
-      if (this.currentCategory !== 'all') {
-        filtered = filtered.filter(template => template.category === this.currentCategory);
-      }
-      const categorized = {
-        business: [], eshop: [], generic: [], portfolio: []
-      };
-      filtered.forEach(template => {
-        categorized[template.category].push(template);
-      });
-      return categorized;
+  // Open chatbot on trigger click
+  trigger.addEventListener('click', () => {
+    chatbot.classList.remove('hidden');
+    trigger.classList.add('hidden');
+  });
+
+  // Close chatbot on X button click
+  closeBtn.addEventListener('click', () => {
+    chatbot.classList.add('hidden');
+    trigger.classList.remove('hidden');
+  });
+
+  // Handle form submission
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if (message) {
+      const newMessage = `<div class="mb-2 text-right"><p class="inline-block p-2 rounded-lg bg-gray-700">${message}</p></div>`;
+      chatMessages.innerHTML += newMessage;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Simulate bot response (replace with actual API call if needed)
+      setTimeout(() => {
+        const botResponse = `<div class="mb-2 text-left"><p class="inline-block p-2 rounded-lg bg-green-600">Thanks for your message! How about starting a project with us?</p></div>`;
+        chatMessages.innerHTML += botResponse;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+
+      chatInput.value = '';
     }
-  },
-  methods: {
-    async fetchTemplates() {
-      try {
-        const response = await fetch('/static/template-paths.json');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        this.templates = await response.json();
-      } catch (error) {
-        console.error('Error fetching templates:', error);
-        this.templates.forEach((_, index) => {
-          this.templateLoadErrors[index] = true;
-        });
-      }
-    },
-    markLoaded(index) {
-      if (!this.loadedTemplates.includes(index)) {
-        this.loadedTemplates.push(index);
-        delete this.templateLoadErrors[index];
-      }
-    },
-    handleError(index) {
-      if (!this.templateLoadErrors[index]) {
-        this.templateLoadErrors[index] = true;
-      }
-    },
-    filterTemplates(category) {
-      this.currentCategory = category;
-      this.loadedTemplates = [];
-      this.templateLoadErrors = {};
-    },
-    clearSearch() {
-      this.searchQuery = '';
-    }
-  },
-  mounted() {
-    this.fetchTemplates();
-  }
-}).mount('#app');
+  });
+});

@@ -127,3 +127,23 @@ section {
   font-size: 1.2rem;
   padding: 2rem;
 }
+
+#chatbot {
+  transition: all 0.3s ease;
+}
+#chatbot.hidden {
+  display: none;
+}
+#chatbot-trigger {
+  transition: all 0.3s ease;
+}
+#chatbot-trigger.hidden {
+  display: none;
+}
+#chat-messages {
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+}
+.template-preview {
+  background-color: #4a5568;
+}
