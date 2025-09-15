@@ -37,4 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
       chatInput.value = '';
     }
   });
+
+  // Banner Slider
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.banner-slide');
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+  }
+  showSlide(slideIndex);
+  setInterval(() => {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+  }, 5000);
 });

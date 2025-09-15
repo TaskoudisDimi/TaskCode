@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Existing styles */
     .hexagon { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     .pulse-btn { animation: pulse 2s infinite; }
@@ -15,22 +16,175 @@
     .animate-slide-in { animation: slideIn 1s ease-out; }
     .map-loading { animation: spin 1s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #f3f4f6;
+      padding: 12px 0;
+      border-radius: 4px;
+      z-index: 50;
+      min-width: 400px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-menu a {
+      color: #111827;
+      padding: 10px 20px;
+      display: block;
+      font-size: 1.1rem;
+    }
+    .dropdown-menu a:hover { background-color: #e5e7eb; }
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(20px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-20px); }
+    }
+    .animate-word-change {
+        animation: fadeInOut 2s ease-in-out infinite;
+    }
+
+    /* New styles for hexagonal image display */
+    .hexagon-wrapper {
+        position: absolute;
+        z-index: 2;
+    }
+    .small-hexagon-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    .medium-hexagon-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+    .large-hexagon-wrapper {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hexagon-group-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hexagon-shape {
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background: #f0f0f0;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        overflow: hidden;
+        /* Rotate the shape to have a flat top and bottom */
+        transform: rotate(90deg);
+    }
+    .hexagon-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+        /* Counter-rotate the image to make it straight inside the shape */
+        transform: rotate(-90deg);
+    }
+    .hexagon-image.active {
+        opacity: 1;
+    }
+    .main-logo-hexagon {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .main-logo-hexagon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Counter-rotate the logo image to make it appear straight inside a flat-top hexagon shape */
+        transform: rotate(-90deg);
+    }
+
+    /* Positioning for the hexagons */
+    .hero-top-left {
+        top: 10%;
+        left: 45%;
+    }
+    .hero-mid-left {
+        top: 45%;
+        left: 15%;
+    }
+    .hero-bottom-left {
+        bottom: 10%;
+        left: 5%;
+    }
+    .hero-top-mid {
+        top:5%;
+        right: 90%;
+    }
+    .hero-mid-right {
+        top: 40%;
+        right: 35%;
+    }
+    .solutions-top-left {
+        top: 20%;
+        left: 10%;
+    }
+    .solutions-bottom-right {
+        bottom: 20%;
+        right: 10%;
+    }
+    .process-top-right {
+        top: 20%;
+        right: 10%;
+    }
+    .process-bottom-left {
+        bottom: 20%;
+        left: 10%;
+    }
+    .footer-top-left {
+        top: 10%;
+        left: 10%;
+    }
+    .footer-bottom-right {
+        bottom: 10%;
+        right: 10%;
+    }
   </style>
-  <script src="/static/js/script.js"></script>
 </head>
-<body class="bg-gray-800 text-white">
-  <!-- Navigation -->
-  <nav class="bg-gray-800 shadow sticky top-0 z-50" style="height: 64px;">
+<body class="bg-white text-gray-900">
+  <nav class="bg-white shadow sticky top-0 z-50" style="height: 64px;">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="{{ url_for('index') }}" class="text-2xl font-bold font-orbitron text-white">Task-Code</a>
-      <div class="space-x-4 flex items-center">
-        <a href="{{ url_for('index') }}#vision" class="text-white hover:text-gray-400 font-orbitron">Home</a>
-        <a href="{{ url_for('index') }}#services" class="text-white hover:text-gray-400 font-orbitron">Services</a>
-        <a href="{{ url_for('index') }}#showcase" class="text-white hover:text-gray-400 font-orbitron">Templates</a>
-        <a href="{{ url_for('index') }}#pricing" class="text-white hover:text-gray-400 font-orbitron">Pricing</a>
-        <a href="{{ url_for('index') }}#inquire" class="text-white hover:text-gray-400 font-orbitron">Start Project</a>
-        <a href="{{ url_for('contact') }}" class="text-white hover:text-gray-400 font-orbitron">Contact</a>
-        <select id="language-select" class="bg-gray-700 text-white p-1 rounded" onchange="changeLanguage(this.value)">
+      <a href="{{ url_for('index') }}" class="text-2xl font-bold font-orbitron text-gray-900">Task-Code</a>
+      <div class="space-x-6 flex items-center">
+        <div class="relative dropdown">
+          <a href="#" class="text-gray-900 hover:text-teal-600 font-orbitron">Services</a>
+          <div class="dropdown-menu">
+            <a href="{{ url_for('sites_eshops_wms') }}">Create Sites/E-shop/WMS</a>
+            <a href="{{ url_for('logos') }}">Create Logos and Social Media</a>
+            <a href="{{ url_for('AI') }}">Create Software for Task Automation with AI</a>
+            <a href="{{ url_for('custom_software') }}">Custom Software</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <a href="#solutions" class="text-gray-900 hover:text-teal-600 font-orbitron">Solutions</a>
+          <div class="dropdown-menu">
+            <a href="{{ url_for('Brand_Identity_Digital_Assets') }}">Brand Identity & DigitalAssets</a>
+            <a href="{{ url_for('Dynamic_Web_Portals') }}">Dynamic Web Portals</a>
+            <a href="{{ url_for('eCommerce_solution') }}">eCommerce solution</a>
+            <a href="{{ url_for('Smart_Inventory_Management') }}">Smart Inventory Management</a>        
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <a href="{{ url_for('prices') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">Prices</a>
+        </div>
+        <a href="{{ url_for('about') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">About Us</a>
+        <select id="language-select" class="bg-gray-200 text-gray-900 p-1 rounded-md" onchange="changeLanguage(this.value)">
           <option value="en" {% if session.get('language') == 'en' %}selected{% endif %}>English</option>
           <option value="el" {% if session.get('language') == 'el' %}selected{% endif %}>Greek</option>
         </select>
@@ -40,74 +194,169 @@
 
   {% block content %}{% endblock %}
 
-  <!-- Contact Section -->
-<section id="contact" class="py-16 bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-12">{{ translations.contact_title }}</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Contact Form -->
-      <div>
-        <form class="max-w-lg mx-auto">
-          <div class="mb-4">
-            <label for="name" class="block text-white">{{ translations.form_name }}</label>
-            <input type="text" id="name" class="w-full p-2 rounded bg-gray-700 text-white" required>
+  {% if request.endpoint == 'index' or request.endpoint == 'about' %}
+    <section id="contact" class="py-20 bg-gray-100 relative overflow-hidden">
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-gray-900 text-center mb-12 animate-slide-in">
+          {{ translations.contact_title }}
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300 flex items-center">
+            <div class="w-full h-full bg-gray-100 rounded-lg border-2 border-teal-300 overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.045897671698!2d-122.41941568514767!3d37.77492997975914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f8d3e2f15%3A0x1f7e3e8e8e8e8e8e!2sSan+Francisco!5e0!3m2!1sen!2sus!4v1634567890"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+              </iframe>
+            </div>
           </div>
-          <div class="mb-4">
-            <label for="email" class="block text-white">{{ translations.form_email }}</label>
-            <input type="email" id="email" class="w-full p-2 rounded bg-gray-700 text-white" required>
+          <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
+            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">Company Information</h3>
+            <div class="space-y-4">
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📍</span> Address: 123 Innovation Lane, Tech City, TC 45678</p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📞</span> Telephone: +1-234-567-8900</p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">✉️</span> Email: info@task-code.com</p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">⏰</span> Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
+              <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">Follow Us</h4>
+              <div class="flex justify-center space-x-6">
+                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">🐦</span> Twitter</a>
+                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">💼</span> LinkedIn</a>
+                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">👍</span> Facebook</a>
+              </div>
+            </div>
+            <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup }}</h3>
+            <form action="{{ url_for('newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
+              <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">
+                Subscribe
+              </button>
+              <p class="text-gray-500 font-poppins text-center mt-2">Keep in touch with our latest news</p>
+            </form>
           </div>
-          <div class="mb-4">
-            <label for="message" class="block text-white">{{ translations.form_message }}</label>
-            <textarea id="message" class="w-full p-2 rounded bg-gray-700 text-white" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">{{ translations.form_submit }}</button>
-        </form>
+        </div>
       </div>
-      <!-- Company Information -->
-      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h3 class="text-2xl font-orbitron text-white mb-4">Company Information</h3>
-        <p class="text-gray-400 font-poppins">Address: 123 Innovation Lane, Tech City, TC 45678</p>
-        <p class="text-gray-300 font-poppins">Telephone: +1-234-567-8900</p>
-        <p class="text-gray-300 font-poppins">Email: info@task-code.com</p>
-        <p class="text-gray-300 font-poppins">Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
+    </section>
+  {% else %}
+    <section id="contact" class="py-16 bg-white">
+      
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">{{ translations.contact_title }}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
+            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">Send Us a Message</h3>
+
+            {% if request.method == 'POST' %}
+              <div class="text-center text-teal-600 mb-4 font-poppins">
+                ✅ Message sent successfully! We'll get back to you soon.
+              </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('contact') }}" class="max-w-lg mx-auto space-y-6">
+              <div>
+                <label for="name" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_name }}</label>
+                <input type="text" name="name" id="name"
+                       class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
+                              focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
+                       required>
+              </div>
+              <div>
+                <label for="email" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_email }}</label>
+                <input type="email" name="email" id="email"
+                       class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
+                              focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
+                       required>
+              </div>
+              <div>
+                <label for="subject" class="block text-gray-900 mb-2 font-poppins">Subject</label>
+                <input type="text" name="subject" id="subject"
+                       class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
+                              focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
+                       required>
+              </div>
+              <div>
+                <label for="message" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_message }}</label>
+                <textarea name="message" id="message" rows="6"
+                          class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
+                                 focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
+                          required></textarea>
+              </div>
+              <button type="submit"
+                      class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-xl font-orbitron pulse-btn transition-all duration-300">
+                {{ translations.form_submit }}
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  {% endif %}
 
   <div id="chatbot-trigger" class="fixed bottom-4 right-4 z-50 cursor-pointer">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white bg-gray-700 rounded-full p-2 hover:bg-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white bg-gray-600 rounded-full p-2 hover:bg-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
     </svg>
   </div>
   <div id="chatbot" class="fixed bottom-4 right-20 w-80 bg-gray-800 text-white rounded-lg shadow-lg p-4 hidden z-40">
     <div class="flex justify-between items-center mb-4">
       <h3 class="text-lg font-orbitron">Chat with Us</h3>
-      <button id="chatbot-close" class="text-white hover:text-gray-400">&times;</button>
+      <button id="chatbot-close" class="text-white hover:text-gray-400">×</button>
     </div>
     <div id="chat-messages" class="h-64 overflow-y-auto mb-4">
       {% for message in chat_messages %}
         <div class="mb-2 {{ 'text-right' if message.from == 'user' else 'text-left' }}">
-          <p class="inline-block p-2 rounded-lg {{ 'bg-gray-700' if message.from == 'user' else 'bg-green-600' }}">{{ message.text }}</p>
+          <p class="inline-block p-2 rounded-lg {{ 'bg-gray-700' if message.from == 'user' else 'bg-teal-600' }}">{{ message.text }}</p>
         </div>
       {% endfor %}
     </div>
     <form id="chat-form" class="flex">
       <input type="text" id="chat-input" class="w-full px-2 py-1 bg-gray-700 text-white rounded-l-md focus:outline-none" placeholder="Type your message...">
-      <button type="submit" class="bg-green-600 text-white px-4 py-1 rounded-r-md hover:bg-green-700">Send</button>
+      <button type="submit" class="bg-teal-600 text-white px-4 py-1 rounded-r-md hover:bg-teal-700">Send</button>
     </form>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-gradient-to-r from-gray-900 to-green-900 py-8">
-    <div class="container mx-auto px-4 text-center">
-      <div class="mb-4">
-        <span class="text-2xl font-orbitron text-white">Task-Code</span>
+  <footer class="bg-gray-200 py-12 relative overflow-hidden">
+  
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <div class="mb-8">
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Task-Code</h3>
+        <p class="text-lg text-teal-600">The Smart Business Enabler</p>
       </div>
-      <p class="font-poppins text-gray-400">© 2025 Task-Code. All rights reserved.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-700 font-poppins">
+            <li><a href="{{ url_for('index') }}" class="hover:text-teal-600">Home</a></li>
+            <li><a href="{{ url_for('prices') }}" class="hover:text-teal-600">Services</a></li>
+            <li><a href="{{ url_for('about') }}" class="hover:text-teal-600">About Us</a></li>
+            <li><a href="#" class="hover:text-teal-600">Clients & Case Studies</a></li>
+            <li><a href="#" class="hover:text-teal-600">Blog & News</a></li>
+            <li><a href="#" class="hover:text-teal-600">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Useful</h4>
+          <ul class="space-y-2 text-gray-700 font-poppins">
+            <li><a href="#" class="hover:text-teal-600">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-teal-600">Terms of Use</a></li>
+            <li><a href="#" class="hover:text-teal-600">Cookie Declaration</a></li>
+            <li><a href="#" class="hover:text-teal-600">Service Management System Policy</a></li>
+            <li><a href="#" class="hover:text-teal-600">Quality & Environmental Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Any Questions?</h4>
+          <p class="text-gray-700 font-poppins mb-4">Have a question? Just drop a line.</p>
+          <a href="{{ url_for('contact') }}" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">Contact Us</a>
+          <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+      <p class="text-gray-500 font-poppins">© 2025 Task-Code. All rights reserved.</p>
     </div>
   </footer>
-
   <script>
     function changeLanguage(lang) {
       fetch(`/set_language?lang=${lang}`, { method: 'POST' })
@@ -118,4 +367,5 @@
         });
     }
   </script>
+</body>
 </html>

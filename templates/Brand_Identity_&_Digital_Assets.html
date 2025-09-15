@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Brand Identity & Digital Assets - Task-Code{% endblock %}
+
+{% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+</style>
+
+<div class="container mx-auto px-4 py-16">
+  <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Brand Identity Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Brand Identity & Digital Assets</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">From custom logos to social media templates, we craft a cohesive visual identity that resonates with your audience.</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Visual Identity" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Cohesive Visual Identity</h2>
+      <p class="text-teal-200 font-poppins mb-4">We create a unified visual language for your brand, including a custom color palette, typography, and a brand guideline document to ensure consistency across all platforms.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Brand style guide creation</li>
+        <li>Color theory and typography selection</li>
+        <li>Brand voice and messaging strategy</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=fit&w=1350&q=80" alt="Digital Assets" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Custom Digital Assets</h2>
+      <p class="text-teal-200 font-poppins mb-4">Get a full suite of digital assets for your marketing needs, including social media templates, website graphics, and professional icon sets.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Social media kit (posts, covers, stories)</li>
+        <li>Email newsletter templates</li>
+        <li>Infographics and presentation slides</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo and Iconography" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Logo Design & Iconography</h2>
+      <p class="text-teal-200 font-poppins mb-4">A strong brand starts with a memorable logo. We design unique logos and complementary icons that are scalable and effective across all mediums, from print to digital.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>High-resolution vector logo files</li>
+        <li>Logo variations (monogram, wordmark, symbol)</li>
+        <li>Custom icon sets for website or app UI</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+  </div>
+</div>
+{% endblock %}

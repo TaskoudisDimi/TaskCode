@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Dynamic Web Portals - Task-Code{% endblock %}
+
+{% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+</style>
+
+<div class="container mx-auto px-4 py-16">
+  <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Web Portals Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Dynamic Web Portals</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Create engaging, data-driven websites and web portals for seamless user experiences and powerful lead generation.</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Interactive Websites" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Interactive & Responsive Websites</h2>
+      <p class="text-teal-200 font-poppins mb-4">We build modern, visually stunning websites that are fully responsive across all devices, ensuring an optimal user experience whether on a desktop or mobile device.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Tailored UI/UX design</li>
+        <li>Fast loading speeds and SEO optimization</li>
+        <li>Content Management System (CMS) integration</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Data-driven Portals" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Secure & Scalable Web Portals</h2>
+      <p class="text-teal-200 font-poppins mb-4">Our custom web portals offer a secure, personalized, and efficient way to share information, collaborate, and manage data with clients, partners, or employees.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Customer, employee, and vendor portals</li>
+        <li>Secure login and user-specific dashboards</li>
+        <li>Real-time data visualization and reporting</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Lead Generation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Integrated Lead Generation Tools</h2>
+      <p class="text-teal-200 font-poppins mb-4">Our portals are built to convert. We integrate forms, calls to action, and analytics to help you capture and nurture leads, turning visitors into customers.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Custom contact and quote forms</li>
+        <li>CRM and marketing automation integration</li>
+        <li>A/B testing and performance tracking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+  </div>
+</div>
+{% endblock %}

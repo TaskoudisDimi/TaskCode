@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Custom Software (API Integration) - Task-Code{% endblock %}
+
+{% block content %}
+<style>
+  /* Define new animation for card entrance if not already in base.html */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Start hidden */
+  }
+  /* Delay animations for staggered effect */
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+  .animate-fade-in-up:nth-child(4) { animation-delay: 0.8s; }
+
+
+  /* Ensure slideIn is defined if not already in base.html */
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+</style>
+
+<div class="container mx-auto px-4 py-16">
+  <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="API Integration Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Custom Software</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Seamlessly connect your systems and services with powerful custom API integrations to streamline your business operations.</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Connect Systems" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Connect CRM, ERP, and Databases</h2>
+      <p class="text-teal-200 font-poppins mb-4">Integrate your core business systems to ensure all data is in sync, from customer information to inventory levels, eliminating manual data entry and errors.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Custom API development for unique platforms</li>
+        <li>Secure, reliable data transfer protocols</li>
+        <li>Comprehensive testing to ensure data integrity</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Automate Data Flow" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Automate Data Flow between Platforms</h2>
+      <p class="text-teal-200 font-poppins mb-4">Create automated workflows that transfer information between different software applications, allowing your team to focus on strategic tasks rather than administrative ones.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Real-time sync between e-commerce and inventory</li>
+        <li>Automated report generation and distribution</li>
+        <li>Event-driven triggers for instant action</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Custom Payments" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Custom Payment Gateway Integrations</h2>
+      <p class="text-teal-200 font-poppins mb-4">Provide a seamless and secure checkout experience for your customers by integrating a custom payment gateway that fits your business model and a variety of payment methods.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Support for multiple payment providers</li>
+        <li>Enhanced security with tokenization</li>
+        <li>Compliance with industry standards (PCI-DSS)</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Real-time Sync" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Real-time Data Synchronization</h2>
+      <p class="text-teal-200 font-poppins mb-4">Keep your information up-to-date across all platforms with real-time data synchronization, giving you accurate insights for better decision-making.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Instant updates for inventory and sales</li>
+        <li>Cross-platform data consistency</li>
+        <li>Automated backups and recovery</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+  </div>
+</div>
+{% endblock %}

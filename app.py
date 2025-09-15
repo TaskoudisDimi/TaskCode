@@ -96,20 +96,7 @@ def custom_project():
     templates_dict = [{"id": t.id, "name": t.name, "description": t.description, "preview": url_for('static', filename='templates/preview_' + t.name.lower().replace(' ', '_') + '.jpg')} for t in templates]
     return render_template('custom_project.html', templates=templates_dict, translations=translations)
 
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-    language = get_user_language()
-    translations = get_translations(language)
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        subject = request.form['subject']
-        message = request.form['message']
-        submission = ContactSubmission(name=name, email=email, subject=subject, message=message)
-        db.session.add(submission)
-        db.session.commit()
-        print(f"Contact Form: {name}, {email}, {subject}, {message}")
-    return render_template('contact.html', translations=translations)
+
 
 @app.route('/templates/<path:template_path>')
 def template(template_path):
@@ -170,7 +157,66 @@ def prices():
     translations = get_translations(language)
     return render_template('prices.html', translations=translations)
 
+@app.route('/about', methods=['GET'])
+def about():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('About.html', translations=translations)
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    language = get_user_language()
+    translations = get_translations(language)
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+        submission = ContactSubmission(name=name, email=email, subject=subject, message=message)
+        db.session.add(submission)
+        db.session.commit()
+        print(f"Contact Form: {name}, {email}, {subject}, {message}")
+    return render_template('contact.html', translations=translations)
+
+
+@app.route('/newsletter', methods=['GET', 'POST'])
+def newsletter():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('Newsletter.html', translations=translations)
+
+@app.route('/custom_software', methods=['GET'])
+def custom_software():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('Custom_Software.html', translations=translations)
+
+@app.route('/Brand_Identity_Digital_Assets', methods=['GET'])
+def Brand_Identity_Digital_Assets():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('Brand_Identity_&_Digital_Assets.html', translations=translations)
+
+@app.route('/Dynamic_Web_Portals', methods=['GET'])
+def Dynamic_Web_Portals():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('Dynamic_Web_Portals.html', translations=translations)
+
+@app.route('/eCommerce_solution', methods=['GET'])
+def eCommerce_solution():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('eCommerce_solution.html', translations=translations)
+
+@app.route('/Smart_Inventory_Management', methods=['GET'])
+def Smart_Inventory_Management():
+    language = get_user_language()
+    translations = get_translations(language)
+    return render_template('Smart_Inventory_Management.html', translations=translations)
+
+
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Create tables if they don't exist
+        db.create_all() 
     app.run(debug=True)

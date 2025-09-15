@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}E-commerce Automation - Task-Code{% endblock %}
+
+{% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+</style>
+
+<div class="container mx-auto px-4 py-16">
+  <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="E-commerce Automation Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">E-commerce Automation</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Automate order processing, inventory management, and customer support with AI to boost your online store's efficiency.</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Order Processing" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Automated Order Processing</h2>
+      <p class="text-teal-200 font-poppins mb-4">Streamline your fulfillment process with automated order routing, shipping label generation, and real-time status updates for customers.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Auto-generated shipping documents</li>
+        <li>Integration with carriers (UPS, FedEx, DHL)</li>
+        <li>Automated order confirmation emails</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Inventory Management" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">AI-driven Inventory Management</h2>
+      <p class="text-teal-200 font-poppins mb-4">Keep a perfect count of your stock with automated tracking, low-stock alerts, and predictive ordering to prevent sold-out items.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Real-time stock level synchronization</li>
+        <li>Automated reordering based on demand</li>
+        <li>Multi-warehouse inventory tracking</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1600585152245-16a7a0add7df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Customer Support" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">AI-Powered Customer Support</h2>
+      <p class="text-teal-200 font-poppins mb-4">Deploy chatbots and intelligent routing to handle customer inquiries, order status checks, and returns, providing 24/7 support.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>AI chatbot for instant answers</li>
+        <li>Ticket routing for complex issues</li>
+        <li>Personalized FAQ and knowledge base</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+  </div>
+</div>
+{% endblock %}

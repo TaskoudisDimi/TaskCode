@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Smart Inventory Management - Task-Code{% endblock %}
+
+{% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+</style>
+
+<div class="container mx-auto px-4 py-16">
+  <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1583842187042-8356f91f13b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Inventory Management Background" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
+    </div>
+    <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Smart Inventory Management</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Utilize WMS and API integration for real-time tracking, forecasting, and seamless supply chain management.</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1582213782179-e0d00f73f288?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="WMS Implementation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Warehouse Management Systems (WMS)</h2>
+      <p class="text-teal-200 font-poppins mb-4">Implement a powerful WMS to optimize your warehouse operations, from inbound logistics to order picking and shipping. Our systems ensure accuracy and efficiency.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Automated stock location and retrieval</li>
+        <li>Real-time inventory levels and cycle counting</li>
+        <li>Efficient order picking and packing routes</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="API Integration" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">API Integration for Data Flow</h2>
+      <p class="text-teal-200 font-poppins mb-4">Connect your WMS with e-commerce platforms, ERPs, and shipping carriers to create a single, unified system. This eliminates data silos and manual updates.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>Syncing sales data with inventory counts</li>
+        <li>Automated order fulfillment requests</li>
+        <li>Supplier and vendor portal integration</li>
+      </ul>
+    </div>
+
+    <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
+      <img src="https://images.unsplash.com/photo-1591122948367-62d1e1ee6507?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Predictive Analytics" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-orbitron text-white mb-4">Demand Forecasting & Analytics</h2>
+      <p class="text-teal-200 font-poppins mb-4">Leverage machine learning to predict future demand, identify trends, and automate reordering processes. This reduces overstocking and prevents stockouts.</p>
+      <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
+        <li>AI-based sales and demand prediction</li>
+        <li>Real-time performance dashboards</li>
+        <li>Automated low-stock and reorder alerts</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+  </div>
+</div>
+{% endblock %}

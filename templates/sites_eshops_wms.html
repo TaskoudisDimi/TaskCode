@@ -2,54 +2,78 @@
 {% block title %}Task-Code - Services{% endblock %}
 
 {% block content %}
+<style>
+  /* Define new animation for card entrance */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Start hidden */
+  }
+  /* Delay animations for staggered effect */
+  .animate-fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+  /* Existing animations from base.html (assuming they are there or defining them if not) */
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-slide-in { animation: slideIn 1s ease-out; }
+
+  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+  .pulse-btn { animation: pulse 2s infinite; }
+</style>
+
 <div class="container mx-auto px-4 py-16">
-  <!-- Services Section -->
-  <section class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
+  <section class="relative bg-gradient-to-br from-teal-900 to-blue-950 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;"> {# Changed from-blue-900 to from-teal-900 #}
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Service Background" class="w-full h-full object-cover opacity-50">
-      <div class="absolute inset-0 bg-black opacity-40"></div>
+      <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Service Background" class="w-full h-full object-cover opacity-30">
+      <div class="absolute inset-0 bg-teal-950 opacity-60"></div> {# Changed from bg-blue-950 to bg-teal-950 #}
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center">
-      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Our Services</h1>
-      <p class="text-gray-300 font-poppins max-w-2xl mx-auto">Discover the power of custom-built solutions tailored to your business needs. Task-Code specializes in creating high-quality websites, e-commerce platforms, and warehouse management systems, enhanced with cutting-edge AI integrations to optimize performance and user experience.</p>
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4 animate-slide-in">Our Services</h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto animate-slide-in" style="animation-delay: 0.3s;">Discover the power of custom-built solutions tailored to your business needs. Task-Code specializes in creating high-quality websites, e-commerce platforms, and warehouse management systems, enhanced with cutting-edge AI integrations to optimize performance and user experience.</p> {# Changed text-blue-100 to text-teal-100 #}
     </div>
   </section>
 
-  <!-- Detailed Sections -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Websites -->
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+    <div class="bg-teal-900 p-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300 animate-fade-in-up"> {# Changed from bg-blue-900 to bg-teal-900 #}
       <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Website Design" class="w-full h-40 object-cover rounded-t-lg mb-4">
       <h2 class="text-2xl font-orbitron text-white mb-4">Websites</h2>
-      <p class="text-gray-400 font-poppins mb-4">We design and develop responsive, user-friendly websites tailored to your brand. From personal portfolios to corporate landing pages, our sites are built with modern frameworks and optimized for SEO and performance.</p>
-      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Integrations</h3>
-      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+      <p class="text-teal-100 font-poppins mb-4">We design and develop responsive, user-friendly websites tailored to your brand. From personal portfolios to corporate landing pages, our sites are built with modern frameworks and optimized for SEO and performance.</p> {# Changed from text-blue-100 to text-teal-100 #}
+      <h3 class="text-xl font-orbitron text-teal-300 mb-2">AI Integrations</h3> {# Adjusted highlight color slightly #}
+      <ul class="text-teal-100 font-poppins list-disc list-inside mb-4"> {# Changed from text-blue-100 to text-teal-100 #}
         <li>AI-powered chatbots for 24/7 customer support</li>
         <li>Personalized content recommendations based on user behavior</li>
         <li>Automated analytics dashboards for real-time insights</li>
       </ul>
     </div>
 
-    <!-- E-Shops -->
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+    <div class="bg-teal-900 p-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300 animate-fade-in-up"> {# Changed from bg-blue-900 to bg-teal-900 #}
       <img src="https://images.unsplash.com/photo-1600585152220-90363e24b880?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="E-Commerce Platform" class="w-full h-40 object-cover rounded-t-lg mb-4">
       <h2 class="text-2xl font-orbitron text-white mb-4">E-Commerce Platforms</h2>
-      <p class="text-gray-400 font-poppins mb-4">Our e-shops offer seamless online shopping experiences with secure payment gateways, inventory management, and multi-vendor support. Perfect for startups to established retailers looking to expand digitally.</p>
-      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Integrations</h3>
-      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+      <p class="text-teal-100 font-poppins mb-4">Our e-shops offer seamless online shopping experiences with secure payment gateways, inventory management, and multi-vendor support. Perfect for startups to established retailers looking to expand digitally.</p> {# Changed from text-blue-100 to text-teal-100 #}
+      <h3 class="text-xl font-orbitron text-teal-300 mb-2">AI Integrations</h3> {# Adjusted highlight color slightly #}
+      <ul class="text-teal-100 font-poppins list-disc list-inside mb-4"> {# Changed from text-blue-100 to text-teal-100 #}
         <li>AI-driven product recommendations to boost sales</li>
         <li>Dynamic pricing adjustments based on market trends</li>
         <li>Automated customer support and order tracking</li>
       </ul>
     </div>
 
-    <!-- Warehouse Management Systems -->
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+    <div class="bg-teal-900 p-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300 animate-fade-in-up"> {# Changed from bg-blue-900 to bg-teal-900 #}
       <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Warehouse Management" class="w-full h-40 object-cover rounded-t-lg mb-4">
       <h2 class="text-2xl font-orbitron text-white mb-4">Warehouse Management Systems</h2>
-      <p class="text-gray-400 font-poppins mb-4">Streamline your warehouse operations with our WMS solutions, featuring real-time inventory tracking, order fulfillment, and supply chain optimization for efficiency and scalability.</p>
-      <h3 class="text-xl font-orbitron text-green-400 mb-2">AI Integrations</h3>
-      <ul class="text-gray-400 font-poppins list-disc list-inside mb-4">
+      <p class="text-teal-100 font-poppins mb-4">Streamline your warehouse operations with our WMS solutions, featuring real-time inventory tracking, order fulfillment, and supply chain optimization for efficiency and scalability.</p> {# Changed from text-blue-100 to text-teal-100 #}
+      <h3 class="text-xl font-orbitron text-teal-300 mb-2">AI Integrations</h3> {# Adjusted highlight color slightly #}
+      <ul class="text-teal-100 font-poppins list-disc list-inside mb-4"> {# Changed from text-blue-100 to text-teal-100 #}
         <li>AI-optimized inventory forecasting to reduce overstock</li>
         <li>Automated picking and packing routes for faster fulfillment</li>
         <li>Predictive maintenance for warehouse equipment</li>
@@ -57,10 +81,9 @@
     </div>
   </div>
 
-  <!-- Call to Action -->
-  <div class="text-center mt-12">
-    <a href="{{ url_for('custom_project') }}" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-orbitron transition-colors duration-300">Start Building Your Solution</a>
-    <a href="{{ url_for('contact') }}" class="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-orbitron transition-colors duration-300">Contact Us for Details</a>
+  {# Removed the call to action buttons as requested #}
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
   </div>
 </div>
 {% endblock %}

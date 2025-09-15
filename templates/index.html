@@ -1,218 +1,310 @@
 {% extends "base.html" %}
 {% block title %}Home - Task-Code{% endblock %}
 {% block content %}
-  <!-- Hero Section with Banner -->
-  <section id="vision" class="min-h-screen flex items-center justify-center relative overflow-hidden mt-0 pt-0" style="margin-top: -64px; padding-top: 64px;">
-    <div class="banner-container absolute inset-0 z-0 top-0">
-      <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+<section id="vision" class="min-h-screen flex items-center relative overflow-hidden bg-white" style="padding-top: 64px;">
+  <div class="absolute left-0 w-1/4 h-full flex items-center justify-start z-0">
+    <div class="hexagon-wrapper large-hexagon-wrapper hero-top-left">
+      <div class="hexagon-shape">
+        <img class="hexagon-image hero-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Business solution 1">
+      </div>
     </div>
-    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
-    <div class="relative z-20 container mx-auto px-4 text-center">
-      <h1 class="text-5xl md:text-7xl font-orbitron font-bold mb-6 animate-slide-in">
+    <div class="hexagon-wrapper medium-hexagon-wrapper hero-bottom-left">
+      <div class="hexagon-shape">
+        <img class="hexagon-image hero-img" src="https://images.unsplash.com/photo-1520607162513-7707595b1980?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Business solution 3">
+      </div>
+    </div>
+  </div>
+  <div class="absolute right-0 w-1/4 h-full flex items-center justify-end z-0">
+    <div class="hexagon-wrapper medium-hexagon-wrapper hero-top-mid">
+      <div class="hexagon-shape">
+        <img class="hexagon-image hero-img" src="https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Business solution 4">
+      </div>
+    </div>
+    <div class="hexagon-wrapper large-hexagon-wrapper hero-mid-right">
+      <div class="hexagon-shape">
+        <img class="hexagon-image hero-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Business solution 5">
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-24 xl:px-32 2xl:px-48 flex flex-col md:flex-row items-center justify-center relative z-20">
+    <div class="text-content w-full md:w-1/2 text-center">
+      <h1 class="text-3xl md:text-5xl font-orbitron font-bold mb-6 text-gray-900 animate-slide-in">
         {{ translations.tagline }}
       </h1>
-      <p class="text-lg md:text-xl mb-8 animate-slide-in-delayed font-poppins">
-        {{ translations.tagline }}  <!-- Reuse tagline for now; consider a separate key if needed -->
+      <p class="text-lg md:text-xl mb-8 text-gray-700 font-poppins animate-slide-in-delayed">
+        {{ translations.tagline_description }}
       </p>
-      <a href="#inquire" class="bg-gray-700 hover:bg-gray-900 text-white px-8 py-3 rounded-full font-orbitron animate-pulse-btn">
-        Start Your Journey
+      <h2 class="text-3xl md:text-4xl font-orbitron font-bold text-gray-900 mb-6">
+        We build <span id="changing-word" class="text-teal-600 animate-word-change"></span>
+      </h2>
+      <a href="#solutions" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-2xl font-orbitron animate-pulse-btn">
+        Explore Solutions
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Services Section -->
-  <section id="services" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">
-        {{ translations.services_title }}
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Create Sites/E-shop/WMS</h3>
-          <p class="text-gray-400 font-poppins">Custom-built websites, e-commerce platforms, and warehouse management systems tailored to your needs.</p>
-          <ul class="text-gray-400 font-poppins text-left mt-2">
+<section id="services" class="py-16 bg-gray-100 animate-slide-in">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">
+      {{ translations.services_title }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {# Left Column #}
+      <div class="grid grid-cols-1 gap-8">
+        {# First Service: Sites/E-shop/WMS #}
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Sites/E-shop/WMS" class="w-full h-auto rounded-md mb-4">
+          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Create Sites/E-shop/WMS</h3>
+          <p class="text-gray-700 font-poppins">Custom-built websites, e-commerce platforms, and warehouse management systems tailored to your needs.</p>
+          <ul class="text-gray-700 font-poppins text-center mt-2">
             <li>Responsive designs for all devices</li>
             <li>Integrated e-commerce with payment gateways</li>
             <li>Real-time inventory tracking for WMS</li>
             <li>SEO optimization for better visibility</li>
           </ul>
-          <a href="{{ url_for('sites_eshops_wms') }}" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          <a href="{{ url_for('sites_eshops_wms') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">Learn More</a>
         </div>
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Create Logos</h3>
-          <p class="text-gray-400 font-poppins">Unique and professional logo designs to establish your brand identity with creativity and precision.</p>
-          <ul class="text-gray-400 font-poppins text-left mt-2">
+        {# Second Service: Logos #}
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Logos" class="w-full h-auto rounded-md mb-4">
+          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Create Logos</h3>
+          <p class="text-gray-700 font-poppins">Unique and professional logo designs to establish your brand identity with creativity and precision.</p>
+          <ul class="text-gray-700 font-poppins text-center mt-2">
             <li>Custom designs tailored to your brand</li>
             <li>Multiple revision rounds included</li>
             <li>High-resolution vector files</li>
             <li>Brand guideline development</li>
           </ul>
-          <a href="{{ url_for('logos') }}" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          <a href="{{ url_for('logos') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">Learn More</a>
         </div>
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Create Software for Task Automation with AI</h3>
-          <p class="text-gray-400 font-poppins">AI-powered solutions including chatbots integration, price forecasting, and automated customer support workflows.</p>
-          <ul class="text-gray-400 font-poppins text-left mt-2">
+      </div>
+      
+      {# Right Column #}
+      <div class="grid grid-cols-1 gap-8">
+        {# Third Service: AI Software #}
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="AI Software" class="w-full h-auto rounded-md mb-4">
+          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Create Software for Task Automation with AI</h3>
+          <p class="text-gray-700 font-poppins">AI-powered solutions including chatbots integration, price forecasting, and automated customer support workflows.</p>
+          <ul class="text-gray-700 font-poppins text-center mt-2">
             <li>Custom AI chatbot development</li>
             <li>Advanced price prediction algorithms</li>
             <li>Automated workflow optimization</li>
             <li>24/7 customer support integration</li>
           </ul>
-          <a href="{{ url_for('AI') }}" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">Learn More</a>
+          <a href="{{ url_for('AI') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">Learn More</a>
+        </div>
+        {# New Service: Custom Software (API Integration) #}
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="API Integration" class="w-full h-auto rounded-md mb-4">
+          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Custom Software (API Integration)</h3>
+          <p class="text-gray-700 font-poppins">Seamlessly connect your systems and services with powerful custom API integrations to streamline your business operations.</p>
+          <ul class="text-gray-700 font-poppins text-center mt-2">
+            <li>Connect CRM, ERP, and databases</li>
+            <li>Automate data flow between platforms</li>
+            <li>Custom payment gateway integrations</li>
+            <li>Real-time data synchronization</li>
+          </ul>
+          <a href="{{ url_for('custom_software') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">Learn More</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Our Development Process -->
-  <section id="process" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">{{ translations.process_title }}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">⚙️</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 1: Consultation</h3>
-          <p class="text-gray-300 font-poppins">Discuss your goals for e-shops, sites, or AI solutions.</p>
-        </div>
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">📊</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 2: Research</h3>
-          <p class="text-gray-300 font-poppins">Analyze market trends and technical needs.</p>
-        </div>
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">🎨</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 3: Design</h3>
-          <p class="text-gray-300 font-poppins">Create prototypes for your review.</p>
-        </div>
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">💻</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 4: Development</h3>
-          <p class="text-gray-300 font-poppins">Build and integrate your solution.</p>
-        </div>
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">✅</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 5: Testing</h3>
-          <p class="text-gray-300 font-poppins">Ensure quality across all platforms.</p>
-        </div>
-        <div class="bg-gray-700 rounded-full p-6 text-center shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300">
-          <div class="text-4xl mb-2">🚀</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Step 6: Launch</h3>
-          <p class="text-gray-300 font-poppins">Deploy with ongoing support.</p>
-        </div>
-      </div>
+<section id="solutions" class="py-16 bg-white flex flex-col lg:flex-row items-center justify-between relative overflow-hidden">
+  <div class="container mx-auto px-4 w-full lg:w-1/2 relative z-20 text-center lg:text-center lg:order-2">
+    <h2 class="text-4xl font-orbitron font-bold text-teal-600 mb-12 animate-slide-in">
+      Our Solutions
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <a href="{{ url_for('eCommerce_solution') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">E-commerce Automation</h3>
+        <p class="text-gray-700 font-poppins">Automate order processing, inventory management, and customer support with AI to boost your online store's efficiency.</p>
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="E-commerce Automation" class="w-full h-auto rounded-md mt-4">
+      </a>
+      <a href="{{ url_for('Smart_Inventory_Management') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Smart Inventory Management</h3>
+        <p class="text-gray-700 font-poppins">Utilize WMS and API integration for real-time tracking, forecasting, and seamless supply chain management.</p>
+        <img src="https://images.unsplash.com/photo-1583842187042-8356f91f13b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Smart Inventory Management" class="w-full h-auto rounded-md mt-4">
+      </a>
+      <a href="{{ url_for('Dynamic_Web_Portals') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Dynamic Web Portals</h3>
+        <p class="text-gray-700 font-poppins">Create engaging, data-driven websites and web portals for seamless user experiences and powerful lead generation.</p>
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Dynamic Web Portals" class="w-full h-auto rounded-md mt-4">
+      </a>
+      <a href="{{ url_for('Brand_Identity_Digital_Assets') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Brand Identity & Digital Assets</h3>
+        <p class="text-gray-700 font-poppins">From custom logos to social media templates, we craft a cohesive visual identity that resonates with your audience.</p>
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=fit&w=1350&q=80" alt="Brand Identity & Digital Assets" class="w-full h-auto rounded-md mt-4">
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Why Choose Us -->
-  <section id="choose-us" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">{{ translations.choose_us_title }}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">✓</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Expertise</h3>
-          <p class="text-gray-300 font-poppins">Proven skills in AI and web development.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">⭐</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Customization</h3>
-          <p class="text-gray-300 font-poppins">Solutions tailored to your brand.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">⏰</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Support</h3>
-          <p class="text-gray-300 font-poppins">24/7 assistance included.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">🏆</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Success</h3>
-          <p class="text-gray-300 font-poppins">Track record of delivered projects.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">💰</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Affordability</h3>
-          <p class="text-gray-300 font-poppins">Flexible, budget-friendly plans.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-green-600 transition-all duration-300 text-center">
-          <div class="text-4xl mb-2">🤝</div>
-          <h3 class="text-xl font-orbitron text-white mb-2">Client Focus</h3>
-          <p class="text-gray-300 font-poppins">Collaborative project management.</p>
-        </div>
+<section id="process" class="py-16 bg-gray-100 flex flex-col lg:flex-row items-center justify-between relative animate-slide-in">
+  <div class="container mx-auto px-4 w-full lg:w-1/2 relative z-20 text-center lg:text-left lg:order-2">
+    <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">{{ translations.process_title }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 1: Consultation</h3>
+        <p class="text-gray-700 font-poppins">Discuss your goals for e-shops, sites, or AI solutions.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 2: Research</h3>
+        <p class="text-gray-700 font-poppins">Analyze market trends and technical needs.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 3: Design</h3>
+        <p class="text-gray-700 font-poppins">Create prototypes for your review.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 4: Development</h3>
+        <p class="text-700 font-poppins">Build and integrate your solution.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 5: Testing</h3>
+        <p class="text-gray-700 font-poppins">Ensure quality across all platforms.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Step 6: Launch</h3>
+        <p class="text-gray-700 font-poppins">Deploy with ongoing support.</p>
       </div>
     </div>
-  </section>
-  <!-- Template Showcase -->
-  <section id="showcase" class="py-16 bg-gradient-to-b from-gray-700 to-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">{{ translations.showcase_title }}</h2>
-      {% if featured_templates %}
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {% for template in featured_templates %}
-        <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
-          <iframe 
-            src="{{ url_for('template', template_path=template.path) }}" 
-            title="{{ template.name }}" 
-            class="w-full h-48 border rounded mb-4 template-preview"
-          ></iframe>
-          <h3 class="text-xl font-orbitron text-white mb-2">{{ template.name }}</h3>
-          <p class="text-gray-400 font-poppins mb-4">{{ template.description }}</p>
-          <a href="{{ url_for('template', template_path=template.path) }}" target="_blank" class="mt-4 inline-block bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-md font-orbitron">View Template</a>
-        </div>
-        {% endfor %}
-      </div>
-      {% else %}
-      <p class="text-gray-400 font-poppins text-center">No templates available yet. Check back soon!</p>
-      {% endif %}
-      <div class="text-center mt-12">
-        <a href="{{ url_for('templates') }}" class="bg-gray-700 text-white px-8 py-3 rounded-full font-orbitron hover:bg-gray-900 z-10 relative">
-          Explore All Templates
-        </a>
-      </div>
-    </div>
-  </section>
+  </div>
+  
+</section>
 
-  <!-- Pricing Section -->
-  <section id="pricing" class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in">{{ translations.pricing_title }}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Fixed Value Plan -->
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Fixed Value Plan</h3>
-          <p class="text-gray-400 font-poppins">A one-time payment option offering a tailored solution with essential features and dedicated support.</p>
-        </div>
-        <!-- Subscription Plans -->
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Subscription Plans</h3>
-          <p class="text-gray-400 font-poppins">Flexible monthly plans with options for websites, hosting, AI features, and support tailored to your business needs.</p>
-        </div>
-        <!-- Hybrid Model -->
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          <h3 class="text-2xl font-orbitron text-white mb-4">Hybrid Model</h3>
-          <p class="text-gray-400 font-poppins">Combine an initial setup fee with a monthly subscription for hosting, support, and AI features.</p>
-        </div>
+<section id="choose-us" class="py-16 bg-white animate-slide-in">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">{{ translations.choose_us_title }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">✓</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Expertise</h3>
+        <p class="text-gray-700 font-poppins">Proven skills in AI and web development.</p>
       </div>
-      <div class="text-center mt-8">
-        <a href="{{ url_for('prices') }}" class="bg-gray-700 hover:bg-gray-900 text-white px-8 py-3 rounded-full font-orbitron">
-          Explore Pricing Plans
-        </a>
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">⭐</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Customization</h3>
+        <p class="text-gray-700 font-poppins">Solutions tailored to your brand.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">⏰</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Support</h3>
+        <p class="text-gray-700 font-poppins">24/7 assistance included.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">🏆</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Success</h3>
+        <p class="text-gray-700 font-poppins">Track record of delivered projects.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">💰</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Affordability</h3>
+        <p class="text-gray-700 font-poppins">Flexible, budget-friendly plans.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300 text-center">
+        <div class="text-4xl mb-2 text-teal-600">🤝</div>
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">Client Focus</h3>
+        <p class="text-gray-700 font-poppins">Collaborative project management.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Ignite Your Dream Project -->
-  <section id="inquire" class="py-20 bg-gradient-to-r from-green-900 to-gray-900">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-white mb-6 animate-slide-in" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ translations.ignite_title }}</h2>
-      <p class="text-xl md:text-2xl text-gray-200 font-poppins mb-8 max-w-2xl mx-auto">{{ translations.ignite_description }}</p>
-      <ol class="text-gray-300 font-poppins text-left mb-8 max-w-md mx-auto space-y-4 text-lg">
-        <li class="flex items-center"><span class="text-green-400 mr-2">🔥</span>{{ translations.ignite_step1 }}</li>
-        <li class="flex items-center"><span class="text-green-400 mr-2">🎨</span>{{ translations.ignite_step2 }}</li>
-        <li class="flex items-center"><span class="text-green-400 mr-2">🚀</span>{{ translations.ignite_step3 }}</li>
-      </ol>
-      <a href="{{ url_for('custom_project') }}" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-orbitron text-xl shadow-lg pulse-btn transition-all duration-300">Ignite Now!</a>
+<section id="pricing" class="py-16 bg-gray-100 animate-slide-in">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">{{ translations.pricing_title }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Fixed Value Plan</h3>
+        <p class="text-gray-700 font-poppins">A one-time payment option offering a tailored solution with essential features and dedicated support.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Subscription Plans</h3>
+        <p class="text-gray-700 font-poppins">Flexible monthly plans with options for websites, hosting, AI features, and support tailored to your business needs.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Hybrid Model</h3>
+        <p class="text-gray-700 font-poppins">Combine an initial setup fee with a monthly subscription for hosting, support, and AI features.</p>
+      </div>
     </div>
-  </section>
+    <div class="text-center mt-8">
+      <a href="{{ url_for('prices') }}" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-2xl font-orbitron">
+        Explore Pricing Plans
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic word changing
+    const words = ["software", "logos", "AI features", "sites"];
+    const changingWordElement = document.getElementById('changing-word');
+    let wordIndex = 0;
+
+    function changeWord() {
+      changingWordElement.textContent = words[wordIndex];
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+    changeWord();
+    setInterval(changeWord, 2000);
+
+    // Hexagon image cycling
+    const imageSources = [
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1520607162513-7707595b1980?ixlib=rb-4.0.3&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
+    ];
+
+    function setupImageCycler(imageClass, imageSources) {
+      const images = document.querySelectorAll(`.${imageClass}`);
+      let currentIndex = 0;
+
+      function updateImages() {
+        images.forEach(img => img.classList.remove('active'));
+
+        setTimeout(() => {
+          images.forEach((img, index) => {
+            img.src = imageSources[(currentIndex + index) % imageSources.length];
+            img.classList.add('active');
+          });
+          currentIndex = (currentIndex + images.length) % imageSources.length;
+        }, 1000);
+      }
+
+      images.forEach((img, index) => {
+        img.src = imageSources[index % imageSources.length];
+        img.classList.add('active');
+      });
+
+      setInterval(updateImages, 4000);
+    }
+
+    setupImageCycler('hero-img', imageSources);
+    setupImageCycler('solutions-img', [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1582213782179-e0d00f73f288?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1520607162513-7707595b1980?ixlib=rb-4.0.3&auto=format&fit=crop&q=80"
+    ]);
+    setupImageCycler('process-img', [
+      "https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
+    ]);
+    setupImageCycler('footer-img', [
+      "https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1520607162513-7707595b1980?ixlib=rb-4.0.3&auto=format&fit=crop&q=80"
+    ]);
+  });
+</script>
 {% endblock %}
