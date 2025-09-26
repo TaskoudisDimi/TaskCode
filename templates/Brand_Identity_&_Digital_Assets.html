@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Brand Identity & Digital Assets - Task-Code{% endblock %}
+{% block title %}{{ translations.brand_page_title | default('Brand Identity & Digital Assets - Task-Code') }}{% endblock %}
 
 {% block content %}
 <style>
@@ -32,48 +32,66 @@
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
-      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Brand Identity & Digital Assets</h1>
-      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">From custom logos to social media templates, we craft a cohesive visual identity that resonates with your audience.</p>
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">
+        {{ translations.brand_hero_title | default('Brand Identity & Digital Assets') }}
+      </h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">
+        {{ translations.brand_hero_description | default('From custom logos to social media templates, we craft a cohesive visual identity that resonates with your audience.') }}
+      </p>
     </div>
   </section>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Visual Identity" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Cohesive Visual Identity</h2>
-      <p class="text-teal-200 font-poppins mb-4">We create a unified visual language for your brand, including a custom color palette, typography, and a brand guideline document to ensure consistency across all platforms.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.brand_cohesive_title | default('Cohesive Visual Identity') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.brand_cohesive_description | default('We create a unified visual language for your brand, including a custom color palette, typography, and a brand guideline document to ensure consistency across all platforms.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>Brand style guide creation</li>
-        <li>Color theory and typography selection</li>
-        <li>Brand voice and messaging strategy</li>
+        <li>{{ translations.brand_cohesive_feature1 | default('Brand style guide creation') }}</li>
+        <li>{{ translations.brand_cohesive_feature2 | default('Color theory and typography selection') }}</li>
+        <li>{{ translations.brand_cohesive_feature3 | default('Brand voice and messaging strategy') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=fit&w=1350&q=80" alt="Digital Assets" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Custom Digital Assets</h2>
-      <p class="text-teal-200 font-poppins mb-4">Get a full suite of digital assets for your marketing needs, including social media templates, website graphics, and professional icon sets.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.brand_digital_assets_title | default('Custom Digital Assets') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.brand_digital_assets_description | default('Get a full suite of digital assets for your marketing needs, including social media templates, website graphics, and professional icon sets.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>Social media kit (posts, covers, stories)</li>
-        <li>Email newsletter templates</li>
-        <li>Infographics and presentation slides</li>
+        <li>{{ translations.brand_digital_assets_feature1 | default('Social media kit (posts, covers, stories)') }}</li>
+        <li>{{ translations.brand_digital_assets_feature2 | default('Email newsletter templates') }}</li>
+        <li>{{ translations.brand_digital_assets_feature3 | default('Infographics and presentation slides') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo and Iconography" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Logo Design & Iconography</h2>
-      <p class="text-teal-200 font-poppins mb-4">A strong brand starts with a memorable logo. We design unique logos and complementary icons that are scalable and effective across all mediums, from print to digital.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.brand_logo_title | default('Logo Design & Iconography') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.brand_logo_description | default('A strong brand starts with a memorable logo. We design unique logos and complementary icons that are scalable and effective across all mediums, from print to digital.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>High-resolution vector logo files</li>
-        <li>Logo variations (monogram, wordmark, symbol)</li>
-        <li>Custom icon sets for website or app UI</li>
+        <li>{{ translations.brand_logo_feature1 | default('High-resolution vector logo files') }}</li>
+        <li>{{ translations.brand_logo_feature2 | default('Logo variations (monogram, wordmark, symbol)') }}</li>
+        <li>{{ translations.brand_logo_feature3 | default('Custom icon sets for website or app UI') }}</li>
       </ul>
     </div>
   </div>
 
   <div class="text-center mt-12 mb-12">
-    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+    <p class="text-teal-600 text-lg font-poppins">
+      {{ translations.brand_cta_text | default('Ready to transform your business? Get in touch with us below!') }}
+    </p>
   </div>
 </div>
 {% endblock %}

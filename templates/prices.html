@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Task-Code Pricing Details{% endblock %}
+{% block title %}{{ translations.pricing_page_title | default('Task-Code Pricing Details') }}{% endblock %}
 
 {% block content %}
 <style>
@@ -29,67 +29,93 @@
 </style>
 
 <div class="container mx-auto px-4 py-16">
-  <h1 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in text-teal-800">Pricing Details</h1> {# Adjusted text color #}
+  <h1 class="text-4xl font-orbitron font-bold text-center mb-12 animate-slide-in text-teal-800">
+    {{ translations.pricing_hero_title | default('Pricing Details') }}
+  </h1>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up"> {# Color changes and animation #}
-      <div class="p-6 bg-teal-950 rounded-t-lg"> {# Darker teal for contrast #}
-        <h2 class="text-2xl font-orbitron text-white mb-4">Fixed Value Plan</h2>
-        <p class="text-teal-100 font-poppins mb-4">A one-time payment option designed for clients seeking a tailored solution.</p> {# Text color #}
+    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up">
+      <div class="p-6 bg-teal-950 rounded-t-lg">
+        <h2 class="text-2xl font-orbitron text-white mb-4">
+          {{ translations.pricing_fixed_title | default('Fixed Value Plan') }}
+        </h2>
+        <p class="text-teal-100 font-poppins mb-4">
+          {{ translations.pricing_fixed_description | default('A one-time payment option designed for clients seeking a tailored solution.') }}
+        </p>
       </div>
       <div class="p-6">
-        <ul class="text-teal-200 font-poppins text-left mx-auto max-w-md space-y-3"> {# Text color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Custom-built website or e-shop with essential features</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Basic Hosting (10GB) for the first year</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Dedicated support for setup and initial launch</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Price: €800–€30,000+ (varies by project complexity)</li> {# Checkmark color #}
+        <ul class="text-teal-200 font-poppins text-left mx-auto max-w-md space-y-3">
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_fixed_feature1 | default('Custom-built website or e-shop with essential features') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_fixed_feature2 | default('Basic Hosting (10GB) for the first year') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_fixed_feature3 | default('Dedicated support for setup and initial launch') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_fixed_feature4 | default('Price: €800–€30,000+ (varies by project complexity)') }}</li>
         </ul>
-        <p class="text-teal-200 font-poppins mt-6">Ideal for small businesses or individuals starting a single project. No recurring fees after the initial payment.</p> {# Text color #}
+        <p class="text-teal-200 font-poppins mt-6">
+          {{ translations.pricing_fixed_cta | default('Ideal for small businesses or individuals starting a single project. No recurring fees after the initial payment.') }}
+        </p>
       </div>
     </div>
 
-    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up"> {# Color changes and animation #}
-      <div class="p-6 bg-teal-950 rounded-t-lg"> {# Darker teal for contrast #}
-        <h2 class="text-2xl font-orbitron text-white mb-4">Subscription Plans</h2>
-        <p class="text-teal-100 font-poppins mb-4">Flexible monthly plans tailored to your business needs with ongoing support.</p> {# Text color #}
+    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up">
+      <div class="p-6 bg-teal-950 rounded-t-lg">
+        <h2 class="text-2xl font-orbitron text-white mb-4">
+          {{ translations.pricing_subscription_title | default('Subscription Plans') }}
+        </h2>
+        <p class="text-teal-100 font-poppins mb-4">
+          {{ translations.pricing_subscription_description | default('Flexible monthly plans tailored to your business needs with ongoing support.') }}
+        </p>
       </div>
       <div class="p-6">
         <div class="grid grid-cols-1 gap-6">
-          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors"> {# Color changes #}
-            <h3 class="text-xl font-orbitron text-white mb-2">Basic</h3>
-            <p class="text-teal-200 font-poppins">1 Website, Basic Hosting (5GB), Standard Features (SEO, Analytics), Email Support.</p> {# Text color #}
-            <p class="text-teal-100 font-poppins mt-2">€49–€99/month</p> {# Text color #}
+          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors">
+            <h3 class="text-xl font-orbitron text-white mb-2">{{ translations.pricing_subscription_basic_title | default('Basic') }}</h3>
+            <p class="text-teal-200 font-poppins">{{ translations.pricing_subscription_basic_desc | default('1 Website, Basic Hosting (5GB), Standard Features (SEO, Analytics), Email Support.') }}</p>
+            <p class="text-teal-100 font-poppins mt-2">{{ translations.pricing_subscription_basic_price | default('€49–€99/month') }}</p>
           </div>
-          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors"> {# Color changes #}
-            <h3 class="text-xl font-orbitron text-white mb-2">Pro</h3>
-            <p class="text-teal-200 font-poppins">Up to 3 Websites, Enhanced Hosting (20GB), AI Features (Chatbot, Personalization), E-Commerce Tools, Priority Support.</p> {# Text color #}
-            <p class="text-teal-100 font-poppins mt-2">€149–€249/month</p> {# Text color #}
+          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors">
+            <h3 class="text-xl font-orbitron text-white mb-2">{{ translations.pricing_subscription_pro_title | default('Pro') }}</h3>
+            <p class="text-teal-200 font-poppins">{{ translations.pricing_subscription_pro_desc | default('Up to 3 Websites, Enhanced Hosting (20GB), AI Features (Chatbot, Personalization), E-Commerce Tools, Priority Support.') }}</p>
+            <p class="text-teal-100 font-poppins mt-2">{{ translations.pricing_subscription_pro_price | default('€149–€249/month') }}</p>
           </div>
-          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors"> {# Color changes #}
-            <h3 class="text-xl font-orbitron text-white mb-2">Enterprise</h3>
-            <p class="text-teal-200 font-poppins">Unlimited Websites, Premium Hosting (50GB+), Full AI Suite (Automation, Analytics), Advanced E-Commerce, Dedicated Support.</p> {# Text color #}
-            <p class="text-teal-100 font-poppins mt-2">€400–€1000/month</p> {# Text color #}
+          <div class="bg-teal-800 p-4 rounded-lg hover:bg-teal-700 transition-colors">
+            <h3 class="text-xl font-orbitron text-white mb-2">{{ translations.pricing_subscription_enterprise_title | default('Enterprise') }}</h3>
+            <p class="text-teal-200 font-poppins">{{ translations.pricing_subscription_enterprise_desc | default('Unlimited Websites, Premium Hosting (50GB+), Full AI Suite (Automation, Analytics), Advanced E-Commerce, Dedicated Support.') }}</p>
+            <p class="text-teal-100 font-poppins mt-2">{{ translations.pricing_subscription_enterprise_price | default('€400–€1000/month') }}</p>
           </div>
         </div>
-        <p class="text-teal-200 font-poppins mt-6">Subscription plans offer flexibility with monthly updates, scaling options, and ongoing support. Cancel anytime with 30 days notice.</p> {# Text color #}
+        <p class="text-teal-200 font-poppins mt-6">
+          {{ translations.pricing_subscription_cta | default('Subscription plans offer flexibility with monthly updates, scaling options, and ongoing support. Cancel anytime with 30 days notice.') }}
+        </p>
       </div>
     </div>
 
-    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up"> {# Color changes and animation #}
-      <div class="p-6 bg-teal-950 rounded-t-lg"> {# Darker teal for contrast #}
-        <h2 class="text-2xl font-orbitron text-white mb-4">Hybrid Model</h2>
-        <p class="text-teal-100 font-poppins mb-4">Combine an initial setup fee with a monthly subscription for hosting, support, and AI features.</p> {# Text color #}
+    <div class="bg-gradient-to-br from-teal-900 to-teal-800 p-8 rounded-lg shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center border border-teal-700 animate-fade-in-up">
+      <div class="p-6 bg-teal-950 rounded-t-lg">
+        <h2 class="text-2xl font-orbitron text-white mb-4">
+          {{ translations.pricing_hybrid_title | default('Hybrid Model') }}
+        </h2>
+        <p class="text-teal-100 font-poppins mb-4">
+          {{ translations.pricing_hybrid_description | default('Combine an initial setup fee with a monthly subscription for hosting, support, and AI features.') }}
+        </p>
       </div>
       <div class="p-6">
-        <ul class="text-teal-200 font-poppins text-left mx-auto max-w-md space-y-3"> {# Text color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Initial setup fee: €1,000–€3,000 (based on project scope)</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Monthly subscription: €100–€300 (hosting, support, AI updates)</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> Custom website, e-shop, or WMS with ongoing enhancements</li> {# Checkmark color #}
-          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> 24/7 support and scalability options</li> {# Checkmark color #}
+        <ul class="text-teal-200 font-poppins text-left mx-auto max-w-md space-y-3">
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_hybrid_feature1 | default('Initial setup fee: €1,000–€3,000 (based on project scope)') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_hybrid_feature2 | default('Monthly subscription: €100–€300 (hosting, support, AI updates)') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_hybrid_feature3 | default('Custom website, e-shop, or WMS with ongoing enhancements') }}</li>
+          <li class="flex items-center"><span class="text-teal-400 mr-2">✔</span> {{ translations.pricing_hybrid_feature4 | default('24/7 support and scalability options') }}</li>
         </ul>
-        <p class="text-teal-200 font-poppins mt-6">Perfect for clients seeking upfront development with stable cash flow through recurring support. Ideal for growing businesses.</p> {# Text color #}
+        <p class="text-teal-200 font-poppins mt-6">
+          {{ translations.pricing_hybrid_cta | default('Perfect for clients seeking upfront development with stable cash flow through recurring support. Ideal for growing businesses.') }}
+        </p>
       </div>
     </div>
+  </div>
+
+  <div class="text-center mt-12 mb-12">
+    <p class="text-teal-600 text-lg font-poppins">
+      {{ translations.pricing_cta_text | default('Ready to transform your business? Get in touch with us below!') }}
+    </p>
   </div>
 </div>
 {% endblock %}

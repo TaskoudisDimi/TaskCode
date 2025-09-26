@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Logo Creation - Task-Code{% endblock %}
+{% block title %}{{ translations.logos_page_title | default('Logo Creation - Task-Code') }}{% endblock %}
 
 {% block content %}
 <style>
@@ -35,50 +35,74 @@
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
-      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">Logo Creation</h1>
-      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Elevate your brand with custom-designed logos crafted to reflect your identity. Task-Code offers unique, professional logo solutions enhanced with AI tools for creativity and precision.</p>
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">
+        {{ translations.logos_hero_title | default('Logo Creation') }}
+      </h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">
+        {{ translations.logos_hero_description | default('Elevate your brand with custom-designed logos crafted to reflect your identity. Task-Code offers unique, professional logo solutions enhanced with AI tools for creativity and precision.') }}
+      </p>
     </div>
   </section>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo Design" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Custom Logo Design</h2>
-      <p class="text-teal-200 font-poppins mb-4">We create bespoke logos tailored to your brand’s vision, offering a range of styles from minimalist to bold. Our process includes concept development, revisions, and final delivery in multiple formats.</p>
-      <h3 class="text-xl font-orbitron text-teal-400 mb-2">AI Integrations</h3>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.logos_custom_logo_title | default('Custom Logo Design') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.logos_custom_logo_description | default('We create bespoke logos tailored to your brand’s vision, offering a range of styles from minimalist to bold. Our process includes concept development, revisions, and final delivery in multiple formats.') }}
+      </p>
+      <h3 class="text-xl font-orbitron text-teal-400 mb-2">
+        {{ translations.ai_integrations_title | default('AI Integrations') }}
+      </h3>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>AI-generated design suggestions based on your industry</li>
-        <li>Automated color palette optimization for brand consistency</li>
-        <li>Real-time style adaptation to match trends</li>
+        <li>{{ translations.logos_custom_logo_feature1 | default('AI-generated design suggestions based on your industry') }}</li>
+        <li>{{ translations.logos_custom_logo_feature2 | default('Automated color palette optimization for brand consistency') }}</li>
+        <li>{{ translations.logos_custom_logo_feature3 | default('Real-time style adaptation to match trends') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Brand Identity" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Brand Identity Packages</h2>
-      <p class="text-teal-200 font-poppins mb-4">Go beyond logos with packages that include business cards, letterheads, and social media assets, ensuring a cohesive brand presence across all platforms.</p>
-      <h3 class="text-xl font-orbitron text-teal-400 mb-2">AI Integrations</h3>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.logos_brand_identity_title | default('Brand Identity Packages') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.logos_brand_identity_description | default('Go beyond logos with packages that include business cards, letterheads, and social media assets, ensuring a cohesive brand presence across all platforms.') }}
+      </p>
+      <h3 class="text-xl font-orbitron text-teal-400 mb-2">
+        {{ translations.ai_integrations_title | default('AI Integrations') }}
+      </h3>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>AI-assisted asset generation for uniform branding</li>
-        <li>Automated layout suggestions for marketing materials</li>
-        <li>Trend analysis for brand evolution</li>
+        <li>{{ translations.logos_brand_identity_feature1 | default('AI-assisted asset generation for uniform branding') }}</li>
+        <li>{{ translations.logos_brand_identity_feature2 | default('Automated layout suggestions for marketing materials') }}</li>
+        <li>{{ translations.logos_brand_identity_feature3 | default('Trend analysis for brand evolution') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo Animation" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Animated Logos</h2>
-      <p class="text-teal-200 font-poppins mb-4">Add motion to your brand with animated logos perfect for intros, websites, and digital campaigns, designed to captivate your audience.</p>
-      <h3 class="text-xl font-orbitron text-teal-400 mb-2">AI Integrations</h3>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.logos_animated_title | default('Animated Logos') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.logos_animated_description | default('Add motion to your brand with animated logos perfect for intros, websites, and digital campaigns, designed to captivate your audience.') }}
+      </p>
+      <h3 class="text-xl font-orbitron text-teal-400 mb-2">
+        {{ translations.ai_integrations_title | default('AI Integrations') }}
+      </h3>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>AI-driven animation style recommendations</li>
-        <li>Automated motion sequence optimization</li>
-        <li>Preview generation for client feedback</li>
+        <li>{{ translations.logos_animated_feature1 | default('AI-driven animation style recommendations') }}</li>
+        <li>{{ translations.logos_animated_feature2 | default('Automated motion sequence optimization') }}</li>
+        <li>{{ translations.logos_animated_feature3 | default('Preview generation for client feedback') }}</li>
       </ul>
     </div>
   </div>
   <div class="text-center mt-12 mb-12">
-    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+    <p class="text-teal-600 text-lg font-poppins">
+      {{ translations.logos_cta_text | default('Ready to transform your business? Get in touch with us below!') }}
+    </p>
   </div>
 </div>
 {% endblock %}

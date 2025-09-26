@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}E-commerce Automation - Task-Code{% endblock %}
+{% block title %}{{ translations.ecommerce_page_title | default('E-commerce Automation - Task-Code') }}{% endblock %}
 
 {% block content %}
 <style>
@@ -32,48 +32,66 @@
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
-      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">E-commerce Automation</h1>
-      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">Automate order processing, inventory management, and customer support with AI to boost your online store's efficiency.</p>
+      <h1 class="text-5xl font-orbitron font-bold text-white mb-4">
+        {{ translations.ecommerce_hero_title | default('E-commerce Automation') }}
+      </h1>
+      <p class="text-teal-100 font-poppins max-w-2xl mx-auto">
+        {{ translations.ecommerce_hero_description | default('Automate order processing, inventory management, and customer support with AI to boost your online store\'s efficiency.') }}
+      </p>
     </div>
   </section>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Order Processing" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">Automated Order Processing</h2>
-      <p class="text-teal-200 font-poppins mb-4">Streamline your fulfillment process with automated order routing, shipping label generation, and real-time status updates for customers.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.ecommerce_order_title | default('Automated Order Processing') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.ecommerce_order_description | default('Streamline your fulfillment process with automated order routing, shipping label generation, and real-time status updates for customers.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>Auto-generated shipping documents</li>
-        <li>Integration with carriers (UPS, FedEx, DHL)</li>
-        <li>Automated order confirmation emails</li>
+        <li>{{ translations.ecommerce_order_feature1 | default('Auto-generated shipping documents') }}</li>
+        <li>{{ translations.ecommerce_order_feature2 | default('Integration with carriers (UPS, FedEx, DHL)') }}</li>
+        <li>{{ translations.ecommerce_order_feature3 | default('Automated order confirmation emails') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Inventory Management" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">AI-driven Inventory Management</h2>
-      <p class="text-teal-200 font-poppins mb-4">Keep a perfect count of your stock with automated tracking, low-stock alerts, and predictive ordering to prevent sold-out items.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.ecommerce_inventory_title | default('AI-driven Inventory Management') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.ecommerce_inventory_description | default('Keep a perfect count of your stock with automated tracking, low-stock alerts, and predictive ordering to prevent sold-out items.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>Real-time stock level synchronization</li>
-        <li>Automated reordering based on demand</li>
-        <li>Multi-warehouse inventory tracking</li>
+        <li>{{ translations.ecommerce_inventory_feature1 | default('Real-time stock level synchronization') }}</li>
+        <li>{{ translations.ecommerce_inventory_feature2 | default('Automated reordering based on demand') }}</li>
+        <li>{{ translations.ecommerce_inventory_feature3 | default('Multi-warehouse inventory tracking') }}</li>
       </ul>
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
       <img src="https://images.unsplash.com/photo-1600585152245-16a7a0add7df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Customer Support" class="w-full h-40 object-cover rounded-t-lg mb-4">
-      <h2 class="text-2xl font-orbitron text-white mb-4">AI-Powered Customer Support</h2>
-      <p class="text-teal-200 font-poppins mb-4">Deploy chatbots and intelligent routing to handle customer inquiries, order status checks, and returns, providing 24/7 support.</p>
+      <h2 class="text-2xl font-orbitron text-white mb-4">
+        {{ translations.ecommerce_support_title | default('AI-Powered Customer Support') }}
+      </h2>
+      <p class="text-teal-200 font-poppins mb-4">
+        {{ translations.ecommerce_support_description | default('Deploy chatbots and intelligent routing to handle customer inquiries, order status checks, and returns, providing 24/7 support.') }}
+      </p>
       <ul class="text-teal-200 font-poppins list-disc list-inside mb-4">
-        <li>AI chatbot for instant answers</li>
-        <li>Ticket routing for complex issues</li>
-        <li>Personalized FAQ and knowledge base</li>
+        <li>{{ translations.ecommerce_support_feature1 | default('AI chatbot for instant answers') }}</li>
+        <li>{{ translations.ecommerce_support_feature2 | default('Ticket routing for complex issues') }}</li>
+        <li>{{ translations.ecommerce_support_feature3 | default('Personalized FAQ and knowledge base') }}</li>
       </ul>
     </div>
   </div>
 
   <div class="text-center mt-12 mb-12">
-    <p class="text-teal-600 text-lg font-poppins">Ready to transform your business? Get in touch with us below!</p>
+    <p class="text-teal-600 text-lg font-poppins">
+      {{ translations.ecommerce_cta_text | default('Ready to transform your business? Get in touch with us below!') }}
+    </p>
   </div>
 </div>
 {% endblock %}

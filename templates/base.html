@@ -1,196 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('language', 'en') }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Task-Code{% endblock %}</title>
+  <title>{% block title %}{{ company_details.name | default('Task-Code') }}{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Existing styles */
-    .hexagon { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-    .pulse-btn { animation: pulse 2s infinite; }
-    @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-slide-in { animation: slideIn 1s ease-out; }
-    .map-loading { animation: spin 1s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      background-color: #f3f4f6;
-      padding: 12px 0;
-      border-radius: 4px;
-      z-index: 50;
-      min-width: 400px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .dropdown-menu a {
-      color: #111827;
-      padding: 10px 20px;
-      display: block;
-      font-size: 1.1rem;
-    }
-    .dropdown-menu a:hover { background-color: #e5e7eb; }
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translateY(20px); }
-        10% { opacity: 1; transform: translateY(0); }
-        90% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-20px); }
-    }
-    .animate-word-change {
-        animation: fadeInOut 2s ease-in-out infinite;
-    }
-
-    /* New styles for hexagonal image display */
-    .hexagon-wrapper {
-        position: absolute;
-        z-index: 2;
-    }
-    .small-hexagon-wrapper {
-        width: 150px;
-        height: 150px;
-    }
-    .medium-hexagon-wrapper {
-        width: 200px;
-        height: 200px;
-    }
-    .large-hexagon-wrapper {
-        width: 300px;
-        height: 300px;
-    }
-    
-    .hexagon-group-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .hexagon-shape {
-        position: absolute;
-        width: 150%;
-        height: 150%;
-        background: #f0f0f0;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        overflow: hidden;
-        /* Rotate the shape to have a flat top and bottom */
-        transform: rotate(90deg);
-    }
-    .hexagon-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: opacity 1s ease-in-out;
-        opacity: 0;
-        /* Counter-rotate the image to make it straight inside the shape */
-        transform: rotate(-90deg);
-    }
-    .hexagon-image.active {
-        opacity: 1;
-    }
-    .main-logo-hexagon {
-        position: absolute;
-        width: 250px;
-        height: 250px;
-        z-index: 10;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .main-logo-hexagon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        /* Counter-rotate the logo image to make it appear straight inside a flat-top hexagon shape */
-        transform: rotate(-90deg);
-    }
-
-    /* Positioning for the hexagons */
-    .hero-top-left {
-        top: 10%;
-        left: 45%;
-    }
-    .hero-mid-left {
-        top: 45%;
-        left: 15%;
-    }
-    .hero-bottom-left {
-        bottom: 10%;
-        left: 5%;
-    }
-    .hero-top-mid {
-        top:5%;
-        right: 90%;
-    }
-    .hero-mid-right {
-        top: 40%;
-        right: 35%;
-    }
-    .solutions-top-left {
-        top: 20%;
-        left: 10%;
-    }
-    .solutions-bottom-right {
-        bottom: 20%;
-        right: 10%;
-    }
-    .process-top-right {
-        top: 20%;
-        right: 10%;
-    }
-    .process-bottom-left {
-        bottom: 20%;
-        left: 10%;
-    }
-    .footer-top-left {
-        top: 10%;
-        left: 10%;
-    }
-    .footer-bottom-right {
-        bottom: 10%;
-        right: 10%;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-white text-gray-900">
   <nav class="bg-white shadow sticky top-0 z-50" style="height: 64px;">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="{{ url_for('index') }}" class="text-2xl font-bold font-orbitron text-gray-900">Task-Code</a>
+      <a href="{{ url_for('index') }}" class="text-2xl font-bold font-orbitron">
+        {% if images.logo and images.logo|length > 0 %}
+          <img src="{{ images.logo[0].image_url }}" alt="{{ images.logo[0].alt_text }}" class="h-11">
+        {% else %}
+          <img src="{{ url_for('static', filename='imgs/logos/logo4.png') }}" alt="{{ company_details.name | default('Task-Code') }} Logo" class="h-11">
+        {% endif %}
+      </a>
       <div class="space-x-6 flex items-center">
         <div class="relative dropdown">
-          <a href="#" class="text-gray-900 hover:text-teal-600 font-orbitron">Services</a>
+          <a href="#" class="text-gray-900 hover:text-teal-600 font-orbitron flex items-center">
+            {{ translations.services_title | default('Services') }}
+            <i class="fas fa-chevron-down ml-1 text-sm"></i>
+          </a>
           <div class="dropdown-menu">
-            <a href="{{ url_for('sites_eshops_wms') }}">Create Sites/E-shop/WMS</a>
-            <a href="{{ url_for('logos') }}">Create Logos and Social Media</a>
-            <a href="{{ url_for('AI') }}">Create Software for Task Automation with AI</a>
-            <a href="{{ url_for('custom_software') }}">Custom Software</a>
+            <a href="{{ url_for('sites_eshops_wms') }}">{{ translations.sites_eshop_wms_title | default('Create Sites/E-shop/WMS') }}</a>
+            <a href="{{ url_for('logos') }}">{{ translations.logos_title | default('Create Logos and Social Media') }}</a>
+            <a href="{{ url_for('AI') }}">{{ translations.ai_software_title | default('Create Software for Task Automation with AI') }}</a>
+            <a href="{{ url_for('custom_software') }}">{{ translations.custom_software_title | default('Custom Software') }}</a>
           </div>
         </div>
         <div class="relative dropdown">
-          <a href="#solutions" class="text-gray-900 hover:text-teal-600 font-orbitron">Solutions</a>
+          <a href="#solutions" class="text-gray-900 hover:text-teal-600 font-orbitron flex items-center">
+            {{ translations.solutions_title | default('Solutions') }}
+            <i class="fas fa-chevron-down ml-1 text-sm"></i>
+          </a>
           <div class="dropdown-menu">
-            <a href="{{ url_for('Brand_Identity_Digital_Assets') }}">Brand Identity & DigitalAssets</a>
-            <a href="{{ url_for('Dynamic_Web_Portals') }}">Dynamic Web Portals</a>
-            <a href="{{ url_for('eCommerce_solution') }}">eCommerce solution</a>
-            <a href="{{ url_for('Smart_Inventory_Management') }}">Smart Inventory Management</a>        
+            <a href="{{ url_for('Brand_Identity_Digital_Assets') }}">{{ translations.brand_identity_title | default('Brand Identity & Digital Assets') }}</a>
+            <a href="{{ url_for('Dynamic_Web_Portals') }}">{{ translations.dynamic_web_portals_title | default('Dynamic Web Portals') }}</a>
+            <a href="{{ url_for('eCommerce_solution') }}">{{ translations.ecommerce_automation_title | default('eCommerce Solution') }}</a>
+            <a href="{{ url_for('Smart_Inventory_Management') }}">{{ translations.smart_inventory_title | default('Smart Inventory Management') }}</a>        
           </div>
         </div>
-        <div class="relative dropdown">
-          <a href="{{ url_for('prices') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">Prices</a>
-        </div>
-        <a href="{{ url_for('about') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">About Us</a>
+        <a href="{{ url_for('prices') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.pricing_title | default('Prices') }}</a>
+        <a href="{{ url_for('about') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.about_title | default('About Us') }}</a>
         <select id="language-select" class="bg-gray-200 text-gray-900 p-1 rounded-md" onchange="changeLanguage(this.value)">
           <option value="en" {% if session.get('language') == 'en' %}selected{% endif %}>English</option>
           <option value="el" {% if session.get('language') == 'el' %}selected{% endif %}>Greek</option>
         </select>
       </div>
     </div>
-  </nav>
+</nav>
 
   {% block content %}{% endblock %}
 
@@ -198,38 +60,39 @@
     <section id="contact" class="py-20 bg-gray-100 relative overflow-hidden">
       <div class="container mx-auto px-4 relative z-10">
         <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-gray-900 text-center mb-12 animate-slide-in">
-          {{ translations.contact_title }}
+          {{ translations.contact_title | default('Contact') }}
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300 flex items-center">
             <div class="w-full h-full bg-gray-100 rounded-lg border-2 border-teal-300 overflow-hidden">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.045897671698!2d-122.41941568514767!3d37.77492997975914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f8d3e2f15%3A0x1f7e3e8e8e8e8e8e!2sSan+Francisco!5e0!3m2!1sen!2sus!4v1634567890"
+               src="https://www.google.com/maps/embed/v1/place?key={{ company_details.maps_api_key }}&q={{ (company_details.address + ', ' + company_details.city + ', ' + company_details.country) | urlencode }}"
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
               </iframe>
             </div>
           </div>
           <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
-            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">Company Information</h3>
+            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">{{ translations.company_info_title | default('Company Information') }}</h3>
             <div class="space-y-4">
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📍</span> Address: 123 Innovation Lane, Tech City, TC 45678</p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📞</span> Telephone: +1-234-567-8900</p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">✉️</span> Email: info@task-code.com</p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">⏰</span> Hours: Mon-Fri, 9:00 AM - 6:00 PM (EEST)</p>
-              <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">Follow Us</h4>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📍</span> Address: {{ company_details.address | default('123 Innovation Lane') }}, {{ company_details.city | default('Tech City') }}, {{ company_details.postal_code | default('TC 45678') }}, {{ company_details.country | default('Country') }}</p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📞</span> Telephone: {{ company_details.phone | default('+1-234-567-8900') }}</p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">✉️</span> Email: <a href="mailto:{{ company_details.email | default('info@task-code.com') }}">{{ company_details.email | default('info@task-code.com') }}</a></p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">🌐</span> Website: <a href="{{ company_details.website | default('#') }}" target="_blank">{{ company_details.website | default('https://www.task-code.com') }}</a></p>
+              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">⏰</span> Hours: {{ company_details.hours | default('Mon-Fri, 9:00 AM - 6:00 PM (EEST)') }}</p>
+              <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">{{ translations.follow_us | default('Follow Us') }}</h4>
               <div class="flex justify-center space-x-6">
-                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">🐦</span> Twitter</a>
-                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">💼</span> LinkedIn</a>
-                <a href="#" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><span class="mr-1">👍</span> Facebook</a>
+                <a href="{{ company_details.twitter_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-x-twitter mr-1"></i> Twitter</a>
+                <a href="{{ company_details.linkedin_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-linkedin-in mr-1"></i> LinkedIn</a>
+                <a href="{{ company_details.facebook_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-facebook-f mr-1"></i> Facebook</a>
               </div>
             </div>
-            <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup }}</h3>
+            <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup | default('Newsletter Signup') }}</h3>
             <form action="{{ url_for('newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
               <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">
-                Subscribe
+                {{ translations.form_submit | default('Subscribe') }}
               </button>
-              <p class="text-gray-500 font-poppins text-center mt-2">Keep in touch with our latest news</p>
+              <p class="text-gray-500 font-poppins text-center mt-2">{{ translations.newsletter_description | default('Keep in touch with our latest news') }}</p>
             </form>
           </div>
         </div>
@@ -237,43 +100,42 @@
     </section>
   {% else %}
     <section id="contact" class="py-16 bg-white">
-      
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12">{{ translations.contact_title }}</h2>
+        <h2 class="text-4xl font-bold text-center mb-12">{{ translations.contact_title | default('Contact') }}</h2>
         <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
           <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
-            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">Send Us a Message</h3>
+            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">{{ translations.send_message | default('Send Us a Message') }}</h3>
 
             {% if request.method == 'POST' %}
               <div class="text-center text-teal-600 mb-4 font-poppins">
-                ✅ Message sent successfully! We'll get back to you soon.
+                ✅ {{ translations.message_sent | default('Message sent successfully! We\'ll get back to you soon.') }}
               </div>
             {% endif %}
 
             <form method="POST" action="{{ url_for('contact') }}" class="max-w-lg mx-auto space-y-6">
               <div>
-                <label for="name" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_name }}</label>
+                <label for="name" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_name | default('Name') }}</label>
                 <input type="text" name="name" id="name"
                        class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
                               focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
                        required>
               </div>
               <div>
-                <label for="email" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_email }}</label>
+                <label for="email" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_email | default('Email') }}</label>
                 <input type="email" name="email" id="email"
                        class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
                               focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
                        required>
               </div>
               <div>
-                <label for="subject" class="block text-gray-900 mb-2 font-poppins">Subject</label>
+                <label for="subject" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_subject | default('Subject') }}</label>
                 <input type="text" name="subject" id="subject"
                        class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
                               focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
                        required>
               </div>
               <div>
-                <label for="message" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_message }}</label>
+                <label for="message" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_message | default('Message') }}</label>
                 <textarea name="message" id="message" rows="6"
                           class="w-full p-3 rounded-lg bg-gray-200 text-gray-900 border border-gray-300
                                  focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300"
@@ -281,7 +143,7 @@
               </div>
               <button type="submit"
                       class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-xl font-orbitron pulse-btn transition-all duration-300">
-                {{ translations.form_submit }}
+                {{ translations.form_submit | default('Submit') }}
               </button>
             </form>
           </div>
@@ -297,75 +159,91 @@
   </div>
   <div id="chatbot" class="fixed bottom-4 right-20 w-80 bg-gray-800 text-white rounded-lg shadow-lg p-4 hidden z-40">
     <div class="flex justify-between items-center mb-4">
-      <h3 class="text-lg font-orbitron">Chat with Us</h3>
+      <h3 class="text-lg font-orbitron">{{ translations.chat_title | default('Chat with Us') }}</h3>
       <button id="chatbot-close" class="text-white hover:text-gray-400">×</button>
     </div>
     <div id="chat-messages" class="h-64 overflow-y-auto mb-4">
-      {% for message in chat_messages %}
+      {% for message in session.get('chat_messages', []) %}
         <div class="mb-2 {{ 'text-right' if message.from == 'user' else 'text-left' }}">
           <p class="inline-block p-2 rounded-lg {{ 'bg-gray-700' if message.from == 'user' else 'bg-teal-600' }}">{{ message.text }}</p>
         </div>
       {% endfor %}
     </div>
-    <form id="chat-form" class="flex">
-      <input type="text" id="chat-input" class="w-full px-2 py-1 bg-gray-700 text-white rounded-l-md focus:outline-none" placeholder="Type your message...">
-      <button type="submit" class="bg-teal-600 text-white px-4 py-1 rounded-r-md hover:bg-teal-700">Send</button>
+    <form id="chat-form" action="{{ url_for('submit_chat') }}" method="POST" class="flex">
+      <input type="text" id="chat-input" name="chat_input" class="w-full px-2 py-1 bg-gray-700 text-white rounded-l-md focus:outline-none" placeholder="{{ translations.chat_placeholder | default('Type your message...') }}">
+      <button type="submit" class="bg-teal-600 text-white px-4 py-1 rounded-r-md hover:bg-teal-700">{{ translations.form_submit | default('Send') }}</button>
     </form>
   </div>
 
   <footer class="bg-gray-200 py-12 relative overflow-hidden">
-  
     <div class="container mx-auto px-4 text-center relative z-10">
       <div class="mb-8">
-        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">Task-Code</h3>
-        <p class="text-lg text-teal-600">The Smart Business Enabler</p>
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ company_details.name | default('Task-Code') }}</h3>
+        <p class="text-lg text-teal-600">{{ translations.tagline | default('The Smart Business Enabler') }}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         <div>
-          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Company</h4>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">{{ translations.company_title | default('Company') }}</h4>
           <ul class="space-y-2 text-gray-700 font-poppins">
-            <li><a href="{{ url_for('index') }}" class="hover:text-teal-600">Home</a></li>
-            <li><a href="{{ url_for('prices') }}" class="hover:text-teal-600">Services</a></li>
-            <li><a href="{{ url_for('about') }}" class="hover:text-teal-600">About Us</a></li>
-            <li><a href="#" class="hover:text-teal-600">Clients & Case Studies</a></li>
-            <li><a href="#" class="hover:text-teal-600">Blog & News</a></li>
-            <li><a href="#" class="hover:text-teal-600">Careers</a></li>
+            <li><a href="{{ url_for('index') }}" class="hover:text-teal-600">{{ translations.home_title | default('Home') }}</a></li>
+            <li><a href="{{ url_for('prices') }}" class="hover:text-teal-600">{{ translations.services_title | default('Services') }}</a></li>
+            <li><a href="{{ url_for('about') }}" class="hover:text-teal-600">{{ translations.about_title | default('About Us') }}</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Useful</h4>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">{{ translations.useful_title | default('Useful') }}</h4>
           <ul class="space-y-2 text-gray-700 font-poppins">
-            <li><a href="#" class="hover:text-teal-600">Privacy Policy</a></li>
-            <li><a href="#" class="hover:text-teal-600">Terms of Use</a></li>
-            <li><a href="#" class="hover:text-teal-600">Cookie Declaration</a></li>
-            <li><a href="#" class="hover:text-teal-600">Service Management System Policy</a></li>
-            <li><a href="#" class="hover:text-teal-600">Quality & Environmental Policy</a></li>
+            <li><a href="#" class="hover:text-teal-600">{{ translations.privacy_policy | default('Privacy Policy') }}</a></li>
+            <li><a href="#" class="hover:text-teal-600">{{ translations.terms_of_use | default('Terms of Use') }}</a></li>
+            <li><a href="#" class="hover:text-teal-600">{{ translations.cookie_declaration | default('Cookie Declaration') }}</a></li>
+            <li><a href="#" class="hover:text-teal-600">{{ translations.service_management_policy | default('Service Management System Policy') }}</a></li>            
           </ul>
         </div>
         <div>
-          <h4 class="text-lg font-orbitron text-gray-900 mb-4">Any Questions?</h4>
-          <p class="text-gray-700 font-poppins mb-4">Have a question? Just drop a line.</p>
-          <a href="{{ url_for('contact') }}" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">Contact Us</a>
+          <h4 class="text-lg font-orbitron text-gray-900 mb-4">{{ translations.questions_title | default('Any Questions?') }}</h4>
+          <p class="text-gray-700 font-poppins mb-4">{{ translations.questions_description | default('Have a question? Just drop a line.') }}</p>
+          <a href="{{ url_for('contact') }}" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">{{ translations.contact_us | default('Contact Us') }}</a>
           <div class="flex justify-center space-x-4 mt-4">
-            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="text-teal-600 hover:text-teal-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="{{ company_details.linkedin_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-linkedin-in"></i></a>
+            <a href="{{ company_details.twitter_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-x-twitter"></i></a>
+            <a href="{{ company_details.youtube_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-youtube"></i></a>
+            <a href="{{ company_details.facebook_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-facebook-f"></i></a>
           </div>
         </div>
       </div>
-      <p class="text-gray-500 font-poppins">© 2025 Task-Code. All rights reserved.</p>
+      <p class="text-gray-500 font-poppins">© 2025 {{ company_details.name | default('Task-Code') }}. {{ translations.all_rights_reserved | default('All rights reserved.') }}</p>
     </div>
   </footer>
+
   <script>
     function changeLanguage(lang) {
-      fetch(`/set_language?lang=${lang}`, { method: 'POST' })
+      console.log("Changing language to:", lang);
+      fetch(`/set_language/${lang}`, { method: 'POST' })
         .then(response => {
           if (response.ok) {
             window.location.reload();
+          } else {
+            console.error("Failed to change language:", response.status);
           }
+        })
+        .catch(error => {
+          console.error("Error during language change:", error);
         });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatbotTrigger = document.getElementById('chatbot-trigger');
+      const chatbot = document.getElementById('chatbot');
+      const chatbotClose = document.getElementById('chatbot-close');
+
+      chatbotTrigger.addEventListener('click', () => {
+        chatbot.classList.toggle('hidden');
+      });
+
+      chatbotClose.addEventListener('click', () => {
+        chatbot.classList.add('hidden');
+      });
+    });
   </script>
 </body>
 </html>
