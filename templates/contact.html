@@ -34,7 +34,7 @@
           </div>
         </div>
         <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup | default('Newsletter Signup') }}</h3>
-        <form action="{{ url_for('newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
+        <form action="{{ url_for('main.newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
           <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">
             {{ translations.form_submit | default('Subscribe') }}
           </button>

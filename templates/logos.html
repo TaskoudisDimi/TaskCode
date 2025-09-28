@@ -31,7 +31,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1497366219941-91c920f5d962?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo Design Background" class="w-full h-full object-cover opacity-50">
+      {% if images.services['Logo-Background'] and images.services['Logo-Background']|length > 0 %}
+      <img src="{{ images.services['Logo-Background'][0].image_url }}" alt="{{ images.services['Logo-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -46,7 +48,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo Design" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Custom-Logo'] and images.services['Custom-Logo']|length > 0 %}
+      <img src="{{ images.services['Custom-Logo'][0].image_url }}" alt="{{ images.services['Custom-Logo'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.logos_custom_logo_title | default('Custom Logo Design') }}
       </h2>
@@ -64,9 +68,11 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Brand Identity" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Brand-Identity-Packages'] and images.services['Brand-Identity-Packages']|length > 0 %}
+      <img src="{{ images.services['Brand-Identity-Packages'][0].image_url }}" alt="{{ images.services['Brand-Identity-Packages'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
-        {{ translations.logos_brand_identity_title | default('Brand Identity Packages') }}
+        {{ translations.logos_brand_identity_title | default('Brand-Identity-Packages') }}
       </h2>
       <p class="text-teal-200 font-poppins mb-4">
         {{ translations.logos_brand_identity_description | default('Go beyond logos with packages that include business cards, letterheads, and social media assets, ensuring a cohesive brand presence across all platforms.') }}
@@ -82,7 +88,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo Animation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Animated-Logos'] and images.services['Animated-Logos']|length > 0 %}
+      <img src="{{ images.services['Animated-Logos'][0].image_url }}" alt="{{ images.services['Animated-Logos'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.logos_animated_title | default('Animated Logos') }}
       </h2>

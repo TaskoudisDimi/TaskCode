@@ -28,7 +28,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Brand Identity Background" class="w-full h-full object-cover opacity-50">
+      {% if images.solutions['Brand_Identity_&_Digital_Assets-Background'] and images.solutions['Brand_Identity_&_Digital_Assets-Background']|length > 0 %}
+        <img src="{{ images.solutions['Brand_Identity_&_Digital_Assets-Background'][0].image_url }}" alt="{{ images.solutions['Brand_Identity_&_Digital_Assets-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -43,7 +45,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Visual Identity" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Cohesive Visual Identity'] and images.solutions['Cohesive Visual Identity']|length > 0 %}
+      <img src="{{ images.solutions['Cohesive Visual Identity'][0].image_url }}" alt="{{ images.solutions['Cohesive Visual Identity'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.brand_cohesive_title | default('Cohesive Visual Identity') }}
       </h2>
@@ -58,7 +62,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7e4cad34c4?ixlib=rb-4.0.3&auto=format&fit=fit&w=1350&q=80" alt="Digital Assets" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Custom Digital Assets'] and images.solutions['Custom Digital Assets']|length > 0 %}
+      <img src="{{ images.solutions['Custom Digital Assets'][0].image_url }}" alt="{{ images.solutions['Custom Digital Assets'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.brand_digital_assets_title | default('Custom Digital Assets') }}
       </h2>
@@ -73,7 +79,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Logo and Iconography" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Logo Design & Iconography'] and images.solutions['Logo Design & Iconography']|length > 0 %}
+      <img src="{{ images.solutions['Logo Design & Iconography'][0].image_url }}" alt="{{ images.solutions['Logo Design & Iconography'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.brand_logo_title | default('Logo Design & Iconography') }}
       </h2>

@@ -28,7 +28,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="E-commerce Automation Background" class="w-full h-full object-cover opacity-50">
+      {% if images.solutions['E-commerce Automation-Background'] and images.solutions['E-commerce Automation-Background']|length > 0 %}
+        <img src="{{ images.solutions['E-commerce Automation-Background'][0].image_url }}" alt="{{ images.solutions['E-commerce Automation-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -43,7 +45,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Order Processing" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Automated Order Processing'] and images.solutions['Automated Order Processing']|length > 0 %}
+      <img src="{{ images.solutions['Automated Order Processing'][0].image_url }}" alt="{{ images.solutions['Automated Order Processing'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ecommerce_order_title | default('Automated Order Processing') }}
       </h2>
@@ -58,7 +62,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Inventory Management" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['AI-driven Inventory Management'] and images.solutions['AI-driven Inventory Management']|length > 0 %}
+      <img src="{{ images.solutions['AI-driven Inventory Management'][0].image_url }}" alt="{{ images.solutions['AI-driven Inventory Management'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ecommerce_inventory_title | default('AI-driven Inventory Management') }}
       </h2>
@@ -73,7 +79,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1600585152245-16a7a0add7df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Customer Support" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['AI-Powered Customer Support'] and images.solutions['AI-Powered Customer Support']|length > 0 %}
+      <img src="{{ images.solutions['AI-Powered Customer Support'][0].image_url }}" alt="{{ images.solutions['AI-Powered Customer Support'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ecommerce_support_title | default('AI-Powered Customer Support') }}
       </h2>

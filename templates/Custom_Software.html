@@ -33,7 +33,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="API Integration Background" class="w-full h-full object-cover opacity-50">
+      {% if images.services['Custom-Software-Background'] and images.services['Custom-Software-Background']|length > 0 %}
+      <img src="{{ images.services['Custom-Software-Background'][0].image_url }}" alt="{{ images.services['Custom-Software-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -48,7 +50,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Connect Systems" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Connect-CRM-ERP-Databases'] and images.services['Connect-CRM-ERP-Databases']|length > 0 %}
+      <img src="{{ images.services['Connect-CRM-ERP-Databases'][0].image_url }}" alt="{{ images.services['Connect-CRM-ERP-Databases'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.custom_software_connect_title | default('Connect CRM, ERP, and Databases') }}
       </h2>
@@ -63,7 +67,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Automate Data Flow" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Automate Data Flow between Platforms'] and images.services['Automate Data Flow between Platforms']|length > 0 %}
+      <img src="{{ images.services['Automate Data Flow between Platforms'][0].image_url }}" alt="{{ images.services['Automate Data Flow between Platforms'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.custom_software_automate_title | default('Automate Data Flow between Platforms') }}
       </h2>
@@ -80,7 +86,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Custom Payments" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Custom Payment Gateway Integrations'] and images.services['Custom Payment Gateway Integrations']|length > 0 %}
+      <img src="{{ images.services['Custom Payment Gateway Integrations'][0].image_url }}" alt="{{ images.services['Custom Payment Gateway Integrations'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.custom_software_payment_title | default('Custom Payment Gateway Integrations') }}
       </h2>
@@ -95,7 +103,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Real-time Sync" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Real-time Data Synchronization'] and images.services['Real-time Data Synchronization']|length > 0 %}
+      <img src="{{ images.services['Real-time Data Synchronization'][0].image_url }}" alt="{{ images.services['Real-time Data Synchronization'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.custom_software_sync_title | default('Real-time Data Synchronization') }}
       </h2>

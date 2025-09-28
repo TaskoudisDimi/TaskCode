@@ -31,7 +31,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="AI Software Background" class="w-full h-full object-cover opacity-50">
+      {% if images.services['AI-Background'] and images.services['AI-Background']|length > 0 %}
+      <img src="{{ images.services['AI-Background'][0].image_url }}" alt="{{ images.services['AI-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -46,7 +48,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1600585152245-16a7a0add7df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Chatbot Integration" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Chatbot'] and images.services['Chatbot']|length > 0 %}
+      <img src="{{ images.services['Chatbot'][0].image_url }}" alt="{{ images.services['Chatbot'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ai_chatbot_title | default('Chatbot Integration') }}
       </h2>
@@ -64,7 +68,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1591122948367-62d1e1ee6507?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Price Forecasting" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Price-Forecasting'] and images.services['Price-Forecasting']|length > 0 %}
+      <img src="{{ images.services['Price-Forecasting'][0].image_url }}" alt="{{ images.services['Price-Forecasting'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ai_forecasting_title | default('Price Forecasting') }}
       </h2>
@@ -82,7 +88,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1555949963-fa47a777a5db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Workflow Automation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.services['Workflow-Automation'] and images.services['Workflow-Automation']|length > 0 %}
+      <img src="{{ images.services['Workflow-Automation'][0].image_url }}" alt="{{ images.services['Workflow-Automation'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.ai_workflow_title | default('Workflow Automation') }}
       </h2>

@@ -28,7 +28,9 @@
 <div class="container mx-auto px-4 py-16">
   <section class="relative bg-gradient-to-br from-teal-900 to-teal-800 rounded-lg shadow-2xl overflow-hidden mb-12" style="min-height: 300px;">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1583842187042-8356f91f13b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Inventory Management Background" class="w-full h-full object-cover opacity-50">
+      {% if images.solutions['Smart_Inventory_Management-Background'] and images.solutions['Smart_Inventory_Management-Background']|length > 0 %}
+        <img src="{{ images.solutions['Smart_Inventory_Management-Background'][0].image_url }}" alt="{{ images.solutions['Smart_Inventory_Management-Background'][0].alt_text }}" class="w-full h-full object-cover opacity-30">
+      {% endif %}
       <div class="absolute inset-0 bg-teal-950 opacity-50"></div>
     </div>
     <div class="relative z-10 container mx-auto px-4 py-12 text-center animate-slide-in">
@@ -43,7 +45,9 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1582213782179-e0d00f73f288?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="WMS Implementation" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Warehouse Management Systems'] and images.solutions['Interactive & Responsive Websites']|length > 0 %}
+      <img src="{{ images.solutions['Interactive & Responsive Websites'][0].image_url }}" alt="{{ images.solutions['Interactive & Responsive Websites'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.inventory_wms_title | default('Warehouse Management Systems (WMS)') }}
       </h2>
@@ -58,7 +62,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="API Integration" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['API Integration for Data Flow'] and images.solutions['API Integration for Data Flow']|length > 0 %}
+        <img src="{{ images.solutions['API Integration for Data Flow'][0].image_url }}" alt="{{ images.solutions['API Integration for Data Flow'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.inventory_api_title | default('API Integration for Data Flow') }}
       </h2>
@@ -73,7 +79,9 @@
     </div>
 
     <div class="bg-teal-950 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up">
-      <img src="https://images.unsplash.com/photo-1591122948367-62d1e1ee6507?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Predictive Analytics" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% if images.solutions['Demand Forecasting & Analytics'] and images.solutions['Demand Forecasting & Analytics']|length > 0 %}
+      <img src="{{ images.solutions['Demand Forecasting & Analytics'][0].image_url }}" alt="{{ images.solutions['Demand Forecasting & Analytics'][0].alt_text }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+      {% endif %}
       <h2 class="text-2xl font-orbitron text-white mb-4">
         {{ translations.inventory_demand_title | default('Demand Forecasting & Analytics') }}
       </h2>

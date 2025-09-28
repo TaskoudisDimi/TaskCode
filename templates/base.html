@@ -12,7 +12,7 @@
 <body class="bg-white text-gray-900">
   <nav class="bg-white shadow sticky top-0 z-50" style="height: 64px;">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="{{ url_for('index') }}" class="text-2xl font-bold font-orbitron">
+      <a href="{{ url_for('main.index') }}" class="text-2xl font-bold font-orbitron">
         {% if images.logo and images.logo|length > 0 %}
           <img src="{{ images.logo[0].image_url }}" alt="{{ images.logo[0].alt_text }}" class="h-11">
         {% else %}
@@ -26,10 +26,10 @@
             <i class="fas fa-chevron-down ml-1 text-sm"></i>
           </a>
           <div class="dropdown-menu">
-            <a href="{{ url_for('sites_eshops_wms') }}">{{ translations.sites_eshop_wms_title | default('Create Sites/E-shop/WMS') }}</a>
-            <a href="{{ url_for('logos') }}">{{ translations.logos_title | default('Create Logos and Social Media') }}</a>
-            <a href="{{ url_for('AI') }}">{{ translations.ai_software_title | default('Create Software for Task Automation with AI') }}</a>
-            <a href="{{ url_for('custom_software') }}">{{ translations.custom_software_title | default('Custom Software') }}</a>
+            <a href="{{ url_for('main.sites_eshops_wms') }}">{{ translations.sites_eshop_wms_title | default('Create Sites/E-shop/WMS') }}</a>
+            <a href="{{ url_for('main.logos') }}">{{ translations.logos_title | default('Create Logos and Social Media') }}</a>
+            <a href="{{ url_for('main.AI') }}">{{ translations.ai_software_title | default('Create Software for Task Automation with AI') }}</a>
+            <a href="{{ url_for('main.custom_software') }}">{{ translations.custom_software_title | default('Custom Software') }}</a>
           </div>
         </div>
         <div class="relative dropdown">
@@ -38,66 +38,84 @@
             <i class="fas fa-chevron-down ml-1 text-sm"></i>
           </a>
           <div class="dropdown-menu">
-            <a href="{{ url_for('Brand_Identity_Digital_Assets') }}">{{ translations.brand_identity_title | default('Brand Identity & Digital Assets') }}</a>
-            <a href="{{ url_for('Dynamic_Web_Portals') }}">{{ translations.dynamic_web_portals_title | default('Dynamic Web Portals') }}</a>
-            <a href="{{ url_for('eCommerce_solution') }}">{{ translations.ecommerce_automation_title | default('eCommerce Solution') }}</a>
-            <a href="{{ url_for('Smart_Inventory_Management') }}">{{ translations.smart_inventory_title | default('Smart Inventory Management') }}</a>        
+            <a href="{{ url_for('main.eCommerce_solution') }}">{{ translations.ecommerce_automation_title | default('eCommerce Solution') }}</a>
+            <a href="{{ url_for('main.Brand_Identity_Digital_Assets') }}">{{ translations.brand_identity_title | default('Brand Identity & Digital Assets') }}</a>
+            <a href="{{ url_for('main.Dynamic_Web_Portals') }}">{{ translations.dynamic_web_portals_title | default('Dynamic Web Portals') }}</a>            
+            <a href="{{ url_for('main.Smart_Inventory_Management') }}">{{ translations.smart_inventory_title | default('Smart Inventory Management') }}</a>        
           </div>
         </div>
-        <a href="{{ url_for('prices') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.pricing_title | default('Prices') }}</a>
-        <a href="{{ url_for('about') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.about_title | default('About Us') }}</a>
+        <a href="{{ url_for('main.prices') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.pricing_title | default('Prices') }}</a>
+        <a href="{{ url_for('main.about') }}" class="text-gray-900 hover:text-teal-600 font-orbitron">{{ translations.about_title | default('About Us') }}</a>
         <select id="language-select" class="bg-gray-200 text-gray-900 p-1 rounded-md" onchange="changeLanguage(this.value)">
           <option value="en" {% if session.get('language') == 'en' %}selected{% endif %}>English</option>
           <option value="el" {% if session.get('language') == 'el' %}selected{% endif %}>Greek</option>
         </select>
       </div>
     </div>
-</nav>
+  </nav>
 
   {% block content %}{% endblock %}
 
-  {% if request.endpoint == 'index' or request.endpoint == 'about' %}
-    <section id="contact" class="py-20 bg-gray-100 relative overflow-hidden">
-      <div class="container mx-auto px-4 relative z-10">
-        <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-gray-900 text-center mb-12 animate-slide-in">
-          {{ translations.contact_title | default('Contact') }}
-        </h2>
+  {% if request.endpoint == 'main.index' or request.endpoint == 'main.about' %}
+  <section id="contact" class="py-20 bg-gray-100 relative overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+      <h2 class="text-5xl md:text-6xl font-orbitron font-bold text-gray-900 text-center mb-12 animate-slide-in">
+        {{ translations.contact_title | default('Contact') }}
+      </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300 flex items-center">
-            <div class="w-full h-full bg-gray-100 rounded-lg border-2 border-teal-300 overflow-hidden">
-              <iframe 
-               src="https://www.google.com/maps/embed/v1/place?key={{ company_details.maps_api_key }}&q={{ (company_details.address + ', ' + company_details.city + ', ' + company_details.country) | urlencode }}"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-              </iframe>
-            </div>
-          </div>
-          <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
-            <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">{{ translations.company_info_title | default('Company Information') }}</h3>
-            <div class="space-y-4">
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📍</span> Address: {{ company_details.address | default('123 Innovation Lane') }}, {{ company_details.city | default('Tech City') }}, {{ company_details.postal_code | default('TC 45678') }}, {{ company_details.country | default('Country') }}</p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">📞</span> Telephone: {{ company_details.phone | default('+1-234-567-8900') }}</p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">✉️</span> Email: <a href="mailto:{{ company_details.email | default('info@task-code.com') }}">{{ company_details.email | default('info@task-code.com') }}</a></p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">🌐</span> Website: <a href="{{ company_details.website | default('#') }}" target="_blank">{{ company_details.website | default('https://www.task-code.com') }}</a></p>
-              <p class="text-gray-700 font-poppins flex items-center"><span class="mr-2">⏰</span> Hours: {{ company_details.hours | default('Mon-Fri, 9:00 AM - 6:00 PM (EEST)') }}</p>
-              <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">{{ translations.follow_us | default('Follow Us') }}</h4>
-              <div class="flex justify-center space-x-6">
-                <a href="{{ company_details.twitter_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-x-twitter mr-1"></i> Twitter</a>
-                <a href="{{ company_details.linkedin_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-linkedin-in mr-1"></i> LinkedIn</a>
-                <a href="{{ company_details.facebook_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-facebook-f mr-1"></i> Facebook</a>
-              </div>
-            </div>
-            <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup | default('Newsletter Signup') }}</h3>
-            <form action="{{ url_for('newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
-              <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">
-                {{ translations.form_submit | default('Subscribe') }}
-              </button>
-              <p class="text-gray-500 font-poppins text-center mt-2">{{ translations.newsletter_description | default('Keep in touch with our latest news') }}</p>
-            </form>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300 flex items-center">
+          <div class="w-full h-full bg-gray-100 rounded-lg border-2 border-teal-300 overflow-hidden">
+            <iframe 
+             src="https://www.google.com/maps/embed/v1/place?key={{ company_details.maps_api_key }}&q={{ (company_details.address + ', ' + company_details.city + ', ' + company_details.country) | urlencode }}"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
           </div>
         </div>
+        <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
+          <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">{{ translations.company_info_title | default('Company Information') }}</h3>
+          <div class="space-y-4">
+            <p class="text-gray-700 font-poppins flex items-center">
+              <span class="mr-2">📍</span> 
+              **{{ translations.address_label | default('Address') }}:** {{ company_details.address | default('123 Innovation Lane') }}, 
+              {{ company_details.city | default('Tech City') }}, 
+              {{ company_details.postal_code | default('TC 45678') }}, 
+              {{ company_details.country | default('Country') }}
+            </p>
+            <p class="text-gray-700 font-poppins flex items-center">
+              <span class="mr-2">📞</span> 
+              **{{ translations.telephone_label | default('Telephone') }}:** {{ company_details.phone | default('+1-234-567-8900') }}
+            </p>
+            <p class="text-gray-700 font-poppins flex items-center">
+              <span class="mr-2">✉️</span> 
+              **{{ translations.email_label | default('Email') }}:** <a href="mailto:{{ company_details.email | default('info@task-code.com') }}">{{ company_details.email | default('info@task-code.com') }}</a>
+            </p>
+            <p class="text-gray-700 font-poppins flex items-center">
+              <span class="mr-2">🌐</span> 
+              **{{ translations.website_label | default('Website') }}:** <a href="{{ company_details.website | default('#') }}" target="_blank">{{ company_details.website | default('https://www.task-code.com') }}</a>
+            </p>
+            <p class="text-gray-700 font-poppins flex items-center">
+              <span class="mr-2">⏰</span> 
+              **{{ translations.hours_label | default('Hours') }}:** {{ company_details.hours | default('Mon-Fri, 9:00 AM - 6:00 PM (EEST)') }}
+            </p>
+            <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">{{ translations.follow_us | default('Follow Us') }}</h4>
+            <div class="flex justify-center space-x-6">
+              <a href="{{ company_details.twitter_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-x-twitter mr-1"></i> Twitter</a>
+              <a href="{{ company_details.linkedin_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-linkedin-in mr-1"></i> LinkedIn</a>
+              <a href="{{ company_details.facebook_url | default('#') }}" class="text-teal-600 hover:text-teal-400 transition-colors duration-300 flex items-center"><i class="fab fa-facebook-f mr-1"></i> Facebook</a>
+            </div>
+          </div>
+          <h3 class="text-2xl font-orbitron text-gray-900 mt-8 mb-4 text-center">{{ translations.newsletter_signup | default('Newsletter Signup') }}</h3>
+          <form action="{{ url_for('main.newsletter') }}" method="POST" class="max-w-md mx-auto space-y-4">
+            <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">
+              {{ translations.form_submit | default('Subscribe') }}
+            </button>
+            <p class="text-gray-500 font-poppins text-center mt-2">{{ translations.newsletter_description | default('Keep in touch with our latest news') }}</p>
+          </form>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   {% else %}
     <section id="contact" class="py-16 bg-white">
       <div class="container mx-auto px-4">
@@ -112,7 +130,7 @@
               </div>
             {% endif %}
 
-            <form method="POST" action="{{ url_for('contact') }}" class="max-w-lg mx-auto space-y-6">
+            <form method="POST" action="{{ url_for('main.contact') }}" class="max-w-lg mx-auto space-y-6">
               <div>
                 <label for="name" class="block text-gray-900 mb-2 font-poppins">{{ translations.form_name | default('Name') }}</label>
                 <input type="text" name="name" id="name"
@@ -152,7 +170,7 @@
     </section>
   {% endif %}
 
-  <div id="chatbot-trigger" class="fixed bottom-4 right-4 z-50 cursor-pointer">
+  <!-- <div id="chatbot-trigger" class="fixed bottom-4 right-4 z-50 cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white bg-gray-600 rounded-full p-2 hover:bg-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
     </svg>
@@ -169,11 +187,11 @@
         </div>
       {% endfor %}
     </div>
-    <form id="chat-form" action="{{ url_for('submit_chat') }}" method="POST" class="flex">
+    <form id="chat-form" action="{{ url_for('main.submit_chat') }}" method="POST" class="flex">
       <input type="text" id="chat-input" name="chat_input" class="w-full px-2 py-1 bg-gray-700 text-white rounded-l-md focus:outline-none" placeholder="{{ translations.chat_placeholder | default('Type your message...') }}">
       <button type="submit" class="bg-teal-600 text-white px-4 py-1 rounded-r-md hover:bg-teal-700">{{ translations.form_submit | default('Send') }}</button>
     </form>
-  </div>
+  </div> -->
 
   <footer class="bg-gray-200 py-12 relative overflow-hidden">
     <div class="container mx-auto px-4 text-center relative z-10">
@@ -185,9 +203,9 @@
         <div>
           <h4 class="text-lg font-orbitron text-gray-900 mb-4">{{ translations.company_title | default('Company') }}</h4>
           <ul class="space-y-2 text-gray-700 font-poppins">
-            <li><a href="{{ url_for('index') }}" class="hover:text-teal-600">{{ translations.home_title | default('Home') }}</a></li>
-            <li><a href="{{ url_for('prices') }}" class="hover:text-teal-600">{{ translations.services_title | default('Services') }}</a></li>
-            <li><a href="{{ url_for('about') }}" class="hover:text-teal-600">{{ translations.about_title | default('About Us') }}</a></li>
+            <li><a href="{{ url_for('main.index') }}" class="hover:text-teal-600">{{ translations.home_title | default('Home') }}</a></li>
+            <li><a href="{{ url_for('main.prices') }}" class="hover:text-teal-600">{{ translations.services_title | default('Services') }}</a></li>
+            <li><a href="{{ url_for('main.about') }}" class="hover:text-teal-600">{{ translations.about_title | default('About Us') }}</a></li>
           </ul>
         </div>
         <div>
@@ -202,7 +220,7 @@
         <div>
           <h4 class="text-lg font-orbitron text-gray-900 mb-4">{{ translations.questions_title | default('Any Questions?') }}</h4>
           <p class="text-gray-700 font-poppins mb-4">{{ translations.questions_description | default('Have a question? Just drop a line.') }}</p>
-          <a href="{{ url_for('contact') }}" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">{{ translations.contact_us | default('Contact Us') }}</a>
+          <a href="{{ url_for('main.contact') }}" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl font-orbitron transition-all duration-300">{{ translations.contact_us | default('Contact Us') }}</a>
           <div class="flex justify-center space-x-4 mt-4">
             <a href="{{ company_details.linkedin_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-linkedin-in"></i></a>
             <a href="{{ company_details.twitter_url | default('#') }}" class="text-teal-600 hover:text-teal-500"><i class="fab fa-x-twitter"></i></a>
@@ -214,7 +232,12 @@
       <p class="text-gray-500 font-poppins">© 2025 {{ company_details.name | default('Task-Code') }}. {{ translations.all_rights_reserved | default('All rights reserved.') }}</p>
     </div>
   </footer>
-
+  <button id="scrollToTopBtn" 
+          class="fixed bottom-6 right-6 z-50 p-4 bg-teal-600 text-white rounded-full shadow-lg 
+                 hover:bg-teal-700 transition-all duration-300 opacity-0 invisible" 
+          aria-label="{{ translations.scroll_to_top | default('Scroll to Top') }}">
+    <i class="fas fa-arrow-up text-xl"></i>
+  </button>
   <script>
     function changeLanguage(lang) {
       console.log("Changing language to:", lang);
@@ -232,18 +255,47 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const chatbotTrigger = document.getElementById('chatbot-trigger');
-      const chatbot = document.getElementById('chatbot');
-      const chatbotClose = document.getElementById('chatbot-close');
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      const rootElement = document.documentElement; // Used for smooth scrolling
 
-      chatbotTrigger.addEventListener('click', () => {
-        chatbot.classList.toggle('hidden');
-      });
+      // Function to show/hide the button
+      function handleScroll() {
+        // Show button if user has scrolled more than 100 pixels (a threshold)
+        if (rootElement.scrollTop > 100) {
+          scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+          scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+          scrollToTopBtn.classList.remove('opacity-100', 'visible');
+          scrollToTopBtn.classList.add('opacity-0', 'invisible');
+        }
+      }
 
-      chatbotClose.addEventListener('click', () => {
-        chatbot.classList.add('hidden');
-      });
+      // Function to scroll smoothly back to the top
+      function scrollToTop() {
+        rootElement.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Attach event listeners
+      window.addEventListener('scroll', handleScroll);
+      scrollToTopBtn.addEventListener('click', scrollToTop);
     });
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const chatbotTrigger = document.getElementById('chatbot-trigger');
+    //   const chatbot = document.getElementById('chatbot');
+    //   const chatbotClose = document.getElementById('chatbot-close');
+
+    //   chatbotTrigger.addEventListener('click', () => {
+    //     chatbot.classList.toggle('hidden');
+    //   });
+
+    //   chatbotClose.addEventListener('click', () => {
+    //     chatbot.classList.add('hidden');
+    //   });
+    // });
   </script>
 </body>
 </html>
