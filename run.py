@@ -21,8 +21,10 @@ def create_app():
 
     return app
 
+# Create app instance for WSGI
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     with app.app_context():
         try:
             db.create_all()
