@@ -77,26 +77,26 @@
           <div class="space-y-4">
             <p class="text-gray-700 font-poppins flex items-center">
               <span class="mr-2">📍</span> 
-              **{{ translations.address_label | default('Address') }}:** {{ company_details.address | default('123 Innovation Lane') }}, 
+              {{ translations.address_label | default('Address') }}: {{ company_details.address | default('123 Innovation Lane') }}, 
               {{ company_details.city | default('Tech City') }}, 
               {{ company_details.postal_code | default('TC 45678') }}, 
               {{ company_details.country | default('Country') }}
             </p>
             <p class="text-gray-700 font-poppins flex items-center">
               <span class="mr-2">📞</span> 
-              **{{ translations.telephone_label | default('Telephone') }}:** {{ company_details.phone | default('+1-234-567-8900') }}
+              {{ translations.telephone_label | default('Telephone') }}: {{ company_details.phone | default('+1-234-567-8900') }}
             </p>
             <p class="text-gray-700 font-poppins flex items-center">
               <span class="mr-2">✉️</span> 
-              **{{ translations.email_label | default('Email') }}:** <a href="mailto:{{ company_details.email | default('info@task-code.com') }}">{{ company_details.email | default('info@task-code.com') }}</a>
+              {{ translations.email_label | default('Email') }}: <a href="mailto:{{ company_details.email | default('info@task-code.com') }}">{{ company_details.email | default('info@task-code.com') }}</a>
             </p>
             <p class="text-gray-700 font-poppins flex items-center">
               <span class="mr-2">🌐</span> 
-              **{{ translations.website_label | default('Website') }}:** <a href="{{ company_details.website | default('#') }}" target="_blank">{{ company_details.website | default('https://www.task-code.com') }}</a>
+              {{ translations.website_label | default('Website') }}: <a href="{{ company_details.website | default('#') }}" target="_blank">{{ company_details.website | default('https://www.task-code.com') }}</a>
             </p>
             <p class="text-gray-700 font-poppins flex items-center">
               <span class="mr-2">⏰</span> 
-              **{{ translations.hours_label | default('Hours') }}:** {{ company_details.hours | default('Mon-Fri, 9:00 AM - 6:00 PM (EEST)') }}
+              {{ translations.hours_label | default('Hours') }}: {{ company_details.hours | default('Mon-Fri, 9:00 AM - 6:00 PM (EEST)') }}
             </p>
             <h4 class="text-lg font-orbitron text-gray-900 mb-4 mt-6 text-center">{{ translations.follow_us | default('Follow Us') }}</h4>
             <div class="flex justify-center space-x-6">
@@ -124,7 +124,7 @@
           <div class="bg-white p-8 rounded-lg shadow-xl border border-teal-300">
             <h3 class="text-2xl font-orbitron text-gray-900 mb-6 text-center">{{ translations.send_message | default('Send Us a Message') }}</h3>
 
-            {% if request.method == 'POST' %}
+            {% if request.endpoint == 'main.contact' and request.method == 'POST' %}
               <div class="text-center text-teal-600 mb-4 font-poppins">
                 ✅ {{ translations.message_sent | default('Message sent successfully! We\'ll get back to you soon.') }}
               </div>
