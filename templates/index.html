@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Home - {{ company_details.name | default('Task-Code') }}{% endblock %}
+
 {% block content %}
 <section id="vision" class="min-h-screen flex items-center relative overflow-hidden bg-white" style="padding-top: 64px;">
   
@@ -12,164 +13,171 @@
   </div>
 
   <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-24 xl:px-32 2xl:px-48 flex flex-col md:flex-row items-center justify-center relative z-20">
-    <div class="text-content w-full md:w-1/2 text-center">
-      <h1 class="text-3xl md:text-5xl font-orbitron font-bold mb-6 text-gray-900 animate-slide-in">
-        {{ translations.tagline | default('Innovate with Task-Code') }}
-      </h1>
-      <p class="text-lg md:text-xl mb-8 text-gray-700 font-poppins animate-slide-in-delayed">
-        {{ translations.tagline_description | default('Transform your business with cutting-edge technology solutions.') }}
-      </p>
-      <h2 class="text-3xl md:text-4xl font-orbitron font-bold text-gray-900 mb-6">
-        {{ translations.hero_we_build | default('We build') }} <span id="changing-word" class="text-teal-600 animate-word-change"></span>
-      </h2>
-      <a href="#solutions" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-2xl font-orbitron animate-pulse-btn">
-        {{ translations.explore_solutions | default('Explore Solutions') }}
-      </a>
+    <div class="container mx-auto px-4 flex flex-col items-center justify-center relative z-20 py-16 md:py-0"> 
+      <div class="text-content w-full md:w-1/2 text-center bg-white bg-opacity-80 p-6 rounded-lg shadow-2xl"> 
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold mb-4 text-gray-900 animate-slide-in"> 
+          {{ translations.tagline | default('Innovate with Task-Code') }}
+        </h1>
+        <p class="text-base sm:text-lg mb-6 text-gray-700 font-poppins animate-slide-in-delayed"> 
+          {{ translations.tagline_description | default('Transform your business with cutting-edge technology solutions.') }}
+        </p>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-orbitron font-bold text-gray-900 mb-6"> 
+          {{ translations.hero_we_build | default('We build') }} <span id="changing-word" class="text-teal-600 animate-word-change"></span>
+        </h2>
+        <a href="#solutions" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-2xl font-orbitron animate-pulse-btn"> 
+          {{ translations.explore_solutions | default('Explore Solutions') }}
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
+
 <section id="services" class="py-16 bg-gray-100 animate-slide-in">
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4"> 
     <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">
       {{ translations.services_title | default('Our Services') }}
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">      
-      <div class="grid grid-cols-1 gap-8">
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          {% if images.get('services') and images.get('services').get('Sites/E-shop/WMS') and images.get('services').get('Sites/E-shop/WMS')|length > 0 %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="{{ images.get('services').get('Sites/E-shop/WMS')[0].image_url }}" alt="{{ images.get('services').get('Sites/E-shop/WMS')[0].alt_text }}" class="w-full h-full object-cover">
-          </div>
-          {% else %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="https://via.placeholder.com/300x384" alt="Sites/E-shop/WMS" class="w-full h-full object-cover">
-          </div>
-          {% endif %}
-          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.sites_eshop_wms_title | default('Create Sites/E-shop/WMS') }}</h3>
-          <p class="text-gray-700 font-poppins">{{ translations.sites_eshop_wms_description | default('Build powerful websites, e-commerce platforms, and warehouse management systems.') }}</p>
-          <ul class="text-gray-700 font-poppins text-center mt-2">
-            <li>{{ translations.sites_eshop_wms_feature1 | default('Custom website design') }}</li>
-            <li>{{ translations.sites_eshop_wms_feature2 | default('E-commerce integration') }}</li>
-            <li>{{ translations.sites_eshop_wms_feature3 | default('WMS automation') }}</li>
-            <li>{{ translations.sites_eshop_wms_feature4 | default('Scalable solutions') }}</li>
-          </ul>
-          <a href="{{ url_for('main.sites_eshops_wms') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+        
+      {# Service 1: Sites/E-shop/WMS #}
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        {% if images.get('services') and images.get('services').get('Sites/E-shop/WMS') and images.get('services').get('Sites/E-shop/WMS')|length > 0 %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md"> <img src="{{ images.get('services').get('Sites/E-shop/WMS')[0].image_url }}" alt="{{ images.get('services').get('Sites/E-shop/WMS')[0].alt_text }}" class="w-full h-full object-cover">
         </div>
-        {# Second Service: Logos - CORRECTED SIZE #}
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          {% if images.get('services') and images.get('services').get('Logos') and images.get('services').get('Logos')|length > 0 %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="{{ images.get('services').get('Logos')[0].image_url }}" alt="{{ images.get('services').get('Logos')[0].alt_text }}" class="w-full h-full object-cover">          
-          </div>  
-          {% else %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="https://via.placeholder.com/300x384" alt="Logos" class="w-full h-full object-cover">          
-          </div>
-          {% endif %}
-          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.logos_title | default('Create Logos and Social Media') }}</h3>
-          <p class="text-gray-700 font-poppins">{{ translations.logos_description | default('Design stunning logos and social media assets.') }}</p>
-          <ul class="text-gray-700 font-poppins text-center mt-2">
-            <li>{{ translations.logos_feature1 | default('Unique logo designs') }}</li>
-            <li>{{ translations.logos_feature2 | default('Social media graphics') }}</li>
-            <li>{{ translations.logos_feature3 | default('Brand consistency') }}</li>
-            <li>{{ translations.logos_feature4 | default('Scalable solutions') }}</li>
-          </ul>
-          <a href="{{ url_for('main.logos') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+        {% else %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="https://via.placeholder.com/300x384" alt="Sites/E-shop/WMS" class="w-full h-full object-cover">
         </div>
+        {% endif %}
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.sites_eshop_wms_title | default('Create Sites/E-shop/WMS') }}</h3>
+        <p class="text-gray-700 font-poppins">{{ translations.sites_eshop_wms_description | default('Build powerful websites, e-commerce platforms, and warehouse management systems.') }}</p>
+        <ul class="text-gray-700 font-poppins text-center mt-2 space-y-1">
+          <li>{{ translations.sites_eshop_wms_feature1 | default('Custom website design') }}</li>
+          <li>{{ translations.sites_eshop_wms_feature2 | default('E-commerce integration') }}</li>
+          <li>{{ translations.sites_eshop_wms_feature3 | default('WMS automation') }}</li>
+          <li>{{ translations.sites_eshop_wms_feature4 | default('Scalable solutions') }}</li>
+        </ul>
+        <a href="{{ url_for('main.sites_eshops_wms') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
       </div>
       
-      {# Right Column #}
-      <div class="grid grid-cols-1 gap-8">
-        {# Third Service: AI Software - CORRECTED SIZE #}
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          {% if images.get('services') and images.get('services').get('Create Software for Task Automation with AI') and images.get('services').get('Create Software for Task Automation with AI')|length > 0 %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="{{ images.get('services').get('Create Software for Task Automation with AI')[0].image_url }}" alt="{{ images.get('services').get('Create Software for Task Automation with AI')[0].alt_text }}" class="w-full h-full object-cover">          
-          </div>
-          {% else %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="https://via.placeholder.com/300x384" alt="AI Software" class="w-full h-full object-cover">          
-          </div>
-          {% endif %}
-          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.ai_software_title | default('Create Software for Task Automation with AI') }}</h3>
-          <p class="text-gray-700 font-poppins">{{ translations.ai_software_description | default('Automate tasks with AI-powered software solutions.') }}</p>
-          <ul class="text-gray-700 font-poppins text-center mt-2">
-            <li>{{ translations.ai_software_feature1 | default('AI-driven automation') }}</li>
-            <li>{{ translations.ai_software_feature2 | default('Custom algorithms') }}</li>
-            <li>{{ translations.ai_software_feature3 | default('Scalable systems') }}</li>
-            <li>{{ translations.ai_software_feature4 | default('Real-time analytics') }}</li>
-          </ul>
-          <a href="{{ url_for('main.AI') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+      {# Service 2: Logos #}
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        {% if images.get('services') and images.get('services').get('Logos') and images.get('services').get('Logos')|length > 0 %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="{{ images.get('services').get('Logos')[0].image_url }}" alt="{{ images.get('services').get('Logos')[0].alt_text }}" class="w-full h-full object-cover">          
+        </div>  
+        {% else %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="https://via.placeholder.com/300x384" alt="Logos" class="w-full h-full object-cover">          
         </div>
+        {% endif %}
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.logos_title | default('Create Logos and Social Media') }}</h3>
+        <p class="text-gray-700 font-poppins">{{ translations.logos_description | default('Design stunning logos and social media assets.') }}</p>
+        <ul class="text-gray-700 font-poppins text-center mt-2 space-y-1">
+          <li>{{ translations.logos_feature1 | default('Unique logo designs') }}</li>
+          <li>{{ translations.logos_feature2 | default('Social media graphics') }}</li>
+          <li>{{ translations.logos_feature3 | default('Brand consistency') }}</li>
+          <li>{{ translations.logos_feature4 | default('Scalable solutions') }}</li>
+        </ul>
+        <a href="{{ url_for('main.logos') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+      </div>
+      
+      {# Service 3: AI Software #}
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        {% if images.get('services') and images.get('services').get('Create Software for Task Automation with AI') and images.get('services').get('Create Software for Task Automation with AI')|length > 0 %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="{{ images.get('services').get('Create Software for Task Automation with AI')[0].image_url }}" alt="{{ images.get('services').get('Create Software for Task Automation with AI')[0].alt_text }}" class="w-full h-full object-cover">          
+        </div>
+        {% else %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="https://via.placeholder.com/300x384" alt="AI Software" class="w-full h-full object-cover">          
+        </div>
+        {% endif %}
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.ai_software_title | default('Create Software for Task Automation with AI') }}</h3>
+        <p class="text-gray-700 font-poppins">{{ translations.ai_software_description | default('Automate tasks with AI-powered software solutions.') }}</p>
+        <ul class="text-gray-700 font-poppins text-center mt-2 space-y-1">
+          <li>{{ translations.ai_software_feature1 | default('AI-driven automation') }}</li>
+          <li>{{ translations.ai_software_feature2 | default('Custom algorithms') }}</li>
+          <li>{{ translations.ai_software_feature3 | default('Scalable systems') }}</li>
+          <li>{{ translations.ai_software_feature4 | default('Real-time analytics') }}</li>
+        </ul>
+        <a href="{{ url_for('main.AI') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+      </div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-          {% if images.get('services') and images.get('services').get('Custom Software') and images.get('services').get('Custom Software')|length > 0 %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="{{ images.get('services').get('Custom Software')[0].image_url }}" alt="{{ images.get('services').get('Custom Software')[0].alt_text }}" class="w-full h-full object-cover">          
-          </div>
-          {% else %}
-          <div class="w-full h-96 mb-4 overflow-hidden rounded-md">
-            <img src="https://via.placeholder.com/300x384" alt="Custom Software" class="w-full h-full object-cover">          
-          </div>
-          {% endif %}
-          <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.custom_software_title | default('Custom Software') }}</h3>
-          <p class="text-gray-700 font-poppins">{{ translations.custom_software_description | default('Tailored software with seamless API integrations.') }}</p>
-          <ul class="text-gray-700 font-poppins text-center mt-2">
-            <li>{{ translations.custom_software_feature1 | default('Custom API development') }}</li>
-            <li>{{ translations.custom_software_feature2 | default('Third-party integrations') }}</li>
-            <li>{{ translations.custom_software_feature3 | default('Scalable architecture') }}</li>
-            <li>{{ translations.custom_software_feature4 | default('Secure solutions') }}</li>
-          </ul>
-          <a href="{{ url_for('main.custom_software') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
+      {# Service 4: Custom Software #}
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+        {% if images.get('services') and images.get('services').get('Custom Software') and images.get('services').get('Custom Software')|length > 0 %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="{{ images.get('services').get('Custom Software')[0].image_url }}" alt="{{ images.get('services').get('Custom Software')[0].alt_text }}" class="w-full h-full object-cover">          
         </div>
+        {% else %}
+        <div class="w-full h-64 md:h-80 mb-4 overflow-hidden rounded-md">
+          <img src="https://via.placeholder.com/300x384" alt="Custom Software" class="w-full h-full object-cover">          
+        </div>
+        {% endif %}
+        <h3 class="text-2xl font-orbitron text-gray-900 mb-4">{{ translations.custom_software_title | default('Custom Software') }}</h3>
+        <p class="text-gray-700 font-poppins">{{ translations.custom_software_description | default('Tailored software with seamless API integrations.') }}</p>
+        <ul class="text-gray-700 font-poppins text-center mt-2 space-y-1">
+          <li>{{ translations.custom_software_feature1 | default('Custom API development') }}</li>
+          <li>{{ translations.custom_software_feature2 | default('Third-party integrations') }}</li>
+          <li>{{ translations.custom_software_feature3 | default('Scalable architecture') }}</li>
+          <li>{{ translations.custom_software_feature4 | default('Secure solutions') }}</li>
+        </ul>
+        <a href="{{ url_for('main.custom_software') }}" class="mt-4 inline-block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl font-orbitron">{{ translations.explore_solutions | default('Explore') }}</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="solutions" class="py-16 bg-white flex flex-col lg:flex-row items-center justify-between relative overflow-hidden">
-  <div class="container mx-auto px-4 w-full lg:w-1/2 relative z-20 text-center lg:text-center lg:order-2">
+<section id="solutions" class="py-16 bg-white relative overflow-hidden">
+  <div class="container mx-auto px-4 w-full relative z-20 text-center"> 
     <h2 class="text-4xl font-orbitron font-bold text-teal-600 mb-12 animate-slide-in">
       {{ translations.solutions_title | default('Our Solutions') }}
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> 
+      
       <a href="{{ url_for('main.eCommerce_solution') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
         {% if images.get('solutions') and images.get('solutions').get('E-commerce Automation') and images.get('solutions').get('E-commerce Automation')|length > 0 %}
-          <img src="{{ images.get('solutions').get('E-commerce Automation')[0].image_url }}" alt="{{ images.get('solutions').get('E-commerce Automation')[0].alt_text }}" class="w-full h-auto rounded-md mt-4">
+          <img src="{{ images.get('solutions').get('E-commerce Automation')[0].image_url }}" alt="{{ images.get('solutions').get('E-commerce Automation')[0].alt_text }}" class="w-full h-auto rounded-md mb-4"> 
         {% endif %}
         <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.ecommerce_automation_title | default('eCommerce Solution') }}</h3>
         <p class="text-gray-700 font-poppins">{{ translations.ecommerce_automation_description | default('Streamline your online store with automation.') }}</p>
       </a>
+
       <a href="{{ url_for('main.Smart_Inventory_Management') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
         {% if images.get('solutions') and images.get('solutions').get('Smart Inventory Management') and images.get('solutions').get('Smart Inventory Management')|length > 0 %}
-          <img src="{{ images.get('solutions').get('Smart Inventory Management')[0].image_url }}" alt="{{ images.get('solutions').get('Smart Inventory Management')[0].alt_text }}" class="w-full h-auto rounded-md mt-4">
+          <img src="{{ images.get('solutions').get('Smart Inventory Management')[0].image_url }}" alt="{{ images.get('solutions').get('Smart Inventory Management')[0].alt_text }}" class="w-full h-auto rounded-md mb-4"> 
         {% endif %}
         <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.smart_inventory_title | default('Smart Inventory Management') }}</h3>
         <p class="text-gray-700 font-poppins">{{ translations.smart_inventory_description | default('Optimize inventory with real-time tracking.') }}</p>
       </a>
-      <a href="{{ url_for('main.Dynamic_Web_Portals') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-        {% if images.get('solutions') and images.get('solutions').get('Dynamic Web Portals') and images.get('solutions').get('Dynamic Web Portals')|length > 0 %}
-          <img src="{{ images.get('solutions').get('Dynamic Web Portals')[0].image_url }}" alt="{{ images.get('solutions').get('Dynamic Web Portals')[0].alt_text }}" class="w-full h-auto rounded-md mt-4">
-        {% endif %}
-        <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.dynamic_web_portals_title | default('Dynamic Web Portals') }}</h3>
-        <p class="text-gray-700 font-poppins">{{ translations.dynamic_web_portals_description | default('Build interactive and scalable web portals.') }}</p>
-      </a>
+
       <a href="{{ url_for('main.Brand_Identity_Digital_Assets') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-        {% if images.solutions['Brand Identity & Digital Assets'] and images.solutions['Brand Identity & Digital Assets']|length > 0 %}
-          <img src="{{ images.solutions['Brand Identity & Digital Assets'][0].image_url }}" alt="{{ images.solutions['Brand Identity & Digital Assets'][0].alt_text }}" class="w-full h-auto rounded-md mt-4">
+        {% if images.get('solutions') and images.get('solutions').get('Brand Identity & Digital Assets') and images.get('solutions').get('Brand Identity & Digital Assets')|length > 0 %}
+          <img src="{{ images.get('solutions').get('Brand Identity & Digital Assets')[0].image_url }}" alt="{{ images.get('solutions').get('Brand Identity & Digital Assets')[0].alt_text }}" class="w-full h-auto rounded-md mb-4"> 
         {% endif %}
         <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.brand_identity_title | default('Brand Identity & Digital Assets') }}</h3>
-        <p class="text-gray-700 font-poppins">{{ translations.brand_identity_description | default('Create a cohesive brand identity online.') }}</p>
+        <p class="text-gray-700 font-poppins">{{ translations.brand_identity_description | default('Create a cohesive and powerful brand presence.') }}</p>
+      </a>
+
+      <a href="{{ url_for('main.Dynamic_Web_Portals') }}" class="bg-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        {% if images.get('solutions') and images.get('solutions').get('Dynamic Web Portals') and images.get('solutions').get('Dynamic Web Portals')|length > 0 %}
+          <img src="{{ images.get('solutions').get('Dynamic Web Portals')[0].image_url }}" alt="{{ images.get('solutions').get('Dynamic Web Portals')[0].alt_text }}" class="w-full h-auto rounded-md mb-4"> 
+        {% endif %}
+        <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.dynamic_web_portals_title | default('Dynamic Web Portals') }}</h3>
+        <p class="text-gray-700 font-poppins">{{ translations.dynamic_web_portals_description | default('Build custom, interactive web applications.') }}</p>
       </a>
     </div>
   </div>
 </section>
 
+
+
 <section id="process" class="py-16 bg-gray-100 flex flex-col lg:flex-row items-center justify-between relative animate-slide-in">
-  <div class="container mx-auto px-4 w-full lg:w-1/2 relative z-20 text-center lg:text-left lg:order-2">
+  <div class="container mx-auto px-4 w-full relative z-20 text-center">
     <h2 class="text-4xl font-orbitron font-bold text-teal-600 text-center mb-12 animate-slide-in">{{ translations.process_title | default('Our Process') }}</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:bg-gray-200 transition-all duration-300">
         <h3 class="text-xl font-orbitron text-gray-900 mb-2">{{ translations.step1_title | default('Discovery') }}</h3>
         <p class="text-gray-700 font-poppins">{{ translations.step1_description | default('Understand your needs and goals.') }}</p>
@@ -286,38 +294,7 @@
     changeWord();
     setInterval(changeWord, 2000);
 
-    // --- Hexagon image cycling (Keep this section the same) ---
-    const imageSources = [
-      "{{ images.vision[0].image_url if images.vision and images.vision|length > 0 else 'https://via.placeholder.com/400' }}",
-      "{{ images.vision[1].image_url if images.vision and images.vision|length > 1 else 'https://via.placeholder.com/400' }}",
-      "{{ images.vision[2].image_url if images.vision and images.vision|length > 2 else 'https://via.placeholder.com/400' }}",
-      "{{ images.vision[3].image_url if images.vision and images.vision|length > 3 else 'https://via.placeholder.com/400' }}"
-    ];
 
-    function setupImageCycler(imageClass, imageSources) {
-      const images = document.querySelectorAll(`.${imageClass}`);
-      let currentIndex = 0;
-
-      function updateImages() {
-        images.forEach(img => img.classList.remove('active'));
-        setTimeout(() => {
-          images.forEach((img, index) => {
-            img.src = imageSources[(currentIndex + index) % imageSources.length];
-            img.classList.add('active');
-          });
-          currentIndex = (currentIndex + images.length) % imageSources.length;
-        }, 1000);
-      }
-
-      images.forEach((img, index) => {
-        img.src = imageSources[index % imageSources.length];
-        img.classList.add('active');
-      });
-
-      setInterval(updateImages, 4000);
-    }
-
-    setupImageCycler('hero-img', imageSources);
   });
 </script>
 {% endblock %}
