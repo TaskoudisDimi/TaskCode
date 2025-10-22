@@ -5,7 +5,7 @@ import os
 from application.database import db, init_db  
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='/static', static_folder='static')
     app.config.from_object(Config)
 
     # Initialize database
